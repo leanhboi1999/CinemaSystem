@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,7 +21,6 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * Creates new form AdminLogin
      */
-    
     public AdminLogin() {
         initComponents();
     }
@@ -134,14 +134,17 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-          // TODO add your handling code here:
+        // TODO add your handling code here:
         String username = adminuserTF.getText();
         String password = adminpassPF.getText();
-       
-       
-     
-          
-       /* try
+
+        if ("".equals(username) || "".equals(password)) {
+            JOptionPane.showMessageDialog(null, "Lỗi cmn rồi");
+        } else {
+            dispose();
+        }
+
+        /* try
         {
             Class.forName("com.mysql.jdbc.Driver");
             String databaseURL = "jdbc:mysql://localhost:3306/busm";
@@ -172,10 +175,10 @@ public class AdminLogin extends javax.swing.JFrame {
             
         }*/
     }//GEN-LAST:event_jButton1ActionPerformed
-public void infoMessage(String message, String tittle) {
+    public void infoMessage(String message, String tittle) {
         JOptionPane.showMessageDialog(null, message, tittle, JOptionPane.INFORMATION_MESSAGE);
-}
-        
+    }
+
     /**
      * @param args the command line arguments
      */

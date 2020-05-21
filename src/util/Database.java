@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 
 /**
@@ -42,6 +43,13 @@ public class Database {
         } else {
             return DriverManager.getConnection(connectionString, userName, password);
         }
+    }
+    
+    //Gọi lệnh
+    public static ResultSet callQuery(String sqlQuery) throws SQLException {
+        Connection connect = connect();
+        Statement st = connect.createStatement();
+        return st.executeQuery(sqlQuery);
     }
 
     //Gọi stored 

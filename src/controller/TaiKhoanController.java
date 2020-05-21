@@ -5,10 +5,24 @@
  */
 package controller;
 
+import model.TaiKhoanModel;
+
 /**
  *
  * @author leanh
  */
 public class TaiKhoanController {
-    
+    public static boolean DangNhap (String username, String password) {
+        try {
+            String pass = TaiKhoanModel.layMatKhau(username);
+            if(password.equals(pass)) {
+                throw new Exception();
+            }
+            return true;
+        }
+         catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } 
+    }
 }
