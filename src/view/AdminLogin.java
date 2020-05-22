@@ -5,11 +5,7 @@
  */
 package view;
 
-import java.awt.Component;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import controller.TaiKhoanController;
 import javax.swing.JOptionPane;
 
 /**
@@ -37,11 +33,11 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        adminuserTF = new javax.swing.JTextField();
-        adminpassPF = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtUsername = new javax.swing.JTextField();
+        btnLogin = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lí rạp");
@@ -55,20 +51,23 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Password");
 
-        adminuserTF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        adminpassPF.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Reset");
+        btnReset.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton3.setText("User Login");
@@ -77,6 +76,9 @@ public class AdminLogin extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPassword.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,12 +93,12 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnLogin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addComponent(adminuserTF)
-                    .addComponent(adminpassPF)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnReset))
+                    .addComponent(txtUsername)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassword))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,18 +109,18 @@ public class AdminLogin extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(adminuserTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(adminpassPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnLogin)
+                    .addComponent(btnReset))
                 .addGap(29, 29, 29)
                 .addComponent(jButton3)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,49 +134,31 @@ public class AdminLogin extends javax.swing.JFrame {
         //ul.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        String username = adminuserTF.getText();
-        String password = adminpassPF.getText();
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
         if ("".equals(username) || "".equals(password)) {
             JOptionPane.showMessageDialog(null, "Lỗi cmn rồi");
         } else {
-            dispose();
+            try {
+                if(TaiKhoanController.DangNhap(username, password) == true) {
+                     JOptionPane.showMessageDialog(null, "Oke ổn");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Lỗi rồi");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
-        /* try
-        {
-            Class.forName("com.mysql.jdbc.Driver");
-            String databaseURL = "jdbc:mysql://localhost:3306/busm";
-            Connection con = DriverManager.getConnection(databaseURL, "root", "mysql");
-            String selectQuery = "select * from admin_details where username='"+username+"' and password='"+password+"'";
-            Statement stat=con.createStatement();    
-            ResultSet rs=stat.executeQuery(selectQuery);
-            if(rs.next()){
-
-         //    infoMessage("Welcome.....", "Alert");
-             dispose();
-             AdminControlPanel acp=new AdminControlPanel(username);
-             acp.setLocationRelativeTo(null);
-             acp.setVisible(true);
-    
-           }
-           else
-           {
-                 infoMessage("You Not Valid User", "GO Back... !!");
-                 
-                 
-           }
-               
-            
-        }
-        catch(Exception e)
-        {
-            
-        }*/
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtUsername.setText("");
+        txtPassword.setText("");
+    }//GEN-LAST:event_btnResetActionPerformed
     public void infoMessage(String message, String tittle) {
         JOptionPane.showMessageDialog(null, message, tittle, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -216,13 +200,13 @@ public class AdminLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField adminpassPF;
-    private javax.swing.JTextField adminuserTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

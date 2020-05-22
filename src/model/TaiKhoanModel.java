@@ -17,7 +17,8 @@ import util.Database;
 public class TaiKhoanModel {
 
     public static String layMatKhau(String username) throws SQLException {
-        ResultSet rs = Database.callStored("sp_LayMatKhau", username);
+        String sql = "select matkhau from taikhoan where TENDANGNHAP = " + "'fb'";
+        ResultSet rs = Database.callQuery(sql);
         rs.next();
         Connection conn = Database.connect();
         String pass = rs.getString(1);

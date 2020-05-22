@@ -19,17 +19,17 @@ import java.sql.Types;
  */
 public class Database {
 
-    public static String userName;
-    public static String password;
-    public static String connectionString;
+    public static String userName = "quanlirap";
+    public static String password = "123456";
+    public static String connectionString = "jdbc:oracle:thin:@localhost:1521:orcl";
     public static Connection conn;
 
     //Hàm khởi tạo giá trị cho kết nối database
-    public static void Load() {
-        userName = "";
-        password = "";
+    /*public static void Load() {
+        userName = "quanlirap";
+        password = "123456";
         connectionString = "jdbc:oracle:thin:@localhost:1521:sid";
-    }
+    }*/
 
     //Hàm kết nối dùng giá trị riêng
     public static Connection connect(String jdbcString, String username, String password) throws SQLException {

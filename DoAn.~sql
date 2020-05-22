@@ -312,51 +312,51 @@ create table ThucPham
 /*==============================================================*/
 create table VE 
 (
-   MaVe                CHAR(4)              not null,
-   MaSuatChieu        CHAR(4)              not null,
-   MaNhanVien         CHAR(4)              not null,
-   MaSuKien          CHAR(4)              not null,
-   MaHoiVien          CHAR(4)              not null,
-   MaPhim              CHAR(4)              not null,
-   NgayBanVe          DATE,
-   GiaVe               NUMBER(8,2),
-   DiemTichLuy        INTEGER,
-   constraint PK_VE primary key (MaVe)
+   MA_VE                CHAR(4)              not null,
+   MA_SUAT_CHIEU        CHAR(4)              not null,
+   MA_NHAN_VIEN         CHAR(4)              not null,
+   MA_SU_KIEN           CHAR(4)              not null,
+   MA_HOI_VIEN          CHAR(4)              not null,
+   MA_PHIM              CHAR(4)              not null,
+   NGAY_BAN_VE          DATE,
+   GIA_VE               NUMBER(8,2),
+   _IEM_TICH_LUY        INTEGER,
+   constraint PK_VE primary key (MA_VE)
 );
 
 /*==============================================================*/
 /* Index: BAN_FK                                                */
 /*==============================================================*/
 create index BAN_FK on VE (
-   MaNhanVien ASC
+   MA_NHAN_VIEN ASC
 );
 
 /*==============================================================*/
 /* Index: THUOC_FK                                              */
 /*==============================================================*/
 create index THUOC_FK on VE (
-   MaSuKien ASC
+   MA_SU_KIEN ASC
 );
 
 /*==============================================================*/
 /* Index: THUOC2_FK                                             */
 /*==============================================================*/
 create index THUOC2_FK on VE (
-   MaSuatChieu ASC
+   MA_SUAT_CHIEU ASC
 );
 
 /*==============================================================*/
 /* Index: THUOC3_FK                                             */
 /*==============================================================*/
 create index THUOC3_FK on VE (
-   MaPhim ASC
+   MA_PHIM ASC
 );
 
 /*==============================================================*/
 /* Index: MUA_FK                                                */
 /*==============================================================*/
 create index MUA_FK on VE (
-   MaHoiVien ASC
+   MA_HOI_VIEN ASC
 );
 
 alter table CTH_TP
