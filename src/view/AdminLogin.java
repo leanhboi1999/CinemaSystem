@@ -36,7 +36,7 @@ public class AdminLogin extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         btnReset = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUser = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,11 +69,11 @@ public class AdminLogin extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("User Login");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnUser.setText("User Login");
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnUserActionPerformed(evt);
             }
         });
 
@@ -97,7 +97,7 @@ public class AdminLogin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                         .addComponent(btnReset))
                     .addComponent(txtUsername)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassword))
                 .addContainerGap(257, Short.MAX_VALUE))
         );
@@ -119,20 +119,20 @@ public class AdminLogin extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnReset))
                 .addGap(29, 29, 29)
-                .addComponent(jButton3)
+                .addComponent(btnUser)
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
         // TODO add your handling code here:
         dispose();
         //UserLogin ul = new UserLogin();
         //ul.setLocationRelativeTo(null);
         //ul.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnUserActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
@@ -202,7 +202,7 @@ public class AdminLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
