@@ -5,6 +5,8 @@ public class MainScreen extends javax.swing.JFrame {
    
     public MainScreen() {
         initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
     }
 
     //Khúc này của form java, không thể chỉnh sửa
@@ -19,13 +21,18 @@ public class MainScreen extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Quản lí rạp");
         setAlwaysOnTop(true);
-        setBackground(java.awt.Color.red);
+        setBackground(new java.awt.Color(51, 51, 255));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel1.setText("Đăng Nhập Chương Trình");
 
         btnUser.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnUser.setText("User Login");
+        btnUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserActionPerformed(evt);
+            }
+        });
 
         btnAdmin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAdmin.setText("Admin Login");
@@ -64,6 +71,8 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
+        getAccessibleContext().setAccessibleParent(this);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -73,6 +82,13 @@ public class MainScreen extends javax.swing.JFrame {
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
     }//GEN-LAST:event_btnAdminActionPerformed
+
+    private void btnUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserActionPerformed
+        dispose();
+        ticketbooking ui = new ticketbooking();
+        ui.setLocationRelativeTo(null);
+        ui.setVisible(true);
+    }//GEN-LAST:event_btnUserActionPerformed
 
     /**
      * @param args the command line arguments

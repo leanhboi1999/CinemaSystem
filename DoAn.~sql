@@ -240,6 +240,7 @@ insert into TaiKhoan values ('fb', 'abc', 'fb', 1);
 insert into TaiKhoan values ('fg', 'abc', 'fg', 0);
 insert into TaiKhoan values ('hanhlangdaynangvagio', 'abc', 'huy', 0);
 
+insert into ChucVu (Tenchucvu, Luongcoban) values ('','')
 insert into ChucVu (Tenchucvu, Luongcoban) values ('',0);
 insert into ChucVu (Tenchucvu, Luongcoban) values ('f',1);
 insert into ChucVu (Tenchucvu, Luongcoban) values ('g',2);

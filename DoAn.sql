@@ -141,9 +141,9 @@ CREATE TABLE PhanQuyen
 /*==============================================================*/
 CREATE TABLE PHIM
   (
-    MaPhim INT GENERATED ALWAYS AS IDENTITY NOT NULL,
-    TenPhim NVARCHAR2(120),
-    ThoiLuong INTEGER,
+    MaPhim       INT GENERATED ALWAYS AS IDENTITY NOT NULL,
+    TenPhim      NVARCHAR2(120),
+    ThoiLuong    INTEGER,
     LoaiPhim NVARCHAR2(50),
     TenNhaSanXuat NVARCHAR2(120),
     NamSanXuat INTEGER,
