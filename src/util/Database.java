@@ -53,6 +53,7 @@ public class Database {
     }
 
     //Gọi stored 
+    //Hàm này có thể trả về 1 list data được lấy lên
     public static ResultSet callStored(String storedName, Object... param) throws SQLException {
         StringBuilder statement = new StringBuilder("{call " + storedName + " ");
         if (param != null) {
@@ -80,4 +81,35 @@ public class Database {
         } 
         return call.executeQuery();
     }
+    
+    //Gọi stored inseet update
+    //Hàm trả về true false - thành công, thất bại
+    public static int callStoredUpdate(String storeName, Object... param) throws SQLException {
+		// tạo chuỗi lời gọi
+		StringBuilder statement = new StringBuilder("{call " + storeName + " ");
+		if (param != null) {
+			statement.append("(");
+			for (int i = 1; i <= param.length; i++) {
+				statement.append("?");
+				if (i < param.length)
+					statement.append(",");
+			}
+			statement.append(")");
+		}
+		statement.append("}");
+
+		// kết nối và truyền tham số
+		Connection connect = connect();
+		CallableStatement call = connect.prepareCall(statement.toString());
+		if (param != null) {
+			for (int i = 1; i <= param.length; i++) {
+				if (param[i - 1] != null)
+					call.setObject(i, param[i - 1]);
+				else
+					call.setNull(i, Types.NULL);
+			}
+		}
+		// trả về kết quả
+		return call.executeUpdate();
+	}
 }
