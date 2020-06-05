@@ -1,5 +1,7 @@
 # Compiled class file
 
+# Database file
+*.sql
 
 # Log file
 *.log
