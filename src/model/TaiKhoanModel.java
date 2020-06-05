@@ -44,6 +44,11 @@ public class TaiKhoanModel {
         rs.next();
         int maQuyen = rs.getInt(1);
         return maQuyen;
-
+    }
+    
+    public static int Insert (String user, String pass) throws SQLException {
+        String sql = "Insert .....";
+        int rs = Database.callUpdate(sql);
+        return rs;
     }
 }

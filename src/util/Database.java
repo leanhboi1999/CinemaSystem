@@ -51,6 +51,12 @@ public class Database {
         Statement st = connect.createStatement();
         return st.executeQuery(sqlQuery);
     }
+    
+    public static int callUpdate(String sqlQuery) throws SQLException {
+        Connection connect = connect();
+        Statement st = connect.createStatement();
+        return st.executeUpdate(sqlQuery);
+    }
 
     //Gọi stored 
     //Hàm này có thể trả về 1 list data được lấy lên

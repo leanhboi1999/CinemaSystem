@@ -18,8 +18,8 @@ public class DateFormat {
 
     //Chuyển string date sang date
     public static Date toDate(String date) throws ParseException {
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/YYYY");
-        return f.parse(date);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+        return format.parse(date);
     }
 
     //Tạo date bằng tham số (ngày tháng năm)
@@ -36,6 +36,50 @@ public class DateFormat {
         return cal.getTime();
     }
     
-    //Tạo date bằng tham số (ngày tháng năm giờ phút giây)
-    public static 
+    //Chuyển date thành chuỗi string
+    public static String toString (Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(date);
+    }
+    
+    public static String toStringFull (Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return format.format(date);
+    }
+    
+    public static int getYear (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.YEAR);
+    }
+    
+    public static int getMonth (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MONTH);
+    }
+    
+    public static int getDate (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.DATE);
+    }
+    
+    public static int getHour (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.HOUR);
+    }
+    
+    public static int getMinute (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.MINUTE);
+    }
+    
+    public static int getSecond (Date date) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal.get(Calendar.SECOND);
+    }
 }
