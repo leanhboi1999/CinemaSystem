@@ -11,48 +11,53 @@ package entity;
  */
 public class TaiKhoan {
 
-    private String tenTaiKhoan;
-    private String matKhau;
-    private String maNhanVien;
-    private int trangThai;
+    private String tendangnhap;
+    private String manhanvien;
+    private String matkhau;
+    private int maquyen;
 
-    public TaiKhoan(String tenTaiKhoan, String maKhau, String maNhanVien, int trangThai) {
-        setTenTaiKhoan(tenTaiKhoan);
-        setMatKhau(matKhau);
-        setMaNhanVien(maNhanVien);
-        setTrangThai(trangThai);
+    public TaiKhoan() {
     }
 
-    public String getTenTaiKhoan() {
-        return tenTaiKhoan;
+    public TaiKhoan(String tendangnhap, String manhanvien, String matkhau, int maquyen) {
+        this.tendangnhap = tendangnhap;
+        this.manhanvien = manhanvien;
+        this.matkhau = matkhau;
+        this.maquyen = maquyen;
     }
 
-    public String getMatKhau() {
-        return matKhau;
+    
+
+    public String getTendangnhap() {
+        return tendangnhap;
     }
 
-    public String getMaNhanVien() {
-        return maNhanVien;
+    public void setTendangnhap(String tendangnhap) {
+        this.tendangnhap = tendangnhap;
     }
 
-    public int getTrangThai() {
-        return trangThai;
+    public String getManhanvien() {
+        return manhanvien;
     }
 
-    public void setTenTaiKhoan(String tenTaiKhoan) {
-        this.tenTaiKhoan = tenTaiKhoan;
+    public void setManhanvien(String manhanvien) {
+        this.manhanvien = manhanvien;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public String getMatkhau() {
+        return matkhau;
     }
 
-    public void setMaNhanVien(String maNhanVien) {
-        this.maNhanVien = maNhanVien;
+    public void setMatkhau(String matkhau) {
+        this.matkhau = matkhau;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public int getMaquyen() {
+        return maquyen;
+    }
+
+    public void setMaquyen(int maquyen) {
+        this.maquyen = maquyen;
     }
 
 }

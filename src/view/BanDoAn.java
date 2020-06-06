@@ -20,7 +20,7 @@ public class BanDoAn extends javax.swing.JFrame {
      */
     public BanDoAn() {
         initComponents();
-        HienThi();
+       // HienThi();
     }
 
     /**
@@ -210,7 +210,7 @@ public class BanDoAn extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void HienThi() {
+   /* private void HienThi() {
         ArrayList<ThucPham> arr = new ArrayList<ThucPham>();
         arr.add(new ThucPham(01, "abc", 12, 12, 12));
         arr.add(new ThucPham(01, "ab1", 12, 12, 12));
@@ -223,7 +223,7 @@ public class BanDoAn extends javax.swing.JFrame {
          
         }
 
-    }
+    }*/
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

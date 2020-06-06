@@ -28,7 +28,7 @@ public class TaiKhoanModel {
     }
 
     public static String layMatKhau(String username) throws SQLException {
-        String sql = "select matkhau from taikhoan where TENDANGNHAP = " + "'fb'";
+        String sql = "select mat_khau from taikhoan where TEN_DANG_NHAP = " + username;
         ResultSet rs = Database.callQuery(sql);
         rs.next();
         String pass = rs.getString(1);
@@ -39,7 +39,7 @@ public class TaiKhoanModel {
     }
 
     public static int GetQuyen(String username) throws SQLException {
-        String sql = "select maQuyen from taikhoan where TENDANGNHAP = " + username;
+        String sql = "select maquyen from taikhoan where TEN_DANG_NHAP = " + username;
         ResultSet rs = Database.callQuery(sql);
         rs.next();
         int maQuyen = rs.getInt(1);
