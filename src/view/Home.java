@@ -5,18 +5,19 @@
  */
 package view;
 
+import javafx.scene.paint.Color;
 import javax.swing.JPanel;
 
 /**
  *
  * @author proxc
  */
-public class DashboardAdmin extends javax.swing.JFrame {
+public class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
-    public DashboardAdmin() {
+    public Home() {
         initComponents();
     }
 
@@ -35,6 +36,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         exit = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -91,7 +94,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Cinnema Management");
+        jLabel13.setText("School Management");
         jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, -1));
 
         exit.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -106,8 +109,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Text here");
+        jLabel15.setText("KeepToo");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, -1, -1));
+
+        jTextField1.setBackground(new java.awt.Color(45, 118, 232));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setBorder(null);
+        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 334, 25));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 348, -1));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/navigation.png"))); // NOI18N
         jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 90, 100));
@@ -115,7 +125,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/search_20px_1.png"))); // NOI18N
         jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 220));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 240));
 
         jPanel3.setBackground(java.awt.SystemColor.controlHighlight);
         jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -131,7 +141,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(45, 118, 232));
         jLabel2.setText("Update");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/download_52px.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/download_52px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -154,15 +164,26 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 440, 140, 120));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, 140, 120));
 
         jPanel4.setBackground(java.awt.SystemColor.controlHighlight);
+        jPanel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanel4MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel4MousePressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(45, 118, 232));
         jLabel3.setText("Home");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/home_48px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/home_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -182,10 +203,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 140, 120));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 140, 120));
 
         jPanel5.setBackground(java.awt.SystemColor.controlHighlight);
         jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -204,7 +225,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(45, 118, 232));
         jLabel5.setText("Students");
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/group_52px.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/group_52px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -224,10 +245,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 140, 120));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 140, 120));
 
         jPanel6.setBackground(java.awt.SystemColor.controlHighlight);
         jPanel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -243,7 +264,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(45, 118, 232));
         jLabel7.setText("Timetable");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/classroom_48px.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/classroom_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -263,10 +284,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 140, 120));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 140, 120));
 
         jPanel7.setBackground(java.awt.SystemColor.controlHighlight);
         jPanel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -282,7 +303,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(45, 118, 232));
         jLabel9.setText("Settings");
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/settings_48px.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/settings_48px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -305,7 +326,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 440, 140, 120));
+        jPanel1.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 460, 140, 120));
 
         jPanel8.setBackground(java.awt.SystemColor.controlHighlight);
         jPanel8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -321,7 +342,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(45, 118, 232));
         jLabel11.setText("Classes");
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/list_64px.png"))); // NOI18N
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/images/list_64px.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -337,14 +358,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
                 .addContainerGap())
         );
 
-        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, 140, 120));
+        jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 460, 140, 120));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -364,6 +385,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitMousePressed
+
+    private void jPanel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseEntered
+        // TODO add your handling code here:
+        setColor(jPanel4);
+    }//GEN-LAST:event_jPanel4MouseEntered
+
+    private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
+        // TODO add your handling code here:
+        resetColor(jPanel4);
+    }//GEN-LAST:event_jPanel4MouseExited
      
     
     
@@ -433,6 +464,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         resetColor(jPanel3);
     }//GEN-LAST:event_jPanel3MouseExited
 
+    private void jPanel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MousePressed
+        // TODO add your handling code here:
+        //new Home_Data().show();
+    }//GEN-LAST:event_jPanel4MousePressed
+
     private void jPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MousePressed
         // TODO add your handling code here:
         //just a sample.
@@ -464,13 +500,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -478,7 +514,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DashboardAdmin().setVisible(true);
+                new Home().setVisible(true);
             }
         });
     }
@@ -510,5 +546,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
