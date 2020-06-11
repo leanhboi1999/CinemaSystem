@@ -2,19 +2,22 @@ package view;
 
 import controller.DinhDangController;
 import controller.NgonNguController;
+import controller.PhimController;
 import entity.DinhDang;
 import entity.NgonNgu;
+import entity.Phim;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import util.DateFormat;
 
-public class ThemPhim extends javax.swing.JFrame {
+public class ThemPhimUI extends javax.swing.JFrame {
     private boolean isInsert;
     private String maphim;
     
-    public ThemPhim(boolean isInsert, String maphim) {
+    public ThemPhimUI(boolean isInsert, String maphim) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp");
@@ -23,7 +26,7 @@ public class ThemPhim extends javax.swing.JFrame {
         hienthi();
     }
 
-    private ThemPhim() {}
+    private ThemPhimUI() {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -45,22 +48,22 @@ public class ThemPhim extends javax.swing.JFrame {
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtMaPhim = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jComboBox6 = new javax.swing.JComboBox<>();
         jSpinner5 = new javax.swing.JSpinner();
         jComboBox7 = new javax.swing.JComboBox<>();
-        jComboBox8 = new javax.swing.JComboBox<>();
         jComboBox9 = new javax.swing.JComboBox<>();
         cbbNgonNgu = new javax.swing.JComboBox<>();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea4 = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea5 = new javax.swing.JTextArea();
+        txtTenPhim = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTextArea6 = new javax.swing.JTextArea();
         jSpinner6 = new javax.swing.JSpinner();
         txtNamSX = new javax.swing.JTextField();
+        txtNhaSX = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jComboBox11 = new javax.swing.JComboBox<>();
@@ -131,11 +134,8 @@ public class ThemPhim extends javax.swing.JFrame {
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dang Chieu", "Sap Chieu", "Ngay mai chieu", "Dang mat dia ghi", " " }));
 
         jComboBox7.setBackground(new java.awt.Color(250, 250, 250));
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "10", "18", "16" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "10", "12", "16", "18" }));
         jComboBox7.setPreferredSize(new java.awt.Dimension(42, 25));
-
-        jComboBox8.setBackground(new java.awt.Color(250, 250, 250));
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ABC Cinema", "Tsuki no Suki", "Honda", "Sony" }));
 
         jComboBox9.setBackground(new java.awt.Color(250, 250, 250));
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "VIETNAM", "USA", "JAPAN", "THAILAND" }));
@@ -148,10 +148,10 @@ public class ThemPhim extends javax.swing.JFrame {
         jTextArea4.setRows(5);
         jScrollPane4.setViewportView(jTextArea4);
 
-        jTextArea5.setColumns(20);
-        jTextArea5.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        jTextArea5.setRows(5);
-        jScrollPane5.setViewportView(jTextArea5);
+        txtTenPhim.setColumns(20);
+        txtTenPhim.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        txtTenPhim.setRows(5);
+        jScrollPane5.setViewportView(txtTenPhim);
 
         jTextArea6.setColumns(20);
         jTextArea6.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
@@ -183,12 +183,12 @@ public class ThemPhim extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jSpinner6)
                         .addGap(152, 152, 152)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(txtMaPhim, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                             .addComponent(jSpinner5)
                             .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNamSX, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
@@ -204,11 +204,11 @@ public class ThemPhim extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jComboBox6, 0, 130, Short.MAX_VALUE)
+                            .addComponent(jComboBox6, 0, 134, Short.MAX_VALUE)
                             .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbbNgonNgu, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox8, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(28, 28, 28))
+                            .addComponent(txtNhaSX, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))))
+                .addGap(24, 24, 24))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +230,7 @@ public class ThemPhim extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMaPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -258,9 +258,9 @@ public class ThemPhim extends javax.swing.JFrame {
                             .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbbNgonNgu, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNhaSX, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -427,7 +427,7 @@ public class ThemPhim extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThemPhim().setVisible(true);
+                new ThemPhimUI().setVisible(true);
             }
         });
     }
@@ -443,7 +443,6 @@ public class ThemPhim extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox14;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
@@ -475,11 +474,12 @@ public class ThemPhim extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextArea jTextArea5;
     private javax.swing.JTextArea jTextArea6;
     private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtMaPhim;
     private javax.swing.JTextField txtNamSX;
+    private javax.swing.JTextField txtNhaSX;
+    private javax.swing.JTextArea txtTenPhim;
     // End of variables declaration//GEN-END:variables
 
     private void hienthi() {
@@ -489,13 +489,13 @@ public class ThemPhim extends javax.swing.JFrame {
         try {
             if(isInsert) {
                 hienma();
-                jTextField2.setEnabled(false);
+                txtMaPhim.setEnabled(false);
                 jSpinner5.setValue(100);
                 txtNamSX.setText(DateFormat.toString(date));
             } else {
                 taiPhim();
                 taiSuatPhim();
-                jTextField2.setEnabled(false);
+                txtMaPhim.setEnabled(false);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -532,8 +532,11 @@ public class ThemPhim extends javax.swing.JFrame {
         
     }
 
-    private void taiPhim() {
-        
+    private void taiPhim() throws SQLException{
+        Phim  p = PhimController.getPhim(maphim);
+        txtMaPhim.setText(p.getMaphim());
+        jComboBox9.setSelectedItem(p.getNuocsanxuat().toString());
+        jComboBox7.setSelectedItem(p.getGioihantuoi()+"");
     }
 
     private void taiSuatPhim() {

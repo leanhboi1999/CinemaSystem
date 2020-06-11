@@ -17,7 +17,7 @@ public class NhanVien {
     private String hoten;
     private String email;
     private String sdt;
-    private int gioitinh;
+    private String gioitinh;
     private Date ngaysinh;
     private String diachi;
     private String dienthoai;
@@ -64,11 +64,11 @@ public class NhanVien {
         this.sdt = sdt;
     }
 
-    public int getGioitinh() {
+    public String getGioitinh() {
         return gioitinh;
     }
 
-    public void setGioitinh(int gioitinh) {
+    public void setGioitinh(String gioitinh) {
         this.gioitinh = gioitinh;
     }
 
@@ -115,7 +115,7 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String manhanvien, String machucvu, String hoten, String email, String sdt, int gioitinh, Date ngaysinh, String diachi, String dienthoai, Date ngayvaolam, int trangthai) {
+    public NhanVien(String manhanvien, String machucvu, String hoten, String email, String sdt, String gioitinh, Date ngaysinh, String diachi, String dienthoai, Date ngayvaolam, int trangthai) {
         this.manhanvien = manhanvien;
         this.machucvu = machucvu;
         this.hoten = hoten;

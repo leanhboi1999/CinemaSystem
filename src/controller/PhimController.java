@@ -18,4 +18,8 @@ public class PhimController {
     public static ArrayList<Phim> taiTatCa () throws SQLException {
         return PhimModel.taiTatCa();
     }
+    
+    public static Phim getPhim(String maphim) throws SQLException {
+        return PhimModel.getPhim(maphim);
+    }
 }

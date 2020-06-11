@@ -9,12 +9,12 @@ package view;
  *
  * @author admin
  */
-public class ThongTinVe extends javax.swing.JFrame {
+public class ThongTinVeUI extends javax.swing.JFrame {
 
     /**
      * Creates new form ThongTinVe
      */
-    public ThongTinVe() {
+    public ThongTinVeUI() {
         initComponents();
     }
 
@@ -252,7 +252,7 @@ public class ThongTinVe extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-delete-20.png"))); // NOI18N
         jButton2.setText("Hủy bỏ");
         jPanel1.add(jButton2);
-        jButton2.setBounds(445, 530, 95, 30);
+        jButton2.setBounds(445, 530, 71, 30);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-save-20.png"))); // NOI18N
         jButton1.setText("Lưu");
@@ -299,21 +299,23 @@ public class ThongTinVe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThongTinVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongTinVeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThongTinVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongTinVeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThongTinVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongTinVeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThongTinVe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThongTinVeUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThongTinVe().setVisible(true);
+                new ThongTinVeUI().setVisible(true);
             }
         });
     }

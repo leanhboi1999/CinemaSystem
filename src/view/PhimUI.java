@@ -14,7 +14,8 @@ public class PhimUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
         try {
-            loadPhim();
+            ArrayList<Phim> arr = PhimController.taiTatCa();
+            loadPhim(arr);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -176,7 +177,7 @@ public class PhimUI extends javax.swing.JFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, false, true, false
+                false, true, true, true, true, true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -187,9 +188,11 @@ public class PhimUI extends javax.swing.JFrame {
         jTablePhim.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTablePhim.setRowHeight(25);
         jTablePhim.setSelectionBackground(new java.awt.Color(232, 57, 95));
-        jTablePhim.setShowVerticalLines(false);
         jTablePhim.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTablePhim);
+        if (jTablePhim.getColumnModel().getColumnCount() > 0) {
+            jTablePhim.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
         btnEdit.setText("Sửa");
@@ -203,15 +206,15 @@ public class PhimUI extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 488, Short.MAX_VALUE)
                         .addComponent(btnLoad)))
                 .addContainerGap())
         );
@@ -259,7 +262,7 @@ public class PhimUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-        ThemPhim themphim = new ThemPhim(true, null);
+        ThemPhimUI themphim = new ThemPhimUI(true, null);
         themphim.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -267,7 +270,8 @@ public class PhimUI extends javax.swing.JFrame {
     //Action hiển thị list phim
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            loadPhim();
+            ArrayList<Phim> arr = PhimController.taiTatCa();
+            loadPhim(arr);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -281,7 +285,7 @@ public class PhimUI extends javax.swing.JFrame {
         } else {
             String maphim = jTablePhim.getModel().getValueAt(row, 0).toString();
             dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-            ThemPhim themphim = new ThemPhim(false, maphim);
+            ThemPhimUI themphim = new ThemPhimUI(false, maphim);
             themphim.setVisible(true);
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -316,10 +320,10 @@ public class PhimUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenPhim;
     // End of variables declaration//GEN-END:variables
 
-    private void loadPhim() throws SQLException {
-        ArrayList<Phim> arr = PhimController.taiTatCa();
+    private void loadPhim(ArrayList<Phim> arr) throws SQLException {
+       
         DefaultTableModel table = (DefaultTableModel) jTablePhim.getModel();
-        table.getDataVector().removeAllElements();
+        table.getDataVector().removeAllElements(); //reset dữ liệu table về rỗng
         Object row[] = new Object[8];
         for (Phim item : arr) {
             row[0] = item.getMaphim();

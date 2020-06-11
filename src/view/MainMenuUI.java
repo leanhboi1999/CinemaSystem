@@ -12,12 +12,12 @@ import javax.swing.JPanel;
  *
  * @author admin
  */
-public class MainMenu extends javax.swing.JFrame {
+public class MainMenuUI extends javax.swing.JFrame {
 
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public MainMenuUI() {
         initComponents();
     }
 
@@ -881,7 +881,7 @@ public class MainMenu extends javax.swing.JFrame {
         setcBoxColor(cBox_8);
     }//GEN-LAST:event_cBox_8MousePressed
 
-    SuatChieu openSuatChieu = new SuatChieu();
+    SuatChieuUI openSuatChieu = new SuatChieuUI();
     
     private void cBox_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_1MouseClicked
         // TODO add your handling code here:
@@ -912,21 +912,23 @@ public class MainMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainMenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainMenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainMenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainMenuUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenuUI().setVisible(true);
             }
         });
     }

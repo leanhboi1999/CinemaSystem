@@ -28,8 +28,9 @@ public class PhimModel {
     }
     
     public static Phim getPhim(String maphim) throws SQLException {
-        String sql = "select * from phim where = " + "'" + maphim + "'";
+        String sql = "select * from phim where maphim = " + "'" + maphim + "'";
         ResultSet rs = Database.callQuery(sql);
+        rs.next();
         Phim kq = new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11) , rs.getInt(12));
         Database.connect().close();
         return kq;
