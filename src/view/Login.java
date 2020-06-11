@@ -7,7 +7,6 @@ package view;
 
 import controller.TaiKhoanController;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,6 +21,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+        setVisible(true);
+        setTitle("App quản lý rạp phim");
     }
 
     /**
@@ -173,13 +174,11 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1296, Short.MAX_VALUE))
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1308, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
 
         pack();
@@ -196,18 +195,18 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Hey, nhập thông tin đầy đủ coi nào");
             } else if (TaiKhoanController.DangNhap(username, password) == true) {
                 try {
-                    int quyen = TaiKhoanController.GetQuyen(username);
-                    if (quyen == 1) {
+                    String quyen = TaiKhoanController.GetQuyen(username);
+                    if (quyen.equalsIgnoreCase("PQ00001")) {
                         dispose();
-                        BanDoAn ui = new BanDoAn();
+                        BanThucAn ui = new BanThucAn();
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
-                    } else if (quyen == 2) {
+                    } else if (quyen.equalsIgnoreCase("PQ00002")) {
                         dispose();
                         DashboardAdmin ui = new DashboardAdmin();
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
-                    } else if (quyen == 3) {
+                    } else if (quyen.equalsIgnoreCase("PQ00003")) {
                         //To do something here
                     }
                 } catch (SQLException e) {

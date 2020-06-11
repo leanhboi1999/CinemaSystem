@@ -14,12 +14,12 @@ public class TaiKhoan {
     private String tendangnhap;
     private String manhanvien;
     private String matkhau;
-    private int maquyen;
+    private String maquyen;
 
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String tendangnhap, String manhanvien, String matkhau, int maquyen) {
+    public TaiKhoan(String tendangnhap, String manhanvien, String matkhau, String maquyen) {
         this.tendangnhap = tendangnhap;
         this.manhanvien = manhanvien;
         this.matkhau = matkhau;
@@ -52,11 +52,11 @@ public class TaiKhoan {
         this.matkhau = matkhau;
     }
 
-    public int getMaquyen() {
+    public String getMaquyen() {
         return maquyen;
     }
 
-    public void setMaquyen(int maquyen) {
+    public void setMaquyen(String maquyen) {
         this.maquyen = maquyen;
     }
 

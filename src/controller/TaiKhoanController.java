@@ -34,12 +34,12 @@ public class TaiKhoanController {
         }
     }
 
-    public static int GetQuyen(String username) throws SQLException {
+    public static String GetQuyen(String username) throws SQLException {
         return TaiKhoanModel.GetQuyen(username);
     }
     
-    public static int Inset(String user, String pass) throws SQLException{
+    /*public static int Inset(String user, String pass) throws SQLException{
         return TaiKhoanModel.Insert(user, pass);
              
-    }
+    }*/
 }
