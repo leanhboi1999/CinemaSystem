@@ -146,7 +146,7 @@
             <Component class="javax.swing.JButton" name="jButton3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/doan_2020/Icon/icons8-save-20.png"/>
+                  <Image iconType="3" name="/image/icons8-save-20.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
               </Properties>
@@ -154,7 +154,7 @@
             <Component class="javax.swing.JButton" name="jButton4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/doan_2020/Icon/icons8-delete-20.png"/>
+                  <Image iconType="3" name="/image/icons8-delete-20.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="H&#x1ee7;y b&#x1ecf;"/>
               </Properties>
@@ -343,7 +343,7 @@
             <Component class="javax.swing.JButton" name="jButton28">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/doan_2020/Icon/icons8-edit-20.png"/>
+                  <Image iconType="3" name="/image/icons8-edit-20.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
               </Properties>
@@ -353,7 +353,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/doan_2020/image_logo/Dashboard.png"/>
+              <Image iconType="3" name="/image/Dashboard.png"/>
             </Property>
           </Properties>
           <Constraints>

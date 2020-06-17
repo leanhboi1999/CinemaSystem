@@ -146,7 +146,7 @@ public class HoaDonUI extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(250, 250, 250));
         jPanel10.setBorder(javax.swing.BorderFactory.createCompoundBorder());
 
-        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-invisible-20.png"))); // NOI18N
+        jButton30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-invisible-20.png"))); // NOI18N
         jButton30.setText("Hiển thị tất cả");
 
         jTableVe.setModel(new javax.swing.table.DefaultTableModel(
@@ -178,7 +178,7 @@ public class HoaDonUI extends javax.swing.JFrame {
         jTableVe.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableVe);
 
-        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-edit-20.png"))); // NOI18N
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
         jButton28.setText("Sửa");
 
         jTableVe1.setModel(new javax.swing.table.DefaultTableModel(
@@ -242,9 +242,9 @@ public class HoaDonUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 0, 430);
+        jPanel10.setBounds(330, 112, 843, 430);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Dashboard.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 

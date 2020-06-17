@@ -125,7 +125,7 @@ public class ThemKichCoThucAnUI extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(100, 20, 230, 22);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Untitled.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitled.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 450, 550);
 

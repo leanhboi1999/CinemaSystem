@@ -16,7 +16,7 @@ public class HoaDonThucPham {
     private String mahoadon;
     private String manhanvien;
     private int sotien;
-    private Date ngaylap;
+    private String ngaylap;
 
     public String getMahoadon() {
         return mahoadon;
@@ -42,18 +42,18 @@ public class HoaDonThucPham {
         this.sotien = sotien;
     }
 
-    public Date getNgaylap() {
+    public String getNgaylap() {
         return ngaylap;
     }
 
-    public void setNgaylap(Date ngaylap) {
+    public void setNgaylap(String ngaylap) {
         this.ngaylap = ngaylap;
     }
 
     public HoaDonThucPham() {
     }
 
-    public HoaDonThucPham(String mahoadon, String manhanvien, int sotien, Date ngaylap) {
+    public HoaDonThucPham(String mahoadon, String manhanvien, int sotien, String ngaylap) {
         this.mahoadon = mahoadon;
         this.manhanvien = manhanvien;
         this.sotien = sotien;

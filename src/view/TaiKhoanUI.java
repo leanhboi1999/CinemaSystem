@@ -59,10 +59,10 @@ public class TaiKhoanUI extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 153, 0));
         jLabel4.setText("Administrator");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-save-20.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-20.png"))); // NOI18N
         jButton3.setText("Lưu");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-delete-20.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
         jButton4.setText("Hủy bỏ");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,7 +200,7 @@ public class TaiKhoanUI extends javax.swing.JFrame {
         jTableVe.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableVe);
 
-        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-edit-20.png"))); // NOI18N
+        jButton28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
         jButton28.setText("Sửa");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -227,9 +227,9 @@ public class TaiKhoanUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 0, 430);
+        jPanel10.setBounds(330, 112, 842, 430);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Dashboard.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 

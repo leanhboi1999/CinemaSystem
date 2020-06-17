@@ -16,6 +16,33 @@ public class SuatPhim {
     private String madinhdang;
     private String maphim;
     private String mahinhthuc;
+    private String tenngonngu;
+    private String tendinhdang;
+    private String tenhinhthuc;
+
+    public String getTenngonngu() {
+        return tenngonngu;
+    }
+
+    public void setTenngonngu(String tenngonngu) {
+        this.tenngonngu = tenngonngu;
+    }
+
+    public String getTendinhdang() {
+        return tendinhdang;
+    }
+
+    public void setTendinhdang(String tendinhdang) {
+        this.tendinhdang = tendinhdang;
+    }
+
+    public String getTenhinhthuc() {
+        return tenhinhthuc;
+    }
+
+    public void setTenhinhthuc(String tenhinhthuc) {
+        this.tenhinhthuc = tenhinhthuc;
+    }
 
     public String getMasuatphim() {
         return masuatphim;
@@ -67,5 +94,14 @@ public class SuatPhim {
         this.maphim = maphim;
         this.mahinhthuc = mahinhthuc;
     }
+
+    public SuatPhim(String masuatphim, String tenngonngu, String tendinhdang, String tenhinhthuc) {
+        this.masuatphim = masuatphim;
+        this.tenngonngu = tenngonngu;
+        this.tendinhdang = tendinhdang;
+        this.tenhinhthuc = tenhinhthuc;
+    }
+    
+    
 
 }

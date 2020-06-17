@@ -11,7 +11,6 @@ package entity;
  */
 public class TaiKhoan {
 
-    private String tendangnhap;
     private String manhanvien;
     private String matkhau;
     private String maquyen;
@@ -19,21 +18,10 @@ public class TaiKhoan {
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String tendangnhap, String manhanvien, String matkhau, String maquyen) {
-        this.tendangnhap = tendangnhap;
+    public TaiKhoan(String manhanvien, String matkhau, String maquyen) {
         this.manhanvien = manhanvien;
         this.matkhau = matkhau;
         this.maquyen = maquyen;
-    }
-
-    
-
-    public String getTendangnhap() {
-        return tendangnhap;
-    }
-
-    public void setTendangnhap(String tendangnhap) {
-        this.tendangnhap = tendangnhap;
     }
 
     public String getManhanvien() {

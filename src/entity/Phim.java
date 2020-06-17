@@ -24,7 +24,7 @@ public class Phim {
     private Date ngaykhoichieu;
     private int gioihantuoi;
     private String tomtat;
-    private int trangthai;
+    private String trangthai;
 
     public String getMaphim() {
         return maphim;
@@ -114,18 +114,18 @@ public class Phim {
         this.tomtat = tomtat;
     }
 
-    public int getTrangthai() {
+    public String getTrangthai() {
         return trangthai;
     }
 
-    public void setTrangthai(int trangthai) {
+    public void setTrangthai(String trangthai) {
         this.trangthai = trangthai;
     }
 
     public Phim() {
     }
 
-    public Phim(String maphim, String tenphim, int thoiluong, String theloai, String nhasanxuat, int namsanxuat, String dienvien, String nuocsanxuat, Date ngaykhoichieu, int gioihantuoi, String tomtat, int trangthai) {
+    public Phim(String maphim, String tenphim, int thoiluong, String theloai, String nhasanxuat, int namsanxuat, String dienvien, String nuocsanxuat, Date ngaykhoichieu, int gioihantuoi, String tomtat, String trangthai) {
         this.maphim = maphim;
         this.tenphim = tenphim;
         this.thoiluong = thoiluong;
@@ -138,6 +138,11 @@ public class Phim {
         this.gioihantuoi = gioihantuoi;
         this.tomtat = tomtat;
         this.trangthai = trangthai;
+    }
+    
+     public Phim(String maphim, String tenphim) {
+        this.maphim = maphim;
+        this.tenphim = tenphim;
     }
 
 }

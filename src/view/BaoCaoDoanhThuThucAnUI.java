@@ -106,10 +106,10 @@ public class BaoCaoDoanhThuThucAnUI extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(250, 250, 250));
         jLabel4.setText("Đến ngày");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-invisible-20.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-invisible-20.png"))); // NOI18N
         jButton1.setText("Xem báo cáo");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-print-20.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-print-20.png"))); // NOI18N
         jButton2.setText("In báo cáo");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -156,9 +156,9 @@ public class BaoCaoDoanhThuThucAnUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 120, 0, 420);
+        jPanel2.setBounds(0, 120, 1174, 420);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Dashboard.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 

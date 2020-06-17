@@ -141,7 +141,7 @@ public class ThongTinVeUI extends javax.swing.JFrame {
 
         jTextField11.setPreferredSize(new java.awt.Dimension(7, 25));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-test-passed-20.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-test-passed-20.png"))); // NOI18N
         jButton3.setText("Kiểm tra");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -249,12 +249,12 @@ public class ThongTinVeUI extends javax.swing.JFrame {
         jPanel1.add(jPanel3);
         jPanel3.setBounds(0, 100, 580, 420);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-delete-20.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
         jButton2.setText("Hủy bỏ");
         jPanel1.add(jButton2);
-        jButton2.setBounds(445, 530, 71, 30);
+        jButton2.setBounds(445, 530, 95, 30);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-save-20.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-20.png"))); // NOI18N
         jButton1.setText("Lưu");
         jPanel1.add(jButton1);
         jButton1.setBounds(340, 530, 90, 30);
@@ -264,7 +264,7 @@ public class ThongTinVeUI extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(100, 40, 230, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Untitled.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitled.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 580, 600);
 

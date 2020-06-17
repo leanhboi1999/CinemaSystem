@@ -118,12 +118,12 @@ public class ThemThucAnUI extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 110, 450, 330);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-save-20.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-20.png"))); // NOI18N
         jButton1.setText("Lưu");
         jPanel1.add(jButton1);
         jButton1.setBounds(200, 480, 110, 30);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-delete-20.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
         jButton2.setText("Hủy bỏ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,7 +138,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(100, 20, 230, 22);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Untitled.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitled.png"))); // NOI18N
         jLabel1.setToolTipText("");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 450, 550);

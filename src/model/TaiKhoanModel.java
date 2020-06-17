@@ -22,13 +22,13 @@ public class TaiKhoanModel {
         ResultSet rs = Database.callQuery(sql);
         ArrayList<TaiKhoan> arr = new ArrayList<>();
         while (rs.next()) {
-            arr.add(new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
+            arr.add(new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3)));
         }
         return arr;
     }
 
     public static String layMatKhau(String username) throws SQLException {
-        String sql = "select mat_khau from TAIKHOAN where TEN_DANG_NHAP = " + "'" +username + "'";
+        String sql = "select mat_khau from TAIKHOAN where manhanvien = " + "'" +username + "'";
         ResultSet rs = Database.callQuery(sql);
         rs.next();
         String pass = rs.getString(1);
@@ -39,7 +39,7 @@ public class TaiKhoanModel {
     }
 
     public static String GetQuyen(String username) throws SQLException {
-        String sql = "select MAQUYEN from TAIKHOAN where TEN_DANG_NHAP = " + "'" +username + "'";
+        String sql = "select MAQUYEN from TAIKHOAN where manhanvien = " + "'" +username + "'";
         ResultSet rs = Database.callQuery(sql);
         rs.next();
         String maQuyen = rs.getString(1);

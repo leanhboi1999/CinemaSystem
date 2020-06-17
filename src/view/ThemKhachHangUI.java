@@ -74,10 +74,10 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(250, 250, 250));
         jLabel5.setText("Email:");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-delete-20.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
         jButton2.setText("Hủy bỏ");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/Icon/icons8-save-20.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-20.png"))); // NOI18N
         jButton1.setText("Lưu");
 
         jLabel6.setBackground(new java.awt.Color(250, 250, 250));
@@ -216,7 +216,7 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
         jPanel1.add(jLabel11);
         jLabel11.setBounds(100, 32, 230, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doan_2020/image_logo/Untitledthemkh.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Untitledthemkh.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 720, 450);
 

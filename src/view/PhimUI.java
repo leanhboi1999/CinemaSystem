@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import util.DateFormat;
 
 public class PhimUI extends javax.swing.JFrame {
 
@@ -43,6 +44,7 @@ public class PhimUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePhim = new javax.swing.JTable();
         btnEdit = new javax.swing.JButton();
+        bntxoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +65,11 @@ public class PhimUI extends javax.swing.JFrame {
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-20.png"))); // NOI18N
         btnSearch.setText("Tìm kiếm");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-reset-20.png"))); // NOI18N
         btnReset.setText("Đặt lại");
@@ -202,6 +209,14 @@ public class PhimUI extends javax.swing.JFrame {
             }
         });
 
+        bntxoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
+        bntxoa.setText("Xóa");
+        bntxoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntxoaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -209,12 +224,14 @@ public class PhimUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 488, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bntxoa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLoad)))
                 .addContainerGap())
         );
@@ -222,10 +239,12 @@ public class PhimUI extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bntxoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -261,9 +280,17 @@ public class PhimUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-        ThemPhimUI themphim = new ThemPhimUI(true, null);
-        themphim.setVisible(true);
+        int row = jTablePhim.getSelectedRow();
+        if (row == -1) {
+            dispose();
+            ThemPhimUI themphim = new ThemPhimUI(true, null);
+            themphim.setVisible(true);
+        } else {
+            String maphim = jTablePhim.getModel().getValueAt(row, 0).toString();
+            dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
+            ThemPhimUI themphim = new ThemPhimUI(false, maphim);
+            themphim.setVisible(true);
+        }
 
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -290,6 +317,52 @@ public class PhimUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
+    //Hàm tìm kiếm
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            if (ckTenPhim.isSelected() && ckThoiGian.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
+            } else if (ckTenPhim.isSelected()) {
+                String tenphim = txtTenPhim.getText();
+                ArrayList<Phim> arr = PhimController.timKiem(tenphim);
+                loadPhim(arr);
+            } else if (ckThoiGian.isSelected()) {
+                String startDate = DateFormat.toString(dateStartDate.getDate());
+                String endDate = DateFormat.toString(dateEndDate.getDate());
+                ArrayList<Phim> list = PhimController.timKiem(startDate, endDate);
+                loadPhim(list);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void bntxoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntxoaActionPerformed
+        int row = jTablePhim.getSelectedRow();
+        String maphim = jTablePhim.getValueAt(row, 0).toString();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
+            if (p == 0) {
+                try {
+                    //kq = contronllerphim.xoa(tam);
+                    if (PhimController.xoaPhim(maphim)) {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công");
+                        ArrayList<Phim> arr = PhimController.taiTatCa();
+                        loadPhim(arr);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Xóa thất bại");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_bntxoaActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -299,6 +372,7 @@ public class PhimUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntxoa;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLoad;
@@ -321,7 +395,6 @@ public class PhimUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void loadPhim(ArrayList<Phim> arr) throws SQLException {
-       
         DefaultTableModel table = (DefaultTableModel) jTablePhim.getModel();
         table.getDataVector().removeAllElements(); //reset dữ liệu table về rỗng
         Object row[] = new Object[8];
@@ -332,8 +405,8 @@ public class PhimUI extends javax.swing.JFrame {
             row[3] = item.getNhasanxuat();
             row[4] = item.getNuocsanxuat();
             row[5] = item.getNamsanxuat();
-            row[6] = item.getNgaykhoichieu();
-            row[7] = item.getTrangthai() == 1 ? "Công chiếu" : "Không công chiếu";
+            row[6] = DateFormat.toString(item.getNgaykhoichieu());
+            row[7] = item.getTrangthai();
             table.addRow(row);
         }
     }

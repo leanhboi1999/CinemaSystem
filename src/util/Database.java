@@ -51,7 +51,7 @@ public class Database {
         return st.executeQuery(sqlQuery);
     }
 
-    public static int callQueryInsert(String sqlQuery, String table, Object... param) throws SQLException {
+    public static int callQueryInsert(String table, Object... param) throws SQLException {
         //Dựng lệnh truy vấn
         StringBuilder statement = new StringBuilder("INSERT INTO " + table + " values " + " ");
         if (param != null) {
