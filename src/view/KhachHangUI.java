@@ -2,7 +2,10 @@ package view;
 
 import controller.HoiVienController;
 import entity.HoiVien;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class KhachHangUI extends javax.swing.JFrame {
 
@@ -15,9 +18,10 @@ public class KhachHangUI extends javax.swing.JFrame {
             ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
             loadDanhSach(arr);
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,6 +62,11 @@ public class KhachHangUI extends javax.swing.JFrame {
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-20.png"))); // NOI18N
         btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-reset-20.png"))); // NOI18N
         btnReset.setText("Đặt lại");
@@ -120,6 +129,11 @@ public class KhachHangUI extends javax.swing.JFrame {
 
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-invisible-20.png"))); // NOI18N
         btnLoad.setText("Hiển thị tất cả");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-20 (1).png"))); // NOI18N
         btnAdd.setText("Thêm");
@@ -218,46 +232,49 @@ public class KhachHangUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        
+        ckTen.setSelected(false);
+        ckCMND.setSelected(false);
+        txtTen.setText(null);
+        txtCMND.setText(null);
+
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        dispose();
+        /*dispose();
         ThemKhachHangUI themkh = new ThemKhachHangUI();
-        themkh.setVisible(true);
+        themkh.setVisible(true);*/
     }//GEN-LAST:event_btnAddActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KhachHangUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KhachHangUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KhachHangUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KhachHangUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
+            loadDanhSach(arr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_btnLoadActionPerformed
 
-        /* Create and display the form */
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        try {
+            if (ckCMND.isSelected() && ckTen.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
+            } else if (ckTen.isSelected()) {
+                String ten = txtTen.getText();
+                ArrayList<HoiVien> arr = HoiVienController.timKiemTen(ten);
+                loadDanhSach(arr);
+            } else if (ckCMND.isSelected()) {
+                String cmnd = txtCMND.getText();
+                ArrayList<HoiVien> arr = HoiVienController.timKiemTen(cmnd);
+                loadDanhSach(arr);
+            } else {
+                JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new KhachHangUI().setVisible(true);
@@ -285,7 +302,21 @@ public class KhachHangUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtTen;
     // End of variables declaration//GEN-END:variables
 
-    private void loadDanhSach(ArrayList<HoiVien> arr) {
-        
+    private void loadDanhSach(ArrayList<HoiVien> arr) throws SQLException {
+        DefaultTableModel table = (DefaultTableModel) jTableKhachHang.getModel();
+        table.getDataVector().removeAllElements();
+        Object row[] = new Object[7];
+        int i = 0;
+        for (HoiVien item : arr) {
+            i++;
+            row[0] = i;
+            row[1] = item.getMahoivien();
+            row[2] = item.getHoten();
+            row[3] = item.getGioitinh();
+            row[4] = item.getCmnd();
+            row[5] = item.getNgaysinh();
+            row[6] = item.getEmail();
+            table.addRow(row);
+        }
     }
 }

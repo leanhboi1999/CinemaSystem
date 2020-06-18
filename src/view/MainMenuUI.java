@@ -518,7 +518,7 @@ public class MainMenuUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cBox_4Layout.createSequentialGroup()
                 .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addGap(108, 108, 108))
         );
 
         cBox_6.setBackground(new java.awt.Color(204, 255, 204));
@@ -631,7 +631,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cBox_4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cBox_3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -881,17 +881,21 @@ public class MainMenuUI extends javax.swing.JFrame {
         setcBoxColor(cBox_8);
     }//GEN-LAST:event_cBox_8MousePressed
 
-    SuatChieuUI openSuatChieu = new SuatChieuUI();
+    
     
     private void cBox_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_1MouseClicked
         // TODO add your handling code here:
+        dispose();
+        SuatChieuUI openSuatChieu = new SuatChieuUI();
         openSuatChieu.setVisible(true);
     }//GEN-LAST:event_cBox_1MouseClicked
 
-    PhimUI openPhim = new PhimUI();
+    
     
     private void cBox_7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_7MouseClicked
         // TODO add your handling code here:
+        dispose();
+        PhimUI openPhim = new PhimUI();
         openPhim.setVisible(true);
     }//GEN-LAST:event_cBox_7MouseClicked
 

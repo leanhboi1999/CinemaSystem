@@ -179,13 +179,15 @@ public class LoginUI extends javax.swing.JFrame {
                 try {
                     String quyen = TaiKhoanController.GetQuyen(username);
                     if (quyen.equalsIgnoreCase("PQ00001")) {
-                        /*Cái này của admin, về dashboard
                         dispose();
-                        DashboardAdminUI ui = new DashboardAdminUI();
+                        MainMenuUI ui = new MainMenuUI();
                         ui.setVisible(true);
-                        ui.setLocationRelativeTo(null);*/
+                        ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00002")) {
-                        //Cái này của bán vé
+                       dispose();
+                       BanVeUI ui = new BanVeUI(username);
+                       ui.setVisible(true);
+                       ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00003")) {
                         //Cái này của bán thực phẩm
                         dispose();

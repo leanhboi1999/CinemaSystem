@@ -15,7 +15,29 @@ import model.HoiVienModel;
  * @author leanh
  */
 public class HoiVienController {
+
     public static ArrayList<HoiVien> taiTatCa() throws SQLException {
         return HoiVienModel.taiTatCa();
+    }
+
+    public static ArrayList<HoiVien> timKiemTen(String ten) throws SQLException {
+        return HoiVienModel.timKiemTen(ten);
+    }
+    
+    public static ArrayList<HoiVien> timKiemCMND(String cmnd) throws SQLException {
+        return HoiVienModel.timKiemCMND(cmnd);
+    }
+    
+    public static boolean xoaHoiVien(String mahoivien) throws SQLException{
+        int kq = HoiVienModel.xoaHoiVien(mahoivien);
+        if (kq > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static String hienMa() throws SQLException {
+        return HoiVienModel.hienMa();
     }
 }
