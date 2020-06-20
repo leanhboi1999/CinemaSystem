@@ -26,9 +26,19 @@ public class ThucPhamModel {
         Database.connect().close();
         return arr;
     }
+    
+    public static ArrayList<ThucPham> timKiem(String tenthucpham) throws SQLException {
+        String sql = "SELECT * FROM THUCPHAM WHERE TENTHUCPHAM LIKE '%" + tenthucpham + "%'";
+        ResultSet rs = Database.callQuery(sql);
+        ArrayList<ThucPham> arr = new ArrayList<>();
+        while(rs.next()) {
+            arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+        }
+        return arr;
+    }
 
-    public static String hienMa() throws SQLException {
-        CallableStatement st = Database.connect().prepareCall("{? = call ID_HOADON}");
+     public static String hienMa() throws SQLException {
+        CallableStatement st = Database.connect().prepareCall("{? = call ID_THUCPHAM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
         return st.getString(1);
@@ -88,4 +98,6 @@ public class ThucPhamModel {
             con.close();
         }
     }
+    
+    
 }

@@ -22,8 +22,12 @@ public class ThucPhamController {
     public static ArrayList<ThucPham> taiTatCa() throws SQLException {
         return ThucPhamModel.taiTatCa();
     }
+    
+    public static ArrayList<ThucPham> timKiem(String tenthucpham) throws SQLException {
+        return ThucPhamModel.timKiem(tenthucpham);
+    }
 
-    public static String hienMa() throws SQLException {
+     public static String hienMa() throws SQLException {
         return ThucPhamModel.hienMa();
     }
 
@@ -46,4 +50,6 @@ public class ThucPhamController {
             return false;
         }
     }
+
+    
 }

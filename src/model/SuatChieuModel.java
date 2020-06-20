@@ -8,6 +8,7 @@ package model;
 import controller.SuatChieuController;
 import entity.SuatChieu;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -61,6 +62,21 @@ public class SuatChieuModel {
         st.execute();
         Database.connect().close();
         return st.getString(1);
+    }
+
+    public static boolean them(SuatChieu sc) throws SQLException{
+       Connection con = Database.connect();
+        try {
+            con.setAutoCommit(false);
+            Database.callStoredUpdate("PRO_INSERT_SUATCHIEU", sc.getMasuatchieu(), sc.getTenphong(), sc.getMasuatphim(), sc.getThoigianchieu());
+            con.close();
+            return true;
+        } catch (Exception e) {
+            con.rollback();
+            return false;
+        } finally {
+            con.close();
+        }
     }
 
 }

@@ -29,6 +29,15 @@ public class HoiVienModel {
         }
         return arr;
     }
+    
+    public static HoiVien layThongTin(String mahoivien) throws SQLException{
+        String sql = "SELECT * FROM HOIVIEN WHERE MAHOIVIEN ="+"'"+mahoivien+"'";
+        ResultSet rs = Database.callQuery(sql);
+        rs.next();
+        HoiVien hv = new HoiVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9));
+        Database.connect().close();
+        return hv;
+    }
 
     public static ArrayList<HoiVien> timKiemTen(String ten) throws SQLException {
         ArrayList<HoiVien> arr = new ArrayList<>();
@@ -67,4 +76,6 @@ public class HoiVienModel {
         st.execute();
         return st.getString(1);
     }
+
+    
 }

@@ -19,6 +19,12 @@ public class ThucPham {
         this.trangthai = trangthai;
     }
 
+    public ThucPham(String mathucpham, String tenthucpham, int trangthai) {
+        this.mathucpham = mathucpham;
+        this.tenthucpham = tenthucpham;
+        this.trangthai = trangthai;
+    }
+    
     public ThucPham() {
     }
 

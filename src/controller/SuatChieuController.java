@@ -39,4 +39,8 @@ public class SuatChieuController {
     public static String hiemNa() throws SQLException {
         return SuatChieuModel.hienMa();
     }
+    
+    public static boolean them(SuatChieu sc) throws SQLException{
+        return SuatChieuModel.them(sc);
+    }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import controller.HoaDonThucPhamController;
 import controller.ThucPhamController;
 import entity.Cthdtp;
 import entity.HoaDonThucPham;
@@ -363,7 +364,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
             loadthucpham(arr);
             txtDate.setText(ThucPhamController.hienngay().toString());
             txtDate.setEnabled(false);
-            txtMaHD.setText(ThucPhamController.hienMa());
+            txtMaHD.setText(HoaDonThucPhamController.hienMa());
             txtMaHD.setEnabled(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

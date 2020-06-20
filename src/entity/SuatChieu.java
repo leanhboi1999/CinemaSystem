@@ -117,6 +117,15 @@ public class SuatChieu {
     public SuatChieu() {
     }
 
+    public SuatChieu(String masuatchieu, String masuatphim, Date thoigianchieu, String tenphong) {
+        this.masuatchieu = masuatchieu;
+        this.masuatphim = masuatphim;
+        this.thoigianchieu = thoigianchieu;
+        this.tenphong = tenphong;
+    }
+    
+    
+
     public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai) {
         this.masuatchieu = masuatchieu;
         this.maphong = maphong;

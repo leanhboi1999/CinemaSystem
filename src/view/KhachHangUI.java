@@ -163,7 +163,15 @@ public class KhachHangUI extends javax.swing.JFrame {
             new String [] {
                 "STT", "Mã khách hàng", "Họ tên", "Giới tính", "CMND", "Ngày sinh", "Email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableKhachHang.setFocusable(false);
         jTableKhachHang.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTableKhachHang.setRowHeight(25);
@@ -174,6 +182,11 @@ public class KhachHangUI extends javax.swing.JFrame {
 
         btnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-edit-20.png"))); // NOI18N
         btnEdit.setText("Sửa");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnThemDiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-create-20.png"))); // NOI18N
         btnThemDiem.setText("Tạo điểm cho năm mới");
@@ -240,9 +253,24 @@ public class KhachHangUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        /*dispose();
-        ThemKhachHangUI themkh = new ThemKhachHangUI();
-        themkh.setVisible(true);*/
+        int row = jTableKhachHang.getSelectedRow();
+        if (row == -1) {
+            dispose();
+            ThemKhachHangUI themkh = new ThemKhachHangUI(true, null);
+            themkh.setVisible(true);
+        } else {
+            try {
+                String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
+                HoiVien hv = HoiVienController.layThongTin(makhachhang);
+                dispose();
+                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv);
+                themkh.setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+
+        }
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
@@ -258,7 +286,8 @@ public class KhachHangUI extends javax.swing.JFrame {
         try {
             if (ckCMND.isSelected() && ckTen.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
-            } else if (ckTen.isSelected()) {
+            } else if (ckTen.isSelected()
+                    ) {
                 String ten = txtTen.getText();
                 ArrayList<HoiVien> arr = HoiVienController.timKiemTen(ten);
                 loadDanhSach(arr);
@@ -273,6 +302,23 @@ public class KhachHangUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        int row = jTableKhachHang.getSelectedRow();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            try {
+                String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
+                HoiVien hv = HoiVienController.layThongTin(makhachhang);
+                dispose();
+                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv);
+                themkh.setVisible(true);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

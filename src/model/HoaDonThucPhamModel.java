@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import util.Database;
 import entity.HoaDonThucPham;
+import java.sql.CallableStatement;
+import java.sql.Types;
 
 /**
  *
@@ -24,6 +26,13 @@ public class HoaDonThucPhamModel {
              arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2),rs.getInt(3),rs.getString(4)));
         }
         return arr;
+    }
+    
+    public static String hienMa() throws SQLException {
+        CallableStatement st = Database.connect().prepareCall("{? = call ID_HOADON}");
+        st.registerOutParameter(1, Types.VARCHAR);
+        st.execute();
+        return st.getString(1);
     }
     
 }

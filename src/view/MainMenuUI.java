@@ -21,22 +21,22 @@ public class MainMenuUI extends javax.swing.JFrame {
         initComponents();
     }
 
-    void setBtnColor(JPanel panel){
+    void setBtnColor(JPanel panel) {
         panel.setBackground(new Color(129, 17, 189));
     }
-    
-    void resetBtnColor(JPanel panel){
-        panel.setBackground(new Color(153,153,255));
+
+    void resetBtnColor(JPanel panel) {
+        panel.setBackground(new Color(153, 153, 255));
     }
-    
-    void setcBoxColor(JPanel panel){
+
+    void setcBoxColor(JPanel panel) {
         panel.setBackground(new Color(254, 201, 226));
     }
-    
-    void resetcBoxColor(JPanel panel){
-        panel.setBackground(new Color(204,255,204));
+
+    void resetcBoxColor(JPanel panel) {
+        panel.setBackground(new Color(204, 255, 204));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,7 +172,7 @@ public class MainMenuUI extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(250, 250, 250));
-        jLabel5.setText("Cái gì đó chưa nghĩ đến");
+        jLabel5.setText("Branchs đang làm");
         jLabel5.setPreferredSize(new java.awt.Dimension(50, 13));
 
         javax.swing.GroupLayout btn_2Layout = new javax.swing.GroupLayout(btn_2);
@@ -386,11 +386,11 @@ public class MainMenuUI extends javax.swing.JFrame {
         cBox_1.setBackground(new java.awt.Color(204, 255, 204));
         cBox_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 51, 0), 2));
         cBox_1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cBox_1MouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cBox_1MousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cBox_1MouseClicked(evt);
             }
         });
 
@@ -500,6 +500,9 @@ public class MainMenuUI extends javax.swing.JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cBox_4MousePressed(evt);
             }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cBox_4MouseClicked(evt);
+            }
         });
 
         jLabel20.setText("Khách hàng");
@@ -551,11 +554,11 @@ public class MainMenuUI extends javax.swing.JFrame {
         cBox_7.setBackground(new java.awt.Color(204, 255, 204));
         cBox_7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 51, 0), 2));
         cBox_7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cBox_7MouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 cBox_7MousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cBox_7MouseClicked(evt);
             }
         });
 
@@ -654,7 +657,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         jLabel15.setBackground(new java.awt.Color(250, 250, 250));
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 25)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Chào mừng đến với hành lang đầy nắng và gió");
+        jLabel15.setText("Chào mừng đến với rạp chiếu phim ABC");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
@@ -674,7 +677,7 @@ public class MainMenuUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -881,8 +884,7 @@ public class MainMenuUI extends javax.swing.JFrame {
         setcBoxColor(cBox_8);
     }//GEN-LAST:event_cBox_8MousePressed
 
-    
-    
+
     private void cBox_1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_1MouseClicked
         // TODO add your handling code here:
         dispose();
@@ -890,14 +892,19 @@ public class MainMenuUI extends javax.swing.JFrame {
         openSuatChieu.setVisible(true);
     }//GEN-LAST:event_cBox_1MouseClicked
 
-    
-    
+
     private void cBox_7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_7MouseClicked
         // TODO add your handling code here:
         dispose();
         PhimUI openPhim = new PhimUI();
         openPhim.setVisible(true);
     }//GEN-LAST:event_cBox_7MouseClicked
+
+    private void cBox_4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cBox_4MouseClicked
+        dispose();
+        KhachHangUI ui = new KhachHangUI();
+        ui.setVisible(true);
+    }//GEN-LAST:event_cBox_4MouseClicked
 
     /**
      * @param args the command line arguments

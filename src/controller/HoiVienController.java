@@ -20,15 +20,19 @@ public class HoiVienController {
         return HoiVienModel.taiTatCa();
     }
 
+    public static HoiVien layThongTin(String mahoivien) throws SQLException {
+        return HoiVienModel.layThongTin(mahoivien);
+    }
+
     public static ArrayList<HoiVien> timKiemTen(String ten) throws SQLException {
         return HoiVienModel.timKiemTen(ten);
     }
-    
+
     public static ArrayList<HoiVien> timKiemCMND(String cmnd) throws SQLException {
         return HoiVienModel.timKiemCMND(cmnd);
     }
-    
-    public static boolean xoaHoiVien(String mahoivien) throws SQLException{
+
+    public static boolean xoaHoiVien(String mahoivien) throws SQLException {
         int kq = HoiVienModel.xoaHoiVien(mahoivien);
         if (kq > 0) {
             return true;
@@ -36,7 +40,7 @@ public class HoiVienController {
             return false;
         }
     }
-    
+
     public static String hienMa() throws SQLException {
         return HoiVienModel.hienMa();
     }
