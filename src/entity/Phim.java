@@ -145,4 +145,10 @@ public class Phim {
         this.tenphim = tenphim;
     }
 
+    public Phim(String tenphim) {
+        this.tenphim = tenphim;
+    }
+     
+    
+
 }

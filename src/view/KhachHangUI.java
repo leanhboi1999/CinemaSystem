@@ -26,6 +26,7 @@ public class KhachHangUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -41,7 +42,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableKhachHang = new javax.swing.JTable();
         btnEdit = new javax.swing.JButton();
-        btnThemDiem = new javax.swing.JButton();
+        btnXoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,6 +59,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         txtTen.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         ckTen.setBackground(new java.awt.Color(250, 250, 250));
+        buttonGroup1.add(ckTen);
         ckTen.setText("Theo tên khách hàng");
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-20.png"))); // NOI18N
@@ -77,6 +79,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         });
 
         ckCMND.setBackground(new java.awt.Color(250, 250, 250));
+        buttonGroup1.add(ckCMND);
         ckCMND.setText("Theo CMND ");
 
         txtCMND.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -108,7 +111,7 @@ public class KhachHangUI extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(ckTen)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(ckCMND)
@@ -188,8 +191,13 @@ public class KhachHangUI extends javax.swing.JFrame {
             }
         });
 
-        btnThemDiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-create-20.png"))); // NOI18N
-        btnThemDiem.setText("Tạo điểm cho năm mới");
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-20.png"))); // NOI18N
+        btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -203,28 +211,28 @@ public class KhachHangUI extends javax.swing.JFrame {
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnThemDiem)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThemDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXoa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.add(jPanel10);
-        jPanel10.setBounds(330, 112, 842, 430);
+        jPanel10.setBounds(330, 112, 848, 430);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel2.add(jLabel2);
@@ -249,27 +257,18 @@ public class KhachHangUI extends javax.swing.JFrame {
         ckCMND.setSelected(false);
         txtTen.setText(null);
         txtCMND.setText(null);
-
+         try {
+            ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
+            loadDanhSach(arr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        int row = jTableKhachHang.getSelectedRow();
-        if (row == -1) {
-            dispose();
+       dispose();
             ThemKhachHangUI themkh = new ThemKhachHangUI(true, null);
             themkh.setVisible(true);
-        } else {
-            try {
-                String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
-                HoiVien hv = HoiVienController.layThongTin(makhachhang);
-                dispose();
-                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv);
-                themkh.setVisible(true);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-
-        }
 
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -320,6 +319,30 @@ public class KhachHangUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+         int row = jTableKhachHang.getSelectedRow();
+        String maHoiVien = jTableKhachHang.getValueAt(row, 1).toString();
+        if (row == -1) {
+            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
+            if (p == 0) {
+                try {
+                    //kq = contronllerphim.xoa(tam);
+                    if (HoiVienController.xoaHoiVien(maHoiVien)) {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công");
+                        ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
+                        loadDanhSach(arr);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Xóa thất bại");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -333,8 +356,9 @@ public class KhachHangUI extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnThemDiem;
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckCMND;
     private javax.swing.JCheckBox ckTen;
     private javax.swing.JLabel jLabel2;

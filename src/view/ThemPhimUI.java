@@ -11,9 +11,9 @@ import entity.NgonNgu;
 import entity.Phim;
 import entity.SuatPhim;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,6 +21,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     private boolean isInsert;
     private String maphim;
+    SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
     private Phim newPhim = new Phim();
     private ArrayList<SuatPhim> aSuatPhim = new ArrayList<SuatPhim>();
 
@@ -129,7 +130,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
         jLabel26.setText("Nhà sản xuất:");
 
         cbbTrangThai.setBackground(new java.awt.Color(250, 250, 250));
-        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang chiếu", "Sắp chiếu", "Đã chiếu", " " }));
+        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ĐANG CHIẾU", "SẮP CHIẾU", "ĐÃ CHIẾU", " " }));
 
         cbbGioiHanTuoi.setBackground(new java.awt.Color(250, 250, 250));
         cbbGioiHanTuoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "12", "16", "18" }));
@@ -270,16 +271,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
         jTableSuatPhim.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Ngôn ngữ", "Định dạng", "Hình thức"
@@ -430,17 +422,15 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     //Xử lý xóa suất phim trong hệ thống
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        //Chưa tìm ra cách xử lý
         int row = jTableSuatPhim.getSelectedRow();
         String masuatphim = jTableSuatPhim.getValueAt(row, 0).toString();
-        Iterator<SuatPhim> iter = aSuatPhim.iterator();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
             if (p == 0) {
                 try {
-                    if (SuatPhimController.xoaSuatPhim(masuatphim)) { 
+                    if (SuatPhimController.xoaSuatPhim(masuatphim)) {
                         JOptionPane.showMessageDialog(null, "Xóa thành công");
                         taiSuatPhim();
                     } else {
@@ -610,13 +600,12 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     private void themPhim() {
         if (check()) {
-            /*System.out.println(check());
-            System.out.println(isInsert);*/
             themMaPhim_SuatPhim();
             taoPhim();
             try {
                 if (PhimController.them(newPhim, aSuatPhim)) {
                     JOptionPane.showMessageDialog(null, "Thêm thành công");
+                    hienthi();
                 } else {
                     JOptionPane.showMessageDialog(null, "Thêm thất bại");
                 }
@@ -631,7 +620,11 @@ public class ThemPhimUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Quên tên phim kìa thánh");
             return false;
         }
-        if (jTableSuatPhim.getRowCount() != 1) {
+        /*if (jTableSuatPhim.getRowCount() != 1) {
+            JOptionPane.showMessageDialog(null, "Quên thêm suất phim cho phim");
+            return false;
+        }*/
+        if (jTableSuatPhim.getRowCount() == 0 || jTableSuatPhim.getColumnCount() == 0) {
             JOptionPane.showMessageDialog(null, "Quên thêm suất phim cho phim");
             return false;
         }
@@ -648,8 +641,10 @@ public class ThemPhimUI extends javax.swing.JFrame {
         newPhim.setNamsanxuat(Integer.parseInt(txtNamSX.getText()));
         newPhim.setGioihantuoi((Integer.parseInt((String) cbbGioiHanTuoi.getSelectedItem())));
         newPhim.setNhasanxuat(txtNhaSX.getText());
-        newPhim.setNgaykhoichieu(dateNgayChieu.getDate());
+        newPhim.setNgaykhoichieu((dateNgayChieu.getDate()));
+        //System.out.println(fm.format(dateNgayChieu.getDate()));
         newPhim.setTomtat(txtTomTat.getText());
+        newPhim.setTheloai(null);
     }
 
     private void taiHinhThuc() {
@@ -665,57 +660,76 @@ public class ThemPhimUI extends javax.swing.JFrame {
     }
 
     private void themSuatPhim() {
-        if (themMang((String) cbbNgonNgu_suatphim.getSelectedItem(), (String) cbbDinhDang_suatphim.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem())) {
-            if (!isInsert) {
-                SuatPhim temp = aSuatPhim.get(aSuatPhim.size() - 1);
-                try {
-                    //Controller load
-                    if (SuatPhimController.them(temp)) {
-                        JOptionPane.showMessageDialog(null, "Thêm thành công");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Thêm thất bại");
+        try {
+            if (themMang(SuatPhimController.hienMa(), (String) cbbNgonNgu_suatphim.getSelectedItem(), (String) cbbDinhDang_suatphim.getSelectedItem(), (String) cbbHinhThuc.getSelectedItem())) {
+                if (!isInsert) {
+                    SuatPhim temp = aSuatPhim.get(aSuatPhim.size() - 1);
+                    try {
+                        if (SuatPhimController.them(temp)) {
+                            JOptionPane.showMessageDialog(null, "Thêm thành công");
+                            taiSuatPhim();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Thêm thất bại");
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
                     }
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage());
+                } else {
+                    try {
+                        if (isInsert) {
+                            this.maphim = txtMaPhim.getText();
+                            this.isInsert = false;
+                            DefaultTableModel table = (DefaultTableModel) jTableSuatPhim.getModel();
+                            //table.getDataVector().removeAllElements();
+                            Object row[] = new Object[4];
+                            row[0] = SuatPhimController.hienMa();
+                            row[1] = cbbNgonNgu_suatphim.getSelectedItem();
+                            row[2] = cbbDinhDang_suatphim.getSelectedItem();
+                            row[3] = cbbHinhThuc.getSelectedItem();
+                            table.addRow(row);
+                            themPhim();
+                        } else {
+                            SuatPhim temp = aSuatPhim.get(aSuatPhim.size() - 1);
+                            if (SuatPhimController.them(temp)) {
+                                JOptionPane.showMessageDialog(null, "Thêm thành công");
+                                taiSuatPhim();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Thêm thất bại");
+                            }
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage());
+                    }
+
                 }
             } else {
-                try {
-                    DefaultTableModel table = (DefaultTableModel) jTableSuatPhim.getModel();
-                    table.getDataVector().removeAllElements();
-                    Object row[] = new Object[4];
-                    row[0] = SuatPhimController.hienMa();
-                    row[1] = cbbNgonNgu_suatphim.getSelectedItem();
-                    row[2] = cbbDinhDang_suatphim.getSelectedItem();
-                    row[3] = cbbHinhThuc.getSelectedItem();
-                    table.addRow(row);
-                    //table.setRowCount(0);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                }
-
+                JOptionPane.showMessageDialog(null, "Suất phim đã tồn tại");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Suất phim đã tồn tại");
+        } catch (Exception e) {
         }
 
     }
 
-    private boolean themMang(String maNN, String maDD, String maHT) {
+    private boolean themMang(String masuatphim, String tenNN, String tenDD, String tenHT) {
         for (SuatPhim sp : aSuatPhim) {
-            if (sp.getMangonngu().equals(maNN) && sp.getMadinhdang().equals(maDD) && sp.getMahinhthuc().equals(maHT)) {
+            if (sp.getTenngonngu().equals(tenNN) && sp.getTendinhdang().equals(tenDD) && sp.getTenhinhthuc().equals(tenHT)) {
                 return false;
             }
         }
-        aSuatPhim.add(new SuatPhim(null, maNN, maDD, maphim, maHT));
+        aSuatPhim.add(new SuatPhim(masuatphim, tenNN, tenDD, maphim, tenHT));
         return true;
-
     }
 
     private void suaPhim() {
         if (check()) {
             try {
                 taoPhim();
-                //Controller khởi chạy
+                if (PhimController.sua(newPhim)) {
+                    JOptionPane.showMessageDialog(null, "Thông tin phim được cập nhật");
+                    dispose();
+                    PhimUI ui = new PhimUI();
+                    ui.setVisible(true);
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }

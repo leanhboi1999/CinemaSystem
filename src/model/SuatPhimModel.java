@@ -10,7 +10,9 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import util.Database;
 
@@ -49,7 +51,16 @@ public class SuatPhimModel {
         Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
-            Database.callStoredUpdate("PRO_INSERT_SUATPHIM", sp.getMasuatphim());
+            CallableStatement cstmt;
+            //Database.callStoredUpdate("PRO_INSERT_SUATPHIM", sp.getMasuatphim(), sp.getTenngonngu(), sp.getTendinhdang(), sp.getMaphim(), sp.getTenhinhthuc());
+            String sql2 = "{call PRO_INSERT_SUATPHIM (?,?,?,?,?)}";
+            cstmt = con.prepareCall(sql2);
+            cstmt.setString(1, sp.getMasuatphim());
+            cstmt.setString(2, sp.getTenngonngu());
+            cstmt.setString(3, sp.getTendinhdang());
+            cstmt.setString(4, sp.getMaphim());
+            cstmt.setString(5, sp.getTenhinhthuc());
+            cstmt.executeUpdate();
             con.commit();
             return true;
         } catch (Exception e) {
@@ -60,8 +71,8 @@ public class SuatPhimModel {
         }
     }
 
-    public static int xoaSuatPhim(String masuatchieu) throws SQLException {
-        String sql = "DELETE FROM suatchieu where masuatchieu =" + "'" + masuatchieu + "'";
+    public static int xoaSuatPhim(String masuatphim) throws SQLException {
+        String sql = "DELETE FROM SUATPHIM WHERE MASUATPHIM =" + "'" + masuatphim + "'";
         int rs = Database.callQueryDelete(sql);
         Database.connect().close();
         return rs;
@@ -72,6 +83,33 @@ public class SuatPhimModel {
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
         return st.getString(1);
+    }
+    
+    public static boolean them(String maSuatChieu, String tenPhong, String maSuatPhim, String gio, String ngaychieu) throws SQLException {
+        Connection con = Database.connect();
+        try {
+            con.setAutoCommit(false);
+            String tam = ngaychieu + " " + gio;
+            String sql = "{call PRO_INSERT_SUATCHIEU(?,?,?,?)}";
+            CallableStatement cstmt = con.prepareCall(sql);
+            System.out.println("flag 1");
+            cstmt.setString(1, maSuatChieu);
+            System.out.println(maSuatChieu);
+            cstmt.setString(2, tenPhong);
+            System.out.println(tenPhong);
+            cstmt.setString(3, maSuatPhim);
+            System.out.println(maSuatPhim);
+            SimpleDateFormat df=new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+            cstmt.setTimestamp(4,new Timestamp(df.parse(tam).getTime()));
+            cstmt.executeUpdate();
+            con.commit();
+            return true;
+        } catch (Exception e) {
+            con.rollback();
+            return false;
+        } finally {
+            con.close();
+        }
     }
 
 }

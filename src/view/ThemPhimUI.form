@@ -302,9 +302,9 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="&#x110;ang chi&#x1ebf;u"/>
-                        <StringItem index="1" value="S&#x1eaf;p chi&#x1ebf;u"/>
-                        <StringItem index="2" value="&#x110;&#xe3; chi&#x1ebf;u"/>
+                        <StringItem index="0" value="&#x110;ANG CHI&#x1ebe;U"/>
+                        <StringItem index="1" value="S&#x1eae;P CHI&#x1ebe;U"/>
+                        <StringItem index="2" value="&#x110;&#xc3; CHI&#x1ebe;U"/>
                         <StringItem index="3" value=" "/>
                       </StringArray>
                     </Property>
@@ -557,7 +557,7 @@
                     <Component class="javax.swing.JTable" name="jTableSuatPhim">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="10">
+                          <Table columnCount="4" rowCount="0">
                             <Column editable="true" title="ID" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xf4;n ng&#x1eef;" type="java.lang.Object"/>
                             <Column editable="true" title="&#x110;&#x1ecb;nh d&#x1ea1;ng" type="java.lang.Object"/>

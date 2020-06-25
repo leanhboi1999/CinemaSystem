@@ -53,4 +53,8 @@ public class PhimController {
     public static boolean them(Phim p, ArrayList<SuatPhim> aSuarPhim) throws SQLException {
         return PhimModel.them(p, aSuarPhim);
     }
+    
+    public static boolean sua(Phim p) throws SQLException {
+        return PhimModel.sua(p);
+    }
 }

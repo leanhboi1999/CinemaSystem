@@ -8,13 +8,14 @@ import entity.Phim;
 import entity.PhongChieu;
 import entity.SuatChieu;
 import entity.SuatPhim;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ThemSuatChieuUI extends javax.swing.JFrame {
-
     private String tenphim = "";
+    SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
     public ThemSuatChieuUI() {
         initComponents();
@@ -38,7 +39,6 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtMaSuatChieu = new javax.swing.JTextField();
         cbbPhong = new javax.swing.JComboBox<>();
-        jSpinner2 = new javax.swing.JSpinner();
         cbbTrangThai = new javax.swing.JComboBox<>();
         cbbPhim = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -46,6 +46,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cbbMaSuatPhim = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
+        Gio = new javax.swing.JTextField();
         btnHuy = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -110,6 +111,12 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(250, 250, 250));
         jLabel5.setText("Mã suất phim:");
 
+        Gio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -127,9 +134,9 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtMaSuatChieu, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbbPhim, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(cbbMaSuatPhim, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE))
+                            .addComponent(cbbPhim, javax.swing.GroupLayout.Alignment.LEADING, 0, 155, Short.MAX_VALUE)
+                            .addComponent(cbbMaSuatPhim, javax.swing.GroupLayout.Alignment.LEADING, 0, 1, Short.MAX_VALUE)
+                            .addComponent(Gio, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,10 +169,10 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Gio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +229,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbPhimActionPerformed
-        if (cbbPhim.getSelectedIndex() != -1) {
+       if (cbbPhim.getSelectedIndex() != -1) {
             tenphim = cbbPhim.getItemAt(cbbPhim.getSelectedIndex());
             loadSuatPhim(tenphim);
         }
@@ -235,9 +242,14 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        //Load Controller
+        String maSuatChieu=txtMaSuatChieu.getText();
+        String tenPhong=cbbPhong.getSelectedItem().toString();
+        String maSuatPhim=cbbMaSuatPhim.getSelectedItem().toString();
+        String gio= Gio.getText();
+        String ngaychieu=fm.format(txtDate.getDate());
+        System.out.println(ngaychieu);
         try {
-            if (SuatChieuController.them(laySuatChieu())) {
+            if (SuatChieuController.them(maSuatChieu, tenPhong, maSuatPhim, gio, ngaychieu)) {
                 JOptionPane.showMessageDialog(null, "Thêm thành công");
             } else {
                 JOptionPane.showMessageDialog(null, "Thêm thất bại");
@@ -246,6 +258,10 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void GioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GioActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -256,6 +272,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Gio;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnLuu;
     private javax.swing.JComboBox<String> cbbMaSuatPhim;
@@ -275,14 +292,13 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTable jTableSuatPhim;
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtMaSuatChieu;
     // End of variables declaration//GEN-END:variables
 
     private void hienthi() {
-        hienPhong();
+          hienPhong();
         hienTrangThai();
         hienPhim();
         try {
@@ -292,10 +308,11 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
+
     }
 
     private void hienPhong() {
-        try {
+         try {
             ArrayList<PhongChieu> arr = PhongChieuController.taiTatCa();
             cbbPhong.removeAllItems();
             for (PhongChieu item : arr) {
@@ -304,7 +321,6 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
     }
 
     private void hienTrangThai() {
@@ -347,9 +363,5 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-    }
-
-    private SuatChieu laySuatChieu() {
-        return new SuatChieu(txtMaSuatChieu.getText(), (String) cbbPhong.getSelectedItem(), (String) cbbMaSuatPhim.getSelectedItem(), txtDate.getDate(),(String) cbbTrangThai.getSelectedItem());
     }
 }

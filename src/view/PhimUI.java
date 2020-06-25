@@ -26,6 +26,7 @@ public class PhimUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -61,6 +62,7 @@ public class PhimUI extends javax.swing.JFrame {
         txtTenPhim.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         ckTenPhim.setBackground(new java.awt.Color(250, 250, 250));
+        buttonGroup1.add(ckTenPhim);
         ckTenPhim.setText("Theo tên phim");
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-search-20.png"))); // NOI18N
@@ -80,6 +82,7 @@ public class PhimUI extends javax.swing.JFrame {
         });
 
         ckThoiGian.setBackground(new java.awt.Color(250, 250, 250));
+        buttonGroup1.add(ckThoiGian);
         ckThoiGian.setText("Theo khoảng thời gian");
 
         jLabel3.setText("Từ ngày:");
@@ -112,7 +115,7 @@ public class PhimUI extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addComponent(ckThoiGian)
                             .addGap(117, 117, 117))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +124,7 @@ public class PhimUI extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(ckTenPhim)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtTenPhim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17)
                 .addComponent(ckThoiGian)
@@ -238,7 +241,7 @@ public class PhimUI extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -251,7 +254,7 @@ public class PhimUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 842, 430);
+        jPanel10.setBounds(330, 112, 848, 430);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -277,21 +280,18 @@ public class PhimUI extends javax.swing.JFrame {
         txtTenPhim.setText("");
         dateStartDate.setCalendar(null);
         dateEndDate.setCalendar(null);
+        try {
+            ArrayList<Phim> arr = PhimController.taiTatCa();
+            loadPhim(arr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        int row = jTablePhim.getSelectedRow();
-        if (row == -1) {
             dispose();
             ThemPhimUI themphim = new ThemPhimUI(true, null);
             themphim.setVisible(true);
-        } else {
-            String maphim = jTablePhim.getModel().getValueAt(row, 0).toString();
-            dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-            ThemPhimUI themphim = new ThemPhimUI(false, maphim);
-            themphim.setVisible(true);
-        }
-
     }//GEN-LAST:event_btnAddActionPerformed
 
     //Action hiển thị list phim
@@ -378,6 +378,7 @@ public class PhimUI extends javax.swing.JFrame {
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckTenPhim;
     private javax.swing.JCheckBox ckThoiGian;
     private com.toedter.calendar.JDateChooser dateEndDate;

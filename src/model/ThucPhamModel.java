@@ -5,7 +5,6 @@ import entity.HoaDonThucPham;
 import entity.ThucPham;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,18 +25,18 @@ public class ThucPhamModel {
         Database.connect().close();
         return arr;
     }
-    
+
     public static ArrayList<ThucPham> timKiem(String tenthucpham) throws SQLException {
         String sql = "SELECT * FROM THUCPHAM WHERE TENTHUCPHAM LIKE '%" + tenthucpham + "%'";
         ResultSet rs = Database.callQuery(sql);
         ArrayList<ThucPham> arr = new ArrayList<>();
-        while(rs.next()) {
+        while (rs.next()) {
             arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
         }
         return arr;
     }
 
-     public static String hienMa() throws SQLException {
+    public static String hienMa() throws SQLException {
         CallableStatement st = Database.connect().prepareCall("{? = call ID_THUCPHAM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
@@ -98,6 +97,48 @@ public class ThucPhamModel {
             con.close();
         }
     }
-    
-    
+
+    public static ThucPham layThongTin(String maThucPham) throws SQLException {
+        String sql = "SELECT * FROM THUCPHAM WHERE MATHUCPHAM =" + "'" + maThucPham + "'";
+        ResultSet rs = Database.callQuery(sql);
+        rs.next();
+        ThucPham thucpham = new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+        Database.connect().close();
+        return thucpham;
+    }
+
+    public static int insertThucPham(ThucPham thucpham) throws SQLException {
+        Connection con = Database.connect();
+        String sql = "INSERT INTO THUCPHAM VALUES (?,?,?,?,?)";
+        PreparedStatement stmt;
+        stmt = con.prepareStatement(sql);
+        stmt.setString(1, thucpham.getMathucpham()); // This would set age
+        stmt.setString(2, thucpham.getTenthucpham());
+        stmt.setInt(3, (int) thucpham.getDongia());
+        stmt.setInt(4, thucpham.getSoluong());
+        stmt.setInt(5, thucpham.getTrangthai());
+        int row = stmt.executeUpdate();
+        return row;
+    }
+
+    public static int editThucPham(String maThucPham, String tenThucPham, int donGia, int soLuong, int trangThai) throws SQLException {
+        Connection con = Database.connect();
+        try {
+            int kq = Database.callStoredUpdate("EDIT_THUCPHAM", maThucPham, tenThucPham, donGia, soLuong, trangThai);
+            con.close();
+            return kq;
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            con.close();
+        }
+    }
+
+    public static int xoaThucPham(String maThucPham) throws SQLException {
+        String sql = "DELETE FROM THUCPHAM WHERE MATHUCPHAM = '" + maThucPham + "'";
+        int rs = Database.callQueryDelete(sql);
+        Database.connect().close();
+        return rs;
+    }
+
 }

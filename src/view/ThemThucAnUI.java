@@ -2,6 +2,7 @@ package view;
 
 import controller.ThucPhamController;
 import entity.ThucPham;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ThemThucAnUI extends javax.swing.JFrame {
@@ -126,6 +127,11 @@ public class ThemThucAnUI extends javax.swing.JFrame {
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-save-20.png"))); // NOI18N
         btnLuu.setText("Lưu");
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnLuu);
         btnLuu.setBounds(200, 480, 110, 30);
 
@@ -169,6 +175,46 @@ public class ThemThucAnUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        ThucPham thucpham = new ThucPham();
+        thucpham.setMathucpham(txtMaThucAn.getText());
+        thucpham.setTenthucpham(txtTenThucAn.getText());
+        thucpham.setSoluong(jSpinSoLuong.getValue());
+        thucpham.setDongia(Integer.parseInt(txtDonGia.getText()));
+        
+        if (cbbTrangThai.getSelectedItem().toString().equals("Còn bán")) {
+            thucpham.setTrangthai(1);
+        }
+        else thucpham.setTrangthai(0);
+        if (isInsert) {
+            int kq;
+            try {
+                kq = ThucPhamController.insertThucPham(thucpham);
+                if (kq > 0) {
+                    JOptionPane.showMessageDialog(null, "Thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "That Bai");
+                }
+                
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
+            try {
+                int kq1 =ThucPhamController.editThucPham(thucpham.getMathucpham(),thucpham.getTenthucpham(), (int) thucpham.getDongia(),thucpham.getSoluong(),thucpham.getTrangthai());
+                if (kq1 > 0) {
+                    JOptionPane.showMessageDialog(null, "Thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Thất bại");
+                }
+                
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+            
+        }
+    }//GEN-LAST:event_btnLuuActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -208,7 +254,12 @@ public class ThemThucAnUI extends javax.swing.JFrame {
                 txtMaThucAn.setEnabled(false);
                 txtTenThucAn.setText(tp.getTenthucpham());
                 jSpinSoLuong.setValue(tp.getSoluong());
-                //txtDonGia.setText(tp.getDongia());
+                String sDonGia=Integer.toString((int) tp.getDongia());
+                txtDonGia.setText(sDonGia);
+                hienTrangThai();
+                if (tp.getTrangthai()==1)
+                    cbbTrangThai.setSelectedIndex(0);
+                else cbbTrangThai.setSelectedIndex(1);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -216,8 +267,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
     }
 
     private void hienTrangThai() {
-        cbbTrangThai.addItem("Đang bán");
+        cbbTrangThai.addItem("Còn bán");
         cbbTrangThai.addItem("Dừng bán");
-        cbbTrangThai.setSelectedIndex(0);
     }
 }

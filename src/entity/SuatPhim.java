@@ -87,18 +87,26 @@ public class SuatPhim {
     public SuatPhim() {
     }
 
-    public SuatPhim(String masuatphim, String mangonngu, String madinhdang, String maphim, String mahinhthuc) {
+    /*public SuatPhim(String masuatphim, String mangonngu, String madinhdang, String maphim, String mahinhthuc) {
         this.masuatphim = masuatphim;
         this.mangonngu = mangonngu;
         this.madinhdang = madinhdang;
         this.maphim = maphim;
         this.mahinhthuc = mahinhthuc;
-    }
-
+    }*/
+    
     public SuatPhim(String masuatphim, String tenngonngu, String tendinhdang, String tenhinhthuc) {
         this.masuatphim = masuatphim;
         this.tenngonngu = tenngonngu;
         this.tendinhdang = tendinhdang;
+        this.tenhinhthuc = tenhinhthuc;
+    }
+
+    public SuatPhim(String masuatphim, String tenngonngu, String tendinhdang, String maphim, String tenhinhthuc) {
+        this.masuatphim = masuatphim;
+        this.tenngonngu = tenngonngu;
+        this.tendinhdang = tendinhdang;
+        this.maphim = maphim;
         this.tenhinhthuc = tenhinhthuc;
     }
     

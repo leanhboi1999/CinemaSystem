@@ -185,9 +185,9 @@ public class LoginUI extends javax.swing.JFrame {
                         ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00002")) {
                        dispose();
-                       BanVeUI ui = new BanVeUI(username);
-                       ui.setVisible(true);
-                       ui.setLocationRelativeTo(null);
+                       //BanVeUI ui = new BanVeUI(username);
+                       //ui.setVisible(true);
+                       //ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00003")) {
                         //Cái này của bán thực phẩm
                         dispose();

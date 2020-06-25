@@ -8,6 +8,7 @@ package controller;
 import entity.HoiVien;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import model.HoiVienModel;
 
 /**
@@ -44,4 +45,12 @@ public class HoiVienController {
     public static String hienMa() throws SQLException {
         return HoiVienModel.hienMa();
     }
+    public static int insertHoiVien(HoiVien hv) throws SQLException
+    {
+        return HoiVienModel.insertHoiVien(hv);
+    }
+     public static int editHoiVien(String mahv,String tenhv,String gioitinh,String CMND,Date ngaysinh,String email,String dienthoai) throws SQLException
+     {
+         return HoiVienModel.editHoiVien(mahv, tenhv, gioitinh, CMND, (java.sql.Date) ngaysinh,email, dienthoai);
+     }
 }

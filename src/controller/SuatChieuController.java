@@ -40,7 +40,7 @@ public class SuatChieuController {
         return SuatChieuModel.hienMa();
     }
     
-    public static boolean them(SuatChieu sc) throws SQLException{
-        return SuatChieuModel.them(sc);
+    public static boolean them(String maSuatChieu,String tenPhong,String maSuatPhim,String gio,String ngaychieu) throws SQLException{
+        return SuatChieuModel.them(maSuatChieu,tenPhong,maSuatPhim,gio,ngaychieu);
     }
 }

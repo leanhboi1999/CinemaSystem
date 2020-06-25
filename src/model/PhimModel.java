@@ -9,9 +9,11 @@ import entity.Phim;
 import entity.SuatPhim;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import util.Database;
 
@@ -20,6 +22,8 @@ import util.Database;
  * @author leanh
  */
 public class PhimModel {
+
+    private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
     public static ArrayList<Phim> taiTatCa() throws SQLException {
         ArrayList<Phim> arr = new ArrayList<>();
@@ -68,7 +72,6 @@ public class PhimModel {
         ResultSet rs = Database.callQuery(sql);
         ArrayList<Phim> arr = new ArrayList<>();
         while (rs.next()) {
-            System.out.println("model.connectphim.look()");
             Phim k = new Phim(rs.getString(1), rs.getString(2),
                     rs.getInt(3), rs.getString(4), rs.getString(5),
                     rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9),
@@ -97,11 +100,66 @@ public class PhimModel {
         Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
-            Database.callStoredUpdate("PRO_INSERT_PHIM", p.getMaphim(), p.getTenphim(), p.getThoiluong(), p.getTheloai(), p.getNhasanxuat(), p.getNamsanxuat(), p.getDienvien(), p.getNuocsanxuat(), p.getNgaykhoichieu(), p.getGioihantuoi(), p.getTomtat(), p.getTrangthai());
+            String sql = "INSERT INTO PHIM VALUES (?,?,?,?,?,?,?,?,TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
+            PreparedStatement stmt;
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, p.getMaphim());
+            stmt.setString(2, p.getTenphim());
+            stmt.setInt(3, p.getThoiluong());
+            stmt.setString(4, p.getTheloai());
+            stmt.setString(5, p.getNhasanxuat());
+            stmt.setInt(6, p.getNamsanxuat());
+            stmt.setString(7, p.getDienvien());
+            stmt.setString(8, p.getNuocsanxuat());
+            stmt.setString(9, fm.format(p.getNgaykhoichieu()));
+            stmt.setInt(10, p.getGioihantuoi());
+            stmt.setString(11, p.getTomtat());
+            stmt.setString(12, p.getTrangthai());
+            stmt.executeUpdate();
+            CallableStatement cstmt;
             for (SuatPhim item : aSuatPhim) {
-                Database.callStoredUpdate("PRO_INSERT_SUATPHIM", item.getMasuatphim());
+                String sql2 = "{call PRO_INSERT_SUATPHIM (?,?,?,?,?)}";
+                cstmt = con.prepareCall(sql2);
+                cstmt.setString(1, item.getMasuatphim());
+                cstmt.setString(2, item.getTenngonngu());
+                cstmt.setString(3, item.getTendinhdang());
+                cstmt.setString(4, item.getMaphim());
+                cstmt.setString(5, item.getTenhinhthuc());
+
+                cstmt.executeUpdate();
             }
+            con.commit();
+            System.out.println("Flag 2");
+            return true;
+        } catch (Exception e) {
+            con.rollback();
+            return false;
+        } finally {
             con.close();
+        }
+    }
+
+    public static boolean sua(Phim p) throws SQLException {
+        Connection con = Database.connect();
+        try {
+            con.setAutoCommit(false);
+            CallableStatement stmt;
+            String sql = "{call EDIT_PHIM(?,?,?,?,?,?,?,?,TO_DATE(?,'dd/mm/yyyy'),?,?,?)}";
+            stmt = con.prepareCall(sql);
+            stmt.setString(1, p.getMaphim());
+            stmt.setString(2, p.getTenphim());
+            stmt.setInt(3, p.getThoiluong());
+            stmt.setString(4, p.getTheloai());
+            stmt.setString(5, p.getNhasanxuat());
+            stmt.setInt(6, p.getNamsanxuat());
+            stmt.setString(7, p.getDienvien());
+            stmt.setString(8, p.getNuocsanxuat());
+            stmt.setString(9, fm.format(p.getNgaykhoichieu()));
+            stmt.setInt(10, p.getGioihantuoi());
+            stmt.setString(11, p.getTomtat());
+            stmt.setString(12, p.getTrangthai());
+            stmt.executeUpdate();
+            con.commit();
             return true;
         } catch (Exception e) {
             con.rollback();

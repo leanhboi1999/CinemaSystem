@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.util.Date;
 
-/**
- *
- * @author leanh
- */
 public class SuatChieu {
 
     private String masuatchieu;
@@ -20,6 +11,9 @@ public class SuatChieu {
     private String trangthai;
     private String tenphong;
     private String ngonngu;
+    private String dinhdang;
+    private String hinhthuc;
+    private String tenphim;
 
     public String getTenphong() {
         return tenphong;
@@ -53,14 +47,6 @@ public class SuatChieu {
         this.hinhthuc = hinhthuc;
     }
 
-    public String getPhong() {
-        return phong;
-    }
-
-    public void setPhong(String phong) {
-        this.phong = phong;
-    }
-
     public String getTenphim() {
         return tenphim;
     }
@@ -68,11 +54,6 @@ public class SuatChieu {
     public void setTenphim(String tenphim) {
         this.tenphim = tenphim;
     }
-    private String dinhdang;
-    private String hinhthuc;
-    private String phong;
-    private String tenphim;
-    
 
     public String getMasuatchieu() {
         return masuatchieu;
@@ -134,7 +115,7 @@ public class SuatChieu {
         this.trangthai = trangthai;
     }
 
-    public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai, String tenphong, String ngonngu, String dinhdang, String hinhthuc, String phong, String tenphim) {
+    public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai, String tenphong, String ngonngu, String dinhdang, String hinhthuc ,String tenphim) {
         this.masuatchieu = masuatchieu;
         this.maphong = maphong;
         this.masuatphim = masuatphim;
@@ -144,7 +125,6 @@ public class SuatChieu {
         this.ngonngu = ngonngu;
         this.dinhdang = dinhdang;
         this.hinhthuc = hinhthuc;
-        this.phong = phong;
         this.tenphim = tenphim;
     }
 }

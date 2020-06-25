@@ -50,6 +50,22 @@ public class ThucPhamController {
             return false;
         }
     }
+    public static ThucPham layThongTin(String maThucPham) throws SQLException
+    {
+        return ThucPhamModel.layThongTin(maThucPham);
+    }
+    public static int insertThucPham(ThucPham thucpham) throws SQLException
+     {
+         return ThucPhamModel.insertThucPham(thucpham);
+     }
+     public static int editThucPham(String maThucPham,String tenThucPham,int donGia,int soLuong,int trangThai) throws SQLException
+     {
+         return ThucPhamModel.editThucPham(maThucPham, tenThucPham, donGia, soLuong, trangThai);
+     }
+     public static int xoaThucPham(String maThucPham) throws SQLException
+     {
+         return ThucPhamModel.xoaThucPham(maThucPham);
+     }
 
     
 }

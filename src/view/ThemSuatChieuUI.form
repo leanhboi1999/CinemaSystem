@@ -78,9 +78,9 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="txtMaSuatChieu" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="cbbPhim" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="jSpinner2" alignment="0" pref="155" max="32767" attributes="0"/>
+                                  <Component id="cbbPhim" alignment="0" pref="155" max="32767" attributes="0"/>
                                   <Component id="cbbMaSuatPhim" alignment="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="Gio" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -125,10 +125,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jSpinner2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="cbbTrangThai" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="Gio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="33" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -202,8 +202,6 @@
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
-            </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner2">
             </Component>
             <Component class="javax.swing.JComboBox" name="cbbTrangThai">
               <Properties>
@@ -299,6 +297,11 @@
               </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="txtDate">
+            </Component>
+            <Component class="javax.swing.JTextField" name="Gio">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GioActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
