@@ -251,6 +251,8 @@ public class BanVeUI extends javax.swing.JFrame {
         //Xử lý chọn suất chiếu
         int row = jTableSuatChieu.getSelectedRow();
         String masuatchieu = jTableSuatChieu.getModel().getValueAt(row, 0).toString();
+        GheUITest ui = new GheUITest("App quản lí rạp phim", manhanvien, masuatchieu);
+        ui.showWindows();
         
     }//GEN-LAST:event_btnChonActionPerformed
 

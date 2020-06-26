@@ -7,18 +7,19 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class ThemKhachHangUI extends javax.swing.JFrame {
-
+    private String maquyen;
     private boolean isInsert;
     private HoiVien hv;
     private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
-    public ThemKhachHangUI(boolean isInsert, HoiVien hv) {
+    public ThemKhachHangUI(boolean isInsert, HoiVien hv, String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lý rạp phim");
         this.isInsert = isInsert;
         this.hv = hv;
+        this.maquyen = maquyen;
         hienThi();
     }
 
@@ -216,7 +217,7 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         dispose();
-        KhachHangUI ui = new KhachHangUI();
+        KhachHangUI ui = new KhachHangUI(maquyen);
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 

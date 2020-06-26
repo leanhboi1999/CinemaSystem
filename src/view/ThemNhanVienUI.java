@@ -15,20 +15,21 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class ThemNhanVienUI extends javax.swing.JFrame {
-
+    private String maquyen;
     private boolean isInsert;
     private NhanVien nv = new NhanVien();
     public static String ketnoi;
     /**
      * Creates new form ThemNhanVienUI
      */
-    public ThemNhanVienUI(boolean isInsert,NhanVien nv) {
+    public ThemNhanVienUI(boolean isInsert,NhanVien nv, String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lý rạp phim");
         this.isInsert = isInsert;
         this.nv = nv;
+        this.maquyen = maquyen;
         hienThi();
         
     }
@@ -276,7 +277,7 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
-        NhanVienUI nvUI = new NhanVienUI();
+        NhanVienUI nvUI = new NhanVienUI(maquyen);
         nvUI.setVisible(true);
     }//GEN-LAST:event_btnCancelActionPerformed
 

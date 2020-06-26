@@ -11,11 +11,12 @@ import util.DateFormat;
 public class KhachHangUI extends javax.swing.JFrame {
     private String maquyen;
     
-    public KhachHangUI() {
+    public KhachHangUI(String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lí rạp phim");
+        this.maquyen = maquyen;
         try {
             ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
             loadDanhSach(arr);
@@ -23,6 +24,8 @@ public class KhachHangUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    private KhachHangUI() {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -279,7 +282,7 @@ public class KhachHangUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
        dispose();
-            ThemKhachHangUI themkh = new ThemKhachHangUI(true, null);
+            ThemKhachHangUI themkh = new ThemKhachHangUI(true, null, maquyen);
             themkh.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed
@@ -323,7 +326,7 @@ public class KhachHangUI extends javax.swing.JFrame {
                 String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
                 HoiVien hv = HoiVienController.layThongTin(makhachhang);
                 dispose();
-                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv);
+                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv, maquyen);
                 themkh.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

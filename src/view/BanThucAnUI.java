@@ -15,12 +15,14 @@ public class BanThucAnUI extends javax.swing.JFrame {
     private int i = 0;
     private DefaultTableModel model;
     private String manhanvien;
+    private String maquyen;
 
-    public BanThucAnUI(String manhanvien) {
+    public BanThucAnUI(String manhanvien, String maquyen) {
         initComponents();
         setTitle("App quản lý rạp phim");
         setLocationRelativeTo(null);
         this.manhanvien = manhanvien;
+        this.maquyen = maquyen;
         hienThi();
     }
 

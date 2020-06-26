@@ -17,15 +17,14 @@ import javax.swing.table.DefaultTableModel;
  * @author admin
  */
 public class NhanVienUI extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NhanVienUI
-     */
-    public NhanVienUI() {
+    private String maquyen;
+    
+    public NhanVienUI(String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lí rạp phim");
+        this.maquyen = maquyen;
         try {
             ArrayList<NhanVien> arr = NhanVienController.taiTatCa();
             loadDanhSach(arr);
@@ -33,6 +32,8 @@ public class NhanVienUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    private NhanVienUI() {}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -249,7 +250,7 @@ public class NhanVienUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         dispose();
-        ThemNhanVienUI themnv = new ThemNhanVienUI(true, null);
+        ThemNhanVienUI themnv = new ThemNhanVienUI(true, null, maquyen);
         themnv.setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -277,7 +278,7 @@ public class NhanVienUI extends javax.swing.JFrame {
                 String manhanvien = jTableNhanVien.getModel().getValueAt(row, 1).toString();
                 NhanVien nv = NhanVienController.layThongTin(manhanvien);
                 dispose();
-                ThemNhanVienUI themnv = new ThemNhanVienUI(false, nv);
+                ThemNhanVienUI themnv = new ThemNhanVienUI(false, nv, maquyen);
                 themnv.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

@@ -178,9 +178,9 @@ public class LoginUI extends javax.swing.JFrame {
             } else if (TaiKhoanController.DangNhap(username, password) == true) {
                 try {
                     String quyen = TaiKhoanController.GetQuyen(username);
-                    if (quyen.equalsIgnoreCase("PQ00001")) {
+                    if (quyen.equalsIgnoreCase("PQ00001") || quyen.equalsIgnoreCase("PQ00004") || quyen.equalsIgnoreCase("PQ00005")) {
                         dispose();
-                        MainMenuUI ui = new MainMenuUI();
+                        HomeUI ui = new HomeUI(quyen);
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00002")) {
@@ -191,7 +191,7 @@ public class LoginUI extends javax.swing.JFrame {
                     } else if (quyen.equalsIgnoreCase("PQ00003")) {
                         //Cái này của bán thực phẩm
                         dispose();
-                        BanThucAnUI ui = new BanThucAnUI(username);
+                        BanThucAnUI ui = new BanThucAnUI(username, quyen);
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
                     }

@@ -38,6 +38,11 @@ public class TaiKhoanController {
         return TaiKhoanModel.GetQuyen(username);
     }
     
+    public static boolean taoTaiKhoan(String manhanvien,String tenquyen,String matkhau) throws SQLException
+    {
+        return TaiKhoanModel.taoTaiKhoan(manhanvien,tenquyen,matkhau);
+    }
+    
     /*public static int Inset(String user, String pass) throws SQLException{
         return TaiKhoanModel.Insert(user, pass);
              

@@ -9,11 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import util.DateFormat;
 
 public class PhimUI extends javax.swing.JFrame {
-
-    public PhimUI() {
+    private String maquyen;
+    
+    public PhimUI(String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
+        this.maquyen = maquyen;
         try {
             ArrayList<Phim> arr = PhimController.taiTatCa();
             loadPhim(arr);
@@ -21,6 +23,8 @@ public class PhimUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+    private PhimUI() {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -47,6 +51,7 @@ public class PhimUI extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         bntxoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -254,11 +259,19 @@ public class PhimUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 848, 430);
+        jPanel10.setBounds(330, 112, 842, 430);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
+
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 20, 80, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,7 +303,7 @@ public class PhimUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
             dispose();
-            ThemPhimUI themphim = new ThemPhimUI(true, null);
+            ThemPhimUI themphim = new ThemPhimUI(true, null, maquyen);
             themphim.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -312,7 +325,7 @@ public class PhimUI extends javax.swing.JFrame {
         } else {
             String maphim = jTablePhim.getModel().getValueAt(row, 0).toString();
             dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-            ThemPhimUI themphim = new ThemPhimUI(false, maphim);
+            ThemPhimUI themphim = new ThemPhimUI(false, maphim, maquyen);
             themphim.setVisible(true);
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -363,6 +376,12 @@ public class PhimUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bntxoaActionPerformed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        dispose();
+        HomeUI ui = new HomeUI(maquyen);
+        ui.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -384,6 +403,7 @@ public class PhimUI extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateEndDate;
     private com.toedter.calendar.JDateChooser dateStartDate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

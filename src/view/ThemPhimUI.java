@@ -18,19 +18,20 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ThemPhimUI extends javax.swing.JFrame {
-
+    private String maquyen;
     private boolean isInsert;
     private String maphim;
     SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
     private Phim newPhim = new Phim();
     private ArrayList<SuatPhim> aSuatPhim = new ArrayList<SuatPhim>();
 
-    public ThemPhimUI(boolean isInsert, String maphim) {
+    public ThemPhimUI(boolean isInsert, String maphim, String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp");
         this.isInsert = isInsert;
         this.maphim = maphim;
+        this.maquyen = maquyen;
         hienthi();
     }
 
@@ -402,7 +403,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         PhimUI PhimUI;
-        PhimUI = new PhimUI();
+        PhimUI = new PhimUI(maquyen);
         dispose();
         PhimUI.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
@@ -727,7 +728,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
                 if (PhimController.sua(newPhim)) {
                     JOptionPane.showMessageDialog(null, "Thông tin phim được cập nhật");
                     dispose();
-                    PhimUI ui = new PhimUI();
+                    PhimUI ui = new PhimUI(maquyen);
                     ui.setVisible(true);
                 }
             } catch (Exception e) {

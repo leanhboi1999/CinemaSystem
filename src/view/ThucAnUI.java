@@ -8,12 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ThucAnUI extends javax.swing.JFrame {
-
-    public ThucAnUI() {
+    private String maquyen;
+    public ThucAnUI(String maquyen) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
+        this.maquyen = maquyen;
         try {
             ArrayList<ThucPham> arr = ThucPhamController.taiTatCa();
             hienThi(arr);
@@ -21,6 +22,10 @@ public class ThucAnUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
+    }
+
+    private ThucAnUI() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @SuppressWarnings("unchecked")
@@ -42,6 +47,7 @@ public class ThucAnUI extends javax.swing.JFrame {
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -213,11 +219,20 @@ public class ThucAnUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 849, 430);
+        jPanel10.setBounds(330, 112, 846, 430);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
+
+        jLabel2.setText("jLabel2");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 20, 80, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,7 +265,7 @@ public class ThucAnUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         dispose();
-        ThemThucAnUI ui = new ThemThucAnUI(true, null);
+        ThemThucAnUI ui = new ThemThucAnUI(true, null, maquyen);
         ui.setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -276,7 +291,7 @@ public class ThucAnUI extends javax.swing.JFrame {
                 String maThucAn = jTableThucAn.getModel().getValueAt(row, 1).toString();
                 ThucPham thucpham = ThucPhamController.layThongTin(maThucAn);
                 dispose();
-                ThemThucAnUI themtp = new ThemThucAnUI(false, thucpham);
+                ThemThucAnUI themtp = new ThemThucAnUI(false, thucpham, maquyen);
                 themtp.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -309,6 +324,12 @@ public class ThucAnUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        HomeUI ui = new HomeUI(maquyen);
+        dispose();
+        ui.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -326,6 +347,7 @@ public class ThucAnUI extends javax.swing.JFrame {
     private javax.swing.JButton btnXoa;
     private javax.swing.JCheckBox ckTen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;

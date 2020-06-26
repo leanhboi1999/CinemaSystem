@@ -6,6 +6,7 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import keeptoo.KGradientPanel;
 
@@ -15,53 +16,55 @@ import keeptoo.KGradientPanel;
  */
 public class HomeUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HomeUI
-     */
-    public HomeUI() {
+    private String maquyen;
+
+    public HomeUI(String maquyen) {
         initComponents();
         setTitle("App quản lí rạp phim");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.maquyen = maquyen;
     }
 
-    
-    void moveColor(JPanel panel){
-        panel.setBackground(new Color(64,43,100));
+    private HomeUI() {
     }
-    
+
+    void moveColor(JPanel panel) {
+        panel.setBackground(new Color(64, 43, 100));
+    }
+
     void setBtnColor(JPanel panel) {
-        panel.setBackground(new Color(85,65,118));
+        panel.setBackground(new Color(85, 65, 118));
     }
 
     void resetBtnColor(JPanel panel) {
-        panel.setBackground(new Color(54,33,89));
+        panel.setBackground(new Color(54, 33, 89));
     }
-    
-    void newAnotherMoveColor(KGradientPanel kgPanel){
+
+    void newAnotherMoveColor(KGradientPanel kgPanel) {
         kgPanel.setkFillBackground(true);
         kgPanel.setBackground(null);
         kgPanel.setkEndColor(new Color(66, 250, 242));
         kgPanel.setkStartColor(new Color(174, 20, 232));
         kgPanel.setkGradientFocus(10);
     }
-    
-    void newAnotherResetColor(KGradientPanel kgPanel){
+
+    void newAnotherResetColor(KGradientPanel kgPanel) {
         kgPanel.setkFillBackground(true);
         kgPanel.setBackground(null);
         kgPanel.setkEndColor(new Color(0, 0, 255));
         kgPanel.setkStartColor(new Color(255, 0, 255));
         kgPanel.setkGradientFocus(500);
     }
-    
-    void newPressAnotherColor(KGradientPanel kgPanel){
+
+    void newPressAnotherColor(KGradientPanel kgPanel) {
         kgPanel.setkFillBackground(true);
         kgPanel.setBackground(null);
         kgPanel.setkEndColor(new Color(0, 255, 255));
         kgPanel.setkStartColor(new Color(255, 255, 255));
         kgPanel.setkGradientFocus(500);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -935,8 +938,14 @@ public class HomeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_kGradientPanel7MouseExited
 
     private void kGradientPanel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel7MousePressed
-        // TODO add your handling code here:
         newPressAnotherColor(kGradientPanel7);
+        if (maquyen.equalsIgnoreCase("PQ00001") || maquyen.equalsIgnoreCase("PQ00005")) {
+            dispose();
+            ThucAnUI ui = new ThucAnUI(maquyen);
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
     }//GEN-LAST:event_kGradientPanel7MousePressed
 
     private void kGradientPanel1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MouseMoved
@@ -955,9 +964,14 @@ public class HomeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_kGradientPanel1MouseExited
 
     private void kGradientPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel1MousePressed
-        // TODO add your handling code here:
         newPressAnotherColor(kGradientPanel1);
-
+        if (maquyen.equalsIgnoreCase("PQ000001") || maquyen.equalsIgnoreCase("PQ00004")) {
+            PhimUI ui = new PhimUI(maquyen);
+            dispose();
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
     }//GEN-LAST:event_kGradientPanel1MousePressed
 
     private void kGradientPanel6MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel6MouseMoved
@@ -986,8 +1000,14 @@ public class HomeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_kGradientPanel5MouseExited
 
     private void kGradientPanel5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel5MousePressed
-        // TODO add your handling code here:
         newPressAnotherColor(kGradientPanel5);
+        if (maquyen.equalsIgnoreCase("PQ00001")) {
+            NhanVienUI ui = new NhanVienUI(maquyen);
+            dispose();
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
     }//GEN-LAST:event_kGradientPanel5MousePressed
 
     private void kGradientPanel2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel2MouseMoved
@@ -1001,8 +1021,14 @@ public class HomeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_kGradientPanel2MouseExited
 
     private void kGradientPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel2MousePressed
-        // TODO add your handling code here:
         newPressAnotherColor(kGradientPanel2);
+        if (maquyen.equalsIgnoreCase("PQ00001")) {
+            dispose();
+            KhachHangUI ui = new KhachHangUI(maquyen);
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
     }//GEN-LAST:event_kGradientPanel2MousePressed
 
     /**

@@ -6,17 +6,18 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ThemThucAnUI extends javax.swing.JFrame {
-
+    private String maquyen;
     private boolean isInsert;
     private ThucPham tp = null;
 
-    public ThemThucAnUI(boolean isInsert, ThucPham tp) {
+    public ThemThucAnUI(boolean isInsert, ThucPham tp, String maquyen) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
         this.isInsert = isInsert;
         this.tp = tp;
+        this.maquyen = maquyen;
         hienThi();
     }
 
@@ -171,7 +172,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         dispose();
-        ThucAnUI ui = new ThucAnUI();
+        ThucAnUI ui = new ThucAnUI(maquyen);
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 
