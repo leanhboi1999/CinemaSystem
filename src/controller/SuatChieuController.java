@@ -43,4 +43,8 @@ public class SuatChieuController {
     public static boolean them(String maSuatChieu,String tenPhong,String maSuatPhim,String gio,String ngaychieu) throws SQLException{
         return SuatChieuModel.them(maSuatChieu,tenPhong,maSuatPhim,gio,ngaychieu);
     }
+    
+    public static ArrayList<SuatChieu> taiSuatChieu(String maphim) throws SQLException {
+        return SuatChieuModel.taiSuatChieu(maphim);
+    }
 }

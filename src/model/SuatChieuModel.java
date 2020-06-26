@@ -92,4 +92,14 @@ public class SuatChieuModel {
             con.close();
         }
     }
+
+    public static ArrayList<SuatChieu> taiSuatChieu(String maphim) throws SQLException {
+        ArrayList<SuatChieu> arr = new ArrayList<>();
+        String sql = "select masuatchieu, maphong, thoigianchieu, sc.trangthai, madinhdang, mangonngu, mahinhthuc from suatchieu sc, suatphim sp, phim p where sc.masuatphim=sp.masuatphim and p.maphim=sp.maphim and p.maphim='" + maphim + "'";
+        ResultSet rs = Database.callQuery(sql);
+        while(rs.next()) {
+            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+        }
+        return arr;
+    }
 }

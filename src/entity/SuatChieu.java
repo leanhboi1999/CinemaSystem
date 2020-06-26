@@ -104,8 +104,6 @@ public class SuatChieu {
         this.thoigianchieu = thoigianchieu;
         this.tenphong = tenphong;
     }
-    
-    
 
     public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai) {
         this.masuatchieu = masuatchieu;
@@ -115,16 +113,14 @@ public class SuatChieu {
         this.trangthai = trangthai;
     }
 
-    public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai, String tenphong, String ngonngu, String dinhdang, String hinhthuc ,String tenphim) {
+    public SuatChieu(String masuatchieu, String maphong, Date thoigianchieu, String trangthai, String ngonngu, String dinhdang, String hinhthuc) {
         this.masuatchieu = masuatchieu;
         this.maphong = maphong;
-        this.masuatphim = masuatphim;
         this.thoigianchieu = thoigianchieu;
         this.trangthai = trangthai;
-        this.tenphong = tenphong;
-        this.ngonngu = ngonngu;
         this.dinhdang = dinhdang;
+        this.ngonngu = ngonngu;
         this.hinhthuc = hinhthuc;
-        this.tenphim = tenphim;
+
     }
 }

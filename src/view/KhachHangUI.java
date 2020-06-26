@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import util.DateFormat;
 
 public class KhachHangUI extends javax.swing.JFrame {
-
+    private String maquyen;
+    
     public KhachHangUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -44,6 +46,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,11 +235,20 @@ public class KhachHangUI extends javax.swing.JFrame {
         );
 
         jPanel2.add(jPanel10);
-        jPanel10.setBounds(330, 112, 848, 430);
+        jPanel10.setBounds(330, 112, 842, 430);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 1170, 545);
+
+        jLabel1.setText("jLabel1");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jLabel1);
+        jLabel1.setBounds(20, 20, 80, 80);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -343,6 +355,10 @@ public class KhachHangUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -361,6 +377,7 @@ public class KhachHangUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JCheckBox ckCMND;
     private javax.swing.JCheckBox ckTen;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel10;
@@ -384,7 +401,7 @@ public class KhachHangUI extends javax.swing.JFrame {
             row[2] = item.getHoten();
             row[3] = item.getGioitinh();
             row[4] = item.getCmnd();
-            row[5] = item.getNgaysinh();
+            row[5] = DateFormat.toString(item.getNgaysinh());
             row[6] = item.getEmail();
             table.addRow(row);
         }

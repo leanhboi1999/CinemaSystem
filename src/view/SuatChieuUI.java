@@ -19,6 +19,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
             ArrayList<SuatChieu> arr = SuatChieuController.taiTatCa();
             loadSuatChieu(arr);
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
@@ -267,6 +268,12 @@ public class SuatChieuUI extends javax.swing.JFrame {
         txtTenPhim.setText("");
         dateStartDate.setCalendar(null);
         dateEndDate.setCalendar(null);
+        try {
+            ArrayList<SuatChieu> arr = SuatChieuController.taiTatCa();
+            loadSuatChieu(arr);
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
@@ -287,7 +294,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
                 ArrayList<SuatChieu> arr = SuatChieuController.timKiem(masuatchieu);
                 loadSuatChieu(arr);
             } else if (ckThoiGian.isSelected()) {
-               String startDate = DateFormat.toString(dateStartDate.getDate());
+                String startDate = DateFormat.toString(dateStartDate.getDate());
                 String endDate = DateFormat.toString(dateEndDate.getDate());
                 ArrayList<SuatChieu> list = SuatChieuController.timKiem(startDate, endDate);
                 loadSuatChieu(list);

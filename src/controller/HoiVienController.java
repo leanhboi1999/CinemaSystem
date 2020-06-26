@@ -49,8 +49,8 @@ public class HoiVienController {
     {
         return HoiVienModel.insertHoiVien(hv);
     }
-     public static int editHoiVien(String mahv,String tenhv,String gioitinh,String CMND,Date ngaysinh,String email,String dienthoai) throws SQLException
+     public static boolean editHoiVien(String mahv,String tenhv,String gioitinh,String CMND,Date ngaysinh,String email,String dienthoai) throws SQLException
      {
-         return HoiVienModel.editHoiVien(mahv, tenhv, gioitinh, CMND, (java.sql.Date) ngaysinh,email, dienthoai);
+         return HoiVienModel.editHoiVien(mahv, tenhv, gioitinh, CMND,ngaysinh,email, dienthoai);
      }
 }

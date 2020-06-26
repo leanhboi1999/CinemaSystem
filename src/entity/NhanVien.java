@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entity;
 
 import java.util.Date;
 
-/**
- *
- * @author leanh
- */
 public class NhanVien {
     private String manhanvien;
     private String machucvu;
@@ -23,7 +14,16 @@ public class NhanVien {
     private String dienthoai;
     private Date ngayvaolam;
     private int trangthai;
+    private String cmnd;
 
+    public String getCmnd() {
+        return cmnd;
+    }
+
+    public void setCmnd(String cmnd) {
+        this.cmnd = cmnd;
+    }
+    
     public String getManhanvien() {
         return manhanvien;
     }
@@ -127,5 +127,20 @@ public class NhanVien {
         this.dienthoai = dienthoai;
         this.ngayvaolam = ngayvaolam;
         this.trangthai = trangthai;
+    }
+
+    public NhanVien(String manhanvien, String machucvu, String hoten, String email, String sdt, String gioitinh, Date ngaysinh, String diachi, String dienthoai, Date ngayvaolam, int trangthai, String cmnd) {
+        this.manhanvien = manhanvien;
+        this.machucvu = machucvu;
+        this.hoten = hoten;
+        this.email = email;
+        this.sdt = sdt;
+        this.gioitinh = gioitinh;
+        this.ngaysinh = ngaysinh;
+        this.diachi = diachi;
+        this.dienthoai = dienthoai;
+        this.ngayvaolam = ngayvaolam;
+        this.trangthai = trangthai;
+        this.cmnd = cmnd;
     }
 }

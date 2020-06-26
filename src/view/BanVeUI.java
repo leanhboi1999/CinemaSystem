@@ -70,9 +70,17 @@ public class BanVeUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã suất chiếu", "Mã phòng chiếu", "Giờ chiếu", "Định dạng", "Ngôn ngữ", "Hình thức"
+                "Mã suất chiếu", "Mã phòng chiếu", "Giờ chiếu", "Trạng thái", "Định dạng", "Ngôn ngữ", "Hình thức"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableSuatChieu.setFocusable(false);
         jTableSuatChieu.setIntercellSpacing(new java.awt.Dimension(0, 0));
         jTableSuatChieu.setRowHeight(25);
@@ -218,27 +226,32 @@ public class BanVeUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-            String tenphim = txtTtenPhim.getText();
-            //Controller tìm tên phim có suất chiếu (trạng thái đang chiếu)
-            //ArrayList<Phim> arr = PhimController.timKiem(tenphim);
-            //Load phim lên jtable
-            //hienThi(arr);
+        String tenphim = txtTtenPhim.getText();
+        //Controller tìm tên phim có suất chiếu (trạng thái đang chiếu)
+        //ArrayList<Phim> arr = PhimController.timKiem(tenphim);
+        //Load phim lên jtable
+        //hienThi(arr);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void jTablePhimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePhimMouseClicked
-        int row = jTablePhim.getSelectedRow();
-        TableModel model = jTablePhim.getModel();
-        String maphim = model.getValueAt(row, 1).toString();
-        ArrayList<SuatChieu> arr = SuatChieuController.taiSuatChieu(maphim);
-        loadSuatChieu(arr);
+        try {
+            int row = jTablePhim.getSelectedRow();
+            TableModel model = jTablePhim.getModel();
+            String maphim = model.getValueAt(row, 0).toString();
+            ArrayList<SuatChieu> arr = SuatChieuController.taiSuatChieu(maphim);
+            loadSuatChieu(arr);
+            //JOptionPane.showMessageDialog(null, maphim);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
     }//GEN-LAST:event_jTablePhimMouseClicked
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
         //Xử lý chọn suất chiếu
         int row = jTableSuatChieu.getSelectedRow();
-        String masuatchieu = jTableSuatChieu.getModel().getValueAt(row, 2).toString();
-        //New UI ghế, tiếp theo tại ghế new UI vé mới.
-        //Chờ controller
+        String masuatchieu = jTableSuatChieu.getModel().getValueAt(row, 0).toString();
+        
     }//GEN-LAST:event_btnChonActionPerformed
 
     public static void main(String args[]) {
@@ -275,16 +288,14 @@ public class BanVeUI extends javax.swing.JFrame {
     }
 
     private void loadSuatChieu(ArrayList<SuatChieu> arr) {
-        DefaultTableModel table = (DefaultTableModel) jTablePhim.getModel();
+        DefaultTableModel table = (DefaultTableModel) jTableSuatChieu.getModel();
         table.getDataVector().removeAllElements();
         Object row[] = new Object[7];
-        int i = 0;
         for (SuatChieu item : arr) {
-            i++;
-            row[0] = i;
-            row[1] = item.getMasuatchieu();
-            row[2] = item.getMaphong();
-            row[3] = item.getThoigianchieu();
+            row[0] = item.getMasuatchieu();
+            row[1] = item.getMaphong();
+            row[2] = item.getThoigianchieu();
+            row[3] = item.getTrangthai();
             row[4] = item.getDinhdang();
             row[5] = item.getNgonngu();
             row[6] = item.getHinhthuc();

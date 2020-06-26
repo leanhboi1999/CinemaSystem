@@ -3,12 +3,14 @@ package view;
 import controller.HoiVienController;
 import entity.HoiVien;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class ThemKhachHangUI extends javax.swing.JFrame {
 
     private boolean isInsert;
     private HoiVien hv;
+    private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
     public ThemKhachHangUI(boolean isInsert, HoiVien hv) {
         initComponents();
@@ -229,7 +231,8 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
             hv.setGioitinh(jRadioButton2.getText());
         }
         hv.setCmnd(txtCMND.getText());
-        hv.setNgaydangki(jDateNgaySinh.getDate());
+        hv.setNgaysinh(jDateNgaySinh.getDate());
+        //String ngaysinh=fm.format(jDateNgaySinh.getDate());
         hv.setEmail(txtEmail.getText());
         hv.setSodienthoai(txtDienThoai.getText());
         hv.setNgaydangki(null);
@@ -249,8 +252,8 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
             }
         } else {
             try {
-                int kq1 = HoiVienController.editHoiVien(hv.getMahoivien(), hv.getHoten(), hv.getGioitinh(), hv.getCmnd(), hv.getNgaysinh(), hv.getEmail(), hv.getSodienthoai());
-                if (kq1 > 0) {
+                boolean kq1 = HoiVienController.editHoiVien(hv.getMahoivien(), hv.getHoten(), hv.getGioitinh(), hv.getCmnd(), hv.getNgaysinh(), hv.getEmail(), hv.getSodienthoai());
+                if (kq1) {
                     JOptionPane.showMessageDialog(null, "Thành công");
                 } else {
                     JOptionPane.showMessageDialog(null, "Thất bại");
