@@ -7,6 +7,7 @@ package view;
 
 import controller.GheController;
 import entity.Ghe;
+import view.BanVeUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -15,42 +16,33 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import static java.util.Objects.toString;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import keeptoo.KGradientPanel;
+import org.w3c.dom.css.RGBColor;
 
 /**
  *
  * @author admin
  */
-public class GheUI extends JFrame implements MouseListener, ActionListener {
-    private static String masuatchieu;
-    private static int count = 0;
+public class GheUI extends JFrame {
 
-    /*private static void hienThi() {
-        try {
-            ArrayList<Ghe> arr = GheController.taiTatCa(masuatchieu);
-            for (Ghe item : arr) {
-                for (int r = 0; r < size; r++) {
-                    for (int c = 0; c < size; c++) {
-                        if (btnArray[r][c].getText().equals(item.getMaghe())) {
-                            btnArray[r][c].setEnabled(false);
-                            btnArray[r][c].setBackground(Color.DARK_GRAY);
-                            btnArray[r][c].setForeground(Color.BLACK);
-                        }
-                    }
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }*/
-    
+    private static int count = 0;
+    public static String kn_soghe;
+    public static int kn_giave;
+    public int arrgiave[][] = new int[8][8];
     JFrame f = new JFrame();
     JButton[][] btnArray = new JButton[8][8];
     int size = 8;
@@ -58,27 +50,22 @@ public class GheUI extends JFrame implements MouseListener, ActionListener {
 
     JPanel panel = new JPanel();
     JPanel panel2 = new JPanel();
+    JPanel panel3 = new JPanel();
 
     KGradientPanel kgPanel = new KGradientPanel();
 
-    /*panel cho screen cenima*/
-    String font = "Arial Rounded MT Bold";
-    JPanel panel3 = new JPanel();
-
     JLabel left = new JLabel();
-    ImageIcon iconScreen = new ImageIcon("image/concert2.png");
-
     JLabel right = new JLabel();
-
     JLabel center = new JLabel();
 
-    public GheUI() {
-        f.setSize(1200, 800);
-        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-        f.setLayout(null);
-        f.setExtendedState(this.MAXIMIZED_BOTH);
+    JButton btnRs = new JButton("Reset");
+    JButton btnNext = new JButton("Next");
+
+    private void ThemGhe() {
+        /*panel cho screen cenima*/
+        String font = "Arial Rounded MT Bold";
+
+        ImageIcon iconScreen = new ImageIcon("image/concert2.png");
 
         /*Screen Cenima*/
         panel3.setBounds(150, 0, 900, 140);
@@ -110,26 +97,22 @@ public class GheUI extends JFrame implements MouseListener, ActionListener {
         panel2.setLayout(new GridLayout(8, 8, 40, 5));
 
         /*Reset Đã đặt*/
-        JButton btnRs = new JButton("Reset");
-        btnRs.addActionListener(this);
-        btnRs.setActionCommand("resetbtn");
+        //btnRs.addActionListener(this);
+        //btnRs.setActionCommand("resetbtn");
         btnRs.setBounds(1070, 720, 100, 30);
-
         /*Chọn và đặt ghế, chuyển sang thanh toán, hoàn tất đặt ghế*/
-        JButton btnNext = new JButton("Next");
-        btnNext.addActionListener(this);
-        btnNext.setActionCommand("Nextbtn");
+        //btnNext.addActionListener(this);
+        //btnNext.setActionCommand("Nextbtn");
         btnNext.setBounds(10, 720, 100, 30);
 
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
 
                 btnArray[r][c] = new JButton();
-
                 btnArray[r][c].setText("" + i++);
                 btnArray[r][c].setBackground(Color.WHITE);
                 btnArray[r][c].setPreferredSize(new Dimension(10, 10));
-                btnArray[r][c].addMouseListener(this);
+                //btnArray[r][c].addMouseListener(this);
 
                 if (c <= size / 2 - 1) {
                     panel.add(btnArray[r][c]);
@@ -142,125 +125,162 @@ public class GheUI extends JFrame implements MouseListener, ActionListener {
         }
 
         /*Làm hết rồi mới thêm từng cái panel vô - panel ghế trái - panel ghế phải - panel screen*/
+        f.setSize(1200, 800);
+        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
         f.add(panel);
         f.add(panel2);
         f.add(panel3);
         f.add(btnRs);
         f.add(btnNext);
+        f.setVisible(true);
     }
 
+    public GheUI(String masuatchieu) {
+        f.setSize(1300, 900);
+        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.setLocationRelativeTo(null);
+        f.setLayout(null);
+        ThemGhe();
+        LoadGhe();
+        addEvent();
+        ;
+    }
 
-    /*@Override
-    public void actionPerformed(ActionEvent e) {
+    private void LoadGhe() {
+        try {
+            ArrayList<Ghe> arr = GheController.taiTatCa(BanVeUI.kt_masuatchieu);
+            for (Ghe item : arr) {
+                for (int r = 0; r < size; r++) {
+                    for (int c = 0; c < size; c++) {
+                        if (btnArray[r][c].getText().equals(item.getMaghe())) {
+                            btnArray[r][c].setEnabled(false);
+                            btnArray[r][c].setBackground(Color.DARK_GRAY);
+                            btnArray[r][c].setForeground(Color.BLACK);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
 
+    private void addEvent() {
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
-                if (e.getSource() == btnArray[r][c]) {
-                    //btnArray[r][c].setEnabled(false);
-                    btnArray[r][c].setBackground(Color.RED);
-                    btnArray[r][c].setForeground(new Color(255, 255, 255));
-                }
+                btnArray[r][c].addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+                        for (int r = 0; r < size; r++) {
+                            for (int c = 0; c < size; c++) {
+                                if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.WHITE) {
+                                    //btnArray[r][c].setEnabled(false);
+                                    btnArray[r][c].setBackground(Color.RED);
+                                    btnArray[r][c].setForeground(new Color(255, 255, 255));
+                                    try {
+                                        setgiave(BanVeUI.kt_masuatchieu);
+                                    } catch (SQLException ex) {
+                                        Logger.getLogger(GheUI.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    JOptionPane.showMessageDialog(null, arrgiave[r][c]);
+                                    setCount(count - 1);
+
+                                } else if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.RED) {
+                                    btnArray[r][c].setBackground(Color.WHITE);
+                                    btnArray[r][c].setForeground(Color.BLACK);
+                                    setCount(count + 1);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
             }
         }
 
-        if ("resetbtn".equals(e.getActionCommand())) {
-            for (int r = 0; r < size; r++) {
-                for (int c = 0; c < size; c++) {
-                    btnArray[r][c].setEnabled(true);
-                    btnArray[r][c].setBackground(null);
-                    btnArray[r][c].setForeground(Color.BLACK);
-                }
-            }
-        }
-    }*/
-    public static void main(String[] args) {
-        new GheUI();
-        //hienThi();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if ("resetbtn".equals(e.getActionCommand())) {
-            for (int r = 0; r < size; r++) {
-                for (int c = 0; c < size; c++) {
-                    btnArray[r][c].setEnabled(true);
-                    btnArray[r][c].setBackground(Color.WHITE);
-                    btnArray[r][c].setForeground(Color.BLACK);
-                }
-            }
-        }
-
-        if ("Nextbtn".equals(e.getActionCommand())) {
-            for (int r = 0; r < size; r++) {
-                for (int c = 0; c < size; c++) {
-                    if (btnArray[r][c].getBackground() == Color.RED) {
-                        btnArray[r][c].setEnabled(false);
-                        btnArray[r][c].setBackground(Color.DARK_GRAY);
+        btnRs.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int r = 0; r < size; r++) {
+                    for (int c = 0; c < size; c++) {
+                        btnArray[r][c].setEnabled(true);
+                        btnArray[r][c].setBackground(Color.WHITE);
                         btnArray[r][c].setForeground(Color.BLACK);
                     }
                 }
             }
-        }
+        });
+
+        btnNext.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timghe();
+                if (count > 1) {
+                    JOptionPane.showMessageDialog(null, "Chỉ được chọn một ghế");
+                } else {
+                   ChiTietVeUI ui = new ChiTietVeUI();
+                   ui.setVisible(true);
+                }
+            }
+        });
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-        /*for (int r = 0; r < size; r++) {
-            for (int c = 0; c < size; c++) {
-                if (e.getSource() == btnArray[r][c] && (e.getClickCount() + 1) % 2 == 0) {
-                    //btnArray[r][c].setEnabled(false);
-                    btnArray[r][c].setBackground(Color.RED);
-                    btnArray[r][c].setForeground(new Color(255, 255, 255));
-                } else if (e.getSource() == btnArray[r][c] && e.getClickCount() % 2 == 0) {
-                    btnArray[r][c].setBackground(null);
-                    btnArray[r][c].setForeground(Color.BLACK);
-                }
-            }
-        }*/
+    public void timghe() {
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
-                if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.WHITE) {
-                    //btnArray[r][c].setEnabled(false);
-                    btnArray[r][c].setBackground(Color.RED);
-                    btnArray[r][c].setForeground(new Color(255, 255, 255));
-                    setCount(- 1);
-
-                } else if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.RED) {
-                    btnArray[r][c].setBackground(Color.WHITE);
-                    btnArray[r][c].setForeground(Color.BLACK);
-                    setCount(+1);
+                if (btnArray[r][c].getBackground() == Color.RED) {
+                    kn_soghe = btnArray[r][c].getText();
+                    kn_giave=arrgiave[r][c];
+                    
                 }
             }
+
         }
 
+    }
+
+    public void setgiave(String masuatchieu) throws SQLException {
+        int giave = GheController.giave(masuatchieu);
+        for (int r = 0; r < size; r++) {
+            arrgiave[r][3] = giave + 15000;
+            arrgiave[r][4] = giave + 15000;
+            arrgiave[r][2] = giave + 10000;
+            arrgiave[r][5] = giave + 10000;
+            arrgiave[r][1] = giave + 5000;
+            arrgiave[r][6] = giave + 5000;
+            arrgiave[r][7] = giave;
+            arrgiave[r][0] = giave;
+        }
     }
 
     public int getCount() {
-        return count;
-    }
+        return count;    }
 
     public void setCount(int count) {
-        GheUI.count = count;
+        this.count = count;
     }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
+    public static void main(String[] args) {
+        GheUI gheUITest = new GheUI(BanVeUI.kt_masuatchieu);
     }
 
 }

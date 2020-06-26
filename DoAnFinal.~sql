@@ -1,840 +1,737 @@
-﻿alter TABLE CTHDTP
-DROP CONSTRAINT FK_CTHDTP_HDTHUCPHAM;
-ALTER TABLE CTHDTP
-DROP CONSTRAINT FK_CTHDTP_THUCPHAM;
-ALTER TABLE CTPQ
-DROP CONSTRAINT FK_CTPQ_CTPQ_PHANQUYE;
-ALTER TABLE CTPQ
-DROP CONSTRAINT FK_CTPQ_CTPQ2_TAIKHOAN;
-ALTER TABLE GHE
-DROP CONSTRAINT FK_GHE_THUOC7_PHONGCHI;
-ALTER TABLE HDTHUCPHAM
-DROP CONSTRAINT FK_HDTHUCPH_LAP_NHANVIEN;
-ALTER TABLE NHANVIEN
-DROP CONSTRAINT FK_NHANVIEN_DANGNHAP_TAIKHOAN;
-ALTER TABLE NHANVIEN
-DROP CONSTRAINT FK_NHANVIEN_LA_CHUCVU;
-ALTER TABLE SUATCHIEU
-DROP CONSTRAINT FK_SUATCHIE_THUOC3_SUATPHIM;
-ALTER TABLE SUATCHIEU
-DROP CONSTRAINT FK_SUATCHIE_THUOC6_PHONGCHI;
-ALTER TABLE SUATPHIM
-DROP CONSTRAINT FK_SUATPHIM_CO_PHIM;
-ALTER TABLE SUATPHIM
-DROP CONSTRAINT FK_SUATPHIM_CO1_DINHDANG;
-ALTER TABLE SUATPHIM
-DROP CONSTRAINT FK_SUATPHIM_CO2_HINHTHUC;
-ALTER TABLE SUATPHIM
-DROP CONSTRAINT FK_SUATPHIM_CO3_NGONNGU;
-ALTER TABLE TAIKHOAN
-DROP CONSTRAINT FK_TAIKHOAN_DANGNHAP2_NHANVIEN;
-ALTER TABLE VE
-DROP CONSTRAINT FK_VE_BAN_NHANVIEN;
-ALTER TABLE VE
-DROP CONSTRAINT FK_VE_MUA_HOIVIEN;
-ALTER TABLE VE
-DROP CONSTRAINT FK_VE_THUOC_SUKIEN;
-ALTER TABLE VE
-DROP CONSTRAINT FK_VE_THUOC2_SUATCHIE;
-ALTER TABLE VE
-DROP CONSTRAINT FK_VE_THUOC8_GHE;
+﻿alter table CTHDTP
+   drop constraint FK_CTHDTP_HDTHUCPHAM;
+alter table CTHDTP
+   drop constraint FK_CTHDTP_THUCPHAM;
+alter table CTPQ
+   drop constraint FK_CTPQ_CTPQ_PHANQUYE;
+alter table CTPQ
+   drop constraint FK_CTPQ_CTPQ2_TAIKHOAN;
+alter table GHE
+   drop constraint FK_GHE_THUOC7_PHONGCHI;
+alter table HDTHUCPHAM
+   drop constraint FK_HDTHUCPH_LAP_NHANVIEN;
+alter table NHANVIEN
+   drop constraint FK_NHANVIEN_DANGNHAP_TAIKHOAN;
+alter table NHANVIEN
+   drop constraint FK_NHANVIEN_LA_CHUCVU;
+alter table SUATCHIEU
+   drop constraint FK_SUATCHIE_THUOC3_SUATPHIM;
+alter table SUATCHIEU
+   drop constraint FK_SUATCHIE_THUOC6_PHONGCHI;
+alter table SUATPHIM
+   drop constraint FK_SUATPHIM_CO_PHIM;
+alter table SUATPHIM
+   drop constraint FK_SUATPHIM_CO1_DINHDANG;
+alter table SUATPHIM
+   drop constraint FK_SUATPHIM_CO2_HINHTHUC;
+alter table SUATPHIM
+   drop constraint FK_SUATPHIM_CO3_NGONNGU;
+alter table TAIKHOAN
+   drop constraint FK_TAIKHOAN_DANGNHAP2_NHANVIEN;
+alter table VE
+   drop constraint FK_VE_BAN_NHANVIEN;
+alter table VE
+   drop constraint FK_VE_MUA_HOIVIEN;
+alter table VE
+   drop constraint FK_VE_THUOC_SUKIEN;
+alter table VE
+   drop constraint FK_VE_THUOC2_SUATCHIE;
+alter table VE
+   drop constraint FK_VE_THUOC8_GHE;
+   
+drop table CHUCVU cascade constraints;
+drop index CTH_TP2_FK;
+drop index CTH_TP_FK;
+drop table CTH_TP cascade constraints;
+drop index CTPQ2_FK;
+drop index CTPQ_FK;
+drop table CTPQ cascade constraints;
+drop table DINHDANG cascade constraints;
+drop index THUOC7_FK;
+drop table GHE cascade constraints;
+drop index LAP_FK;
+drop table HDTHUCPHAM cascade constraints;
+drop table HINHTHUC cascade constraints;
+drop table HOIVIEN cascade constraints;
+drop table NGONNGU cascade constraints;
 
-DROP TABLE CHUCVU CASCADE CONSTRAINTS;
-DROP INDEX CTH_TP2_FK;
-DROP INDEX CTH_TP_FK;
-DROP TABLE CTH_TP CASCADE CONSTRAINTS;
-DROP INDEX CTPQ2_FK;
-DROP INDEX CTPQ_FK;
-DROP TABLE CTPQ CASCADE CONSTRAINTS;
-DROP TABLE DINHDANG CASCADE CONSTRAINTS;
-DROP INDEX THUOC7_FK;
-DROP TABLE GHE CASCADE CONSTRAINTS;
-DROP INDEX LAP_FK;
-DROP TABLE HDTHUCPHAM CASCADE CONSTRAINTS;
-DROP TABLE HINHTHUC CASCADE CONSTRAINTS;
-DROP TABLE HOIVIEN CASCADE CONSTRAINTS;
-DROP TABLE NGONNGU CASCADE CONSTRAINTS;
-DROP INDEX LA_FK;
-DROP INDEX DANGNHAP_FK;
-DROP TABLE NHANVIEN CASCADE CONSTRAINTS;
-DROP TABLE PHANQUYEN CASCADE CONSTRAINTS;
-DROP TABLE PHIM CASCADE CONSTRAINTS;
-DROP TABLE PHONGCHIEU CASCADE CONSTRAINTS;
-DROP INDEX THUOC6_FK;
-DROP INDEX THUOC3_FK;
-DROP TABLE SUATCHIEU CASCADE CONSTRAINTS;
-DROP INDEX CO2_FK;
-DROP INDEX CO3_FK;
-DROP INDEX CO1_FK;
-DROP INDEX CO_FK;
-DROP TABLE SUATPHIM CASCADE CONSTRAINTS;
-DROP TABLE SUKIEN CASCADE CONSTRAINTS;
-DROP INDEX DANGNHAP2_FK;
-DROP TABLE TAIKHOAN CASCADE CONSTRAINTS;
-DROP TABLE THUCPHAM CASCADE CONSTRAINTS;
-DROP INDEX THUOC8_FK;
-DROP INDEX MUA_FK;
-DROP INDEX THUOC2_FK;
-DROP INDEX THUOC_FK;
-DROP INDEX BAN_FK;
-DROP TABLE CTHDTP CASCADE CONSTRAINTS;
-DROP TABLE VE CASCADE CONSTRAINTS;
--- Drop procedure
-DROP PROCEDURE pro_auto_insert_mahd_cthd;
-DROP PROCEDURE pro_banve_ghe;
-DROP PROCEDURE PRO_INSERT_GHE;
-DROP PROCEDURE PRO_HIENTHI_SUATCHIEU;
-DROP PROCEDURE EDIT_HOIVIEN;
-DROP PROCEDURE EDIT_PHIM;
-DROP PROCEDURE EDIT_THUCPHAM;
-DROP PROCEDURE find_id_sp;
-DROP PROCEDURE pro_banve;
-DROP PROCEDURE pro_insert_phim
-DROP PROCEDURE pro_insert_suatchieu;
-DROP PROCEDURE pro_insert_suatphim;
---Drop function
-DROP FUNCTION ID_GHE;
-DROP FUNCTION ID_HOADON;
-DROP FUNCTION ID_HOIVIEN;
-DROP FUNCTION ID_NHANVIEN;
-DROP FUNCTION ID_PHIM;
-DROP FUNCTION ID_SUATCHIEU;
-DROP FUNCTION ID_SUATPHIM;
-DROP FUNCTION ID_VE;
-DROP FUNCTION ID_THUCPHAM;
-DROP FUNCTION AUTO_NGAYLAP;
-DROP FUNCTION FUNC_GIAVE;
+drop index LA_FK;
+drop index DANGNHAP_FK;
+
+drop table NHANVIEN cascade constraints;
+drop table PHANQUYEN cascade constraints;
+drop table PHIM cascade constraints;
+drop table PHONGCHIEU cascade constraints;
+
+drop index THUOC6_FK;
+drop index THUOC3_FK;
+
+drop table SUATCHIEU cascade constraints;
+
+drop index CO2_FK;
+drop index CO3_FK;
+drop index CO1_FK;
+drop index CO_FK;
+
+drop table SUATPHIM cascade constraints;
+drop table SUKIEN cascade constraints;
+
+drop index DANGNHAP2_FK;
+
+drop table TAIKHOAN cascade constraints;
+drop table THUCPHAM cascade constraints;
+
+drop index THUOC8_FK;
+drop index MUA_FK;
+drop index THUOC2_FK;
+drop index THUOC_FK;
+drop index BAN_FK;
+
+drop table CTHDTP cascade constraints;
+drop table VE cascade constraints;
+--DROP PROCEDURE
+drop PROCEDURE pro_auto_insert_mahd_cthd;
+drop PROCEDURE pro_banve_ghe;
+drop procedure edit_hoivien;
+drop procedure edit_nhanvien;
+drop procedure edit_thucpham;
+drop procedure find_id_sp;
+drop procedure pro_banve;
+drop procedure pro_hienthi_suatchieu;
+drop procedure pro_insert_ghe;
+drop procedure pro_insert_suatchieu;
+drop procedure pro_insert_suatphim;
+drop procedure taotk;
+--DROP FUNCTION
+drop function ID_GHE;
+drop function ID_HOADON;
+drop function ID_HOIVIEN;
+drop function ID_NHANVIEN;
+drop function ID_PHIM;
+drop function ID_SUATCHIEU;
+drop function ID_SUATPHIM;
+drop function ID_VE;
+drop function auto_ngaylap;
+drop function func_giave;
+drop function id_thucpham;
 
 /*==============================================================*/
 /* Table: CHUCVU                                                */
 /*==============================================================*/
-CREATE TABLE CHUCVU
-  (
-    MACHUCVU NVARCHAR2(7) NOT NULL,
-    TENCHUCVU NVARCHAR2(50),
-    LUONGCOBAN NUMBER(10,2),
-    CONSTRAINT PK_CHUCVU PRIMARY KEY (MACHUCVU)
-  );
+create table CHUCVU 
+(
+   MACHUCVU             NVARCHAR2(7)              not null,
+   TENCHUCVU            NVARCHAR2(50),
+   LUONGCOBAN           NUMBER(10,2),
+   constraint PK_CHUCVU primary key (MACHUCVU)
+);
+
 /*==============================================================*/
 /* Table: CTH_TP                                                */
 /*==============================================================*/
-CREATE TABLE CTHDTP
-  (
-    MAHOADON NVARCHAR2(7) NOT NULL,
-    MATHUCPHAM NVARCHAR2(7) NOT NULL,
-    SOLUONG INTEGER,
-    CONSTRAINT PK_CTH_TP PRIMARY KEY (MAHOADON, MATHUCPHAM)
-  );
+create table CTHDTP 
+(
+   MAHOADON             NVARCHAR2(7)              not null,
+   MATHUCPHAM           NVARCHAR2(7)              not null,
+   SOLUONG              INTEGER,
+   constraint PK_CTH_TP primary key (MAHOADON, MATHUCPHAM)
+);
+
 /*==============================================================*/
 /* Table: DINHDANG                                              */
 /*==============================================================*/
-CREATE TABLE DINHDANG
-  (
-    MADINHDANG NVARCHAR2(7) NOT NULL,
-    TENDINHDANG NVARCHAR2(255),
-    GIADINHDANG NUMBER(10,2),
-    CONSTRAINT PK_DINHDANG PRIMARY KEY (MADINHDANG)
-  );
+create table DINHDANG 
+(
+   MADINHDANG           NVARCHAR2(7)              not null,
+   TENDINHDANG          NVARCHAR2(255),
+   GIADINHDANG          NUMBER(10,2),
+   constraint PK_DINHDANG primary key (MADINHDANG)
+);
+
 /*==============================================================*/
 /* Table: GHE                                                   */
 /*==============================================================*/
-CREATE TABLE GHE
-  (
-    MAGHE NVARCHAR2(7) NOT NULL,
-    MAPHONG NVARCHAR2(7) NOT NULL,
-    SOGHE INTEGER,
-    CONSTRAINT PK_GHE PRIMARY KEY (MAGHE)
-  );
+create table GHE 
+(
+   MAGHE                NVARCHAR2(7)              not null,
+   MAPHONG              NVARCHAR2(7)             not null,
+   SOGHE                INTEGER,
+   constraint PK_GHE primary key (MAGHE)
+);
+
 /*==============================================================*/
 /* Table: HDTHUCPHAM                                            */
 /*==============================================================*/
-CREATE TABLE HDTHUCPHAM
-  (
-    MAHOADON NVARCHAR2(7) NOT NULL,
-    MANHANVIEN NVARCHAR2(7) NOT NULL,
-    SOTIEN  NUMBER(10,2),
-    NGAYLAP DATE,
-    CONSTRAINT PK_HDTHUCPHAM PRIMARY KEY (MAHOADON)
-  );
+create table HDTHUCPHAM 
+(
+   MAHOADON             NVARCHAR2(7)              not null,
+   MANHANVIEN           NVARCHAR2(7)              not null,
+   SOTIEN               NUMBER(10,2),
+   NGAYLAP              DATE,
+   constraint PK_HDTHUCPHAM primary key (MAHOADON)
+);
+
+
 /*==============================================================*/
 /* Table: HINHTHUC                                              */
 /*==============================================================*/
-CREATE TABLE HINHTHUC
-  (
-    MAHINHTHUC NVARCHAR2(7) NOT NULL,
-    TENHINHTHUC NVARCHAR2(255),
-    CONSTRAINT PK_HINHTHUC PRIMARY KEY (MAHINHTHUC)
-  );
+create table HINHTHUC 
+(
+   MAHINHTHUC           NVARCHAR2(7)              not null,
+   TENHINHTHUC          NVARCHAR2(255),
+   constraint PK_HINHTHUC primary key (MAHINHTHUC)
+);
+
 /*==============================================================*/
 /* Table: HOIVIEN                                               */
 /*==============================================================*/
-CREATE TABLE HOIVIEN
-  (
-    MAHOIVIEN NVARCHAR2(7) NOT NULL,
-    HOTEN NVARCHAR2(50),
-    GIOITINH NVARCHAR2(3),
-    CMND NVARCHAR2(15),
-    NGAYSINH DATE,
-    EMAIL NVARCHAR2(50),
-    DIENTHOAI NVARCHAR2(15),
-    NGAYDANGKY  DATE,
-    DIEMTICHLUY INTEGER,
-    CONSTRAINT PK_HOIVIEN PRIMARY KEY (MAHOIVIEN)
-  );
+create table HOIVIEN 
+(
+   MAHOIVIEN            NVARCHAR2(7)              not null,
+   HOTEN                NVARCHAR2(50),
+   GIOITINH             NVARCHAR2(3),
+   CMND                 NVARCHAR2(15),
+   NGAYSINH             DATE,
+   EMAIL                NVARCHAR2(50),
+   DIENTHOAI            NVARCHAR2(15),
+   NGAYDANGKY           DATE,
+   DIEMTICHLUY          INTEGER,
+   constraint PK_HOIVIEN primary key (MAHOIVIEN)
+);
+
 /*==============================================================*/
 /* Table: NGONNGU                                               */
 /*==============================================================*/
-CREATE TABLE NGONNGU
-  (
-    MANGONNGU NVARCHAR2(7) NOT NULL,
-    TENNGONNGU NVARCHAR2(20),
-    CONSTRAINT PK_NGONNGU PRIMARY KEY (MANGONNGU)
-  );
+create table NGONNGU 
+(
+   MANGONNGU            NVARCHAR2(7)              not null,
+   TENNGONNGU           NVARCHAR2(20),
+   constraint PK_NGONNGU primary key (MANGONNGU)
+);
+
 /*==============================================================*/
 /* Table: NHANVIEN                                              */
 /*==============================================================*/
-CREATE TABLE NHANVIEN
-  (
-    MANHANVIEN NVARCHAR2(7) NOT NULL,
-    MACHUCVU NVARCHAR2(7) NOT NULL,
-    HOTEN NVARCHAR2(50),
-    EMAIL NVARCHAR2(50),
-    CMND NVARCHAR2(15),
-    GIOITINH NVARCHAR2(3),
-    NGAYSINH DATE,
-    DIACHI NVARCHAR2(120),
-    DIENTHOAI NVARCHAR2(15),
-    NGAYVAOLAM DATE,
-    TRANGTHAI  INTEGER,
-    CONSTRAINT PK_NHANVIEN PRIMARY KEY (MANHANVIEN)
-  );
+create table NHANVIEN 
+(
+   MANHANVIEN           NVARCHAR2(7)              not null,
+   MACHUCVU             NVARCHAR2(7)              not null,
+   HOTEN                NVARCHAR2(50),
+   EMAIL                NVARCHAR2(50),
+   CMND                 NVARCHAR2(15),
+   GIOITINH             NVARCHAR2(3),
+   NGAYSINH             DATE,
+   DIACHI               NVARCHAR2(120),
+   DIENTHOAI            NVARCHAR2(15),
+   NGAYVAOLAM           DATE,
+   TRANGTHAI            INTEGER,
+   constraint PK_NHANVIEN primary key (MANHANVIEN)
+);
+
+
+
 /*==============================================================*/
 /* Table: PHANQUYEN                                             */
 /*==============================================================*/
-CREATE TABLE PHANQUYEN
-  (
-    MAQUYEN NVARCHAR2(7) NOT NULL,
-    TENQUYEN NVARCHAR2(50),
-    CONSTRAINT PK_PHANQUYEN PRIMARY KEY (MAQUYEN)
-  );
+create table PHANQUYEN 
+(
+   MAQUYEN              NVARCHAR2(7)              not null,
+   TENQUYEN             NVARCHAR2(50),
+   MACHUCVU             NVARCHAR2(7),
+   constraint PK_PHANQUYEN primary key (MAQUYEN)
+);
+
 /*==============================================================*/
 /* Table: PHIM                                                  */
 /*==============================================================*/
-CREATE TABLE PHIM
-  (
-    MAPHIM NVARCHAR2(7) NOT NULL,
-    TENPHIM NVARCHAR2(120),
-    THOILUONG NUMBER(4),
-    THELOAI NVARCHAR2(50),
-    NHASANXUAT NVARCHAR2(120),
-    NAMSANXUAT INTEGER,
-    DIENVIEN NVARCHAR2(120),
-    NUOCSANXUAT NVARCHAR2(50),
-    NGAYKHOICHIEU DATE,
-    GIOIHANTUOI   INTEGER,
-    TOMTAT NVARCHAR2(120),
-    TRANGTHAI NVARCHAR2(20),
-    CONSTRAINT PK_PHIM PRIMARY KEY (MAPHIM)
-  );
+create table PHIM 
+(
+   MAPHIM               NVARCHAR2(7)              not null,
+   TENPHIM              NVARCHAR2(120),
+   THOILUONG            NUMBER(4),
+   THELOAI              NVARCHAR2(50),
+   NHASANXUAT           NVARCHAR2(120),
+   NAMSANXUAT           INTEGER,
+   DIENVIEN             NVARCHAR2(120),
+   NUOCSANXUAT          NVARCHAR2(50),
+   NGAYKHOICHIEU        DATE,
+   GIOIHANTUOI          INTEGER,
+   TOMTAT               NVARCHAR2(120),
+   TRANGTHAI            NVARCHAR2(20),
+   constraint PK_PHIM primary key (MAPHIM)
+);
+/*SELECT * FROM PHIM;
+ALTER TABLE PHIM
+MODIFY THOILUONG NUMBER(4);
+UPDATE PHIM
+SET THOILUONG=NULL;
+*/
 /*==============================================================*/
 /* Table: PHONGCHIEU                                            */
 /*==============================================================*/
-CREATE TABLE PHONGCHIEU
-  (
-    MAPHONG NVARCHAR2(7) NOT NULL,
-    TENPHONG NVARCHAR2(255),
-    SLGHE INTEGER,
-    CONSTRAINT PK_PHONGCHIEU PRIMARY KEY (MAPHONG)
-  );
+create table PHONGCHIEU 
+(
+   MAPHONG              NVARCHAR2(7)              not null,
+   TENPHONG             NVARCHAR2(255),
+   SLGHE                INTEGER,
+   constraint PK_PHONGCHIEU primary key (MAPHONG)
+);
+
 /*==============================================================*/
 /* Table: SUATCHIEU                                             */
 /*==============================================================*/
-CREATE TABLE SUATCHIEU
-  (
-    MASUATCHIEU NVARCHAR2(7) NOT NULL,
-    MAPHONG NVARCHAR2(7) NOT NULL,
-    MASUATPHIM NVARCHAR2(7) NOT NULL,
-    THOIGIANCHIEU TIMESTAMP,
-    TRANGTHAI NVARCHAR2(20),
-    CONSTRAINT PK_SUATCHIEU PRIMARY KEY (MASUATCHIEU)
-  );
+create table SUATCHIEU 
+(
+   MASUATCHIEU          NVARCHAR2(7)              not null,
+   MAPHONG              NVARCHAR2(7)              not null,
+   MASUATPHIM           NVARCHAR2(7)              not null,
+   THOIGIANCHIEU        TIMESTAMP,
+   TRANGTHAI            NVARCHAR2(20),
+   constraint PK_SUATCHIEU primary key (MASUATCHIEU)
+);
+
+
 /*==============================================================*/
 /* Table: SUATPHIM                                              */
 /*==============================================================*/
-CREATE TABLE SUATPHIM
-  (
-    MASUATPHIM NVARCHAR2(7) NOT NULL,
-    MANGONNGU NVARCHAR2(7) NOT NULL,
-    MADINHDANG NVARCHAR2(7) NOT NULL,
-    MAPHIM NVARCHAR2(7) NOT NULL,
-    MAHINHTHUC NVARCHAR2(7) NOT NULL,
-    CONSTRAINT PK_SUATPHIM PRIMARY KEY (MASUATPHIM)
-  );
+create table SUATPHIM 
+(
+   MASUATPHIM           NVARCHAR2(7)              not null,
+   MANGONNGU            NVARCHAR2(7)              not null,
+   MADINHDANG           NVARCHAR2(7)              not null,
+   MAPHIM               NVARCHAR2(7)              not null,
+   MAHINHTHUC           NVARCHAR2(7)              not null,
+   constraint PK_SUATPHIM primary key (MASUATPHIM)
+);
+
+
+
+
 /*==============================================================*/
 /* Table: SUKIEN                                                */
 /*==============================================================*/
-CREATE TABLE SUKIEN
-  (
-    MASUKIEN NVARCHAR2(7) NOT NULL,
-    TENSUKIEN NVARCHAR2(50),
-    MOTA NVARCHAR2(150),
-    GIAMGIA FLOAT,
-    NGAYBATDAU  DATE,
-    NGAYKETTHUC DATE,
-    CONSTRAINT PK_SUKIEN PRIMARY KEY (MASUKIEN)
-  );
+/*create table SUKIEN 
+(
+   MASUKIEN             NVARCHAR2(7)             not null,
+   TENSUKIEN            NVARCHAR2(50),
+   MOTA                 NVARCHAR2(150),
+   GIAMGIA              FLOAT,
+   NGAYBATDAU           DATE,
+   NGAYKETTHUC          DATE,
+   constraint PK_SUKIEN primary key (MASUKIEN)
+);*/
+
+
+
 /*==============================================================*/
 /* Table: TAIKHOAN                                              */
 /*==============================================================*/
-CREATE TABLE TAIKHOAN
-  (
-    MANHANVIEN NVARCHAR2(7) NOT NULL,
-    MAT_KHAU NVARCHAR2(20),
-    MAQUYEN NVARCHAR2(7)
-  );
+create table TAIKHOAN 
+(
+   MANHANVIEN           NVARCHAR2(7)             not null,
+   MAT_KHAU             NVARCHAR2(20),
+   MAQUYEN              NVARCHAR2(7)
+);
+
+
 /*==============================================================*/
 /* Table: THUCPHAM                                              */
 /*==============================================================*/
-CREATE TABLE THUCPHAM
-  (
-    MATHUCPHAM NVARCHAR2(7) NOT NULL,
-    TENTHUCPHAM NVARCHAR2(50),
-    DONGIA    NUMBER(10,2),
-    SLUONG    INTEGER,
-    TRANGTHAI INTEGER,
-    CONSTRAINT PK_THUCPHAM PRIMARY KEY (MATHUCPHAM)
-  );
+create table THUCPHAM 
+(
+   MATHUCPHAM           NVARCHAR2(7)              not null,
+   TENTHUCPHAM          NVARCHAR2(50),
+   DONGIA               NUMBER(10,2),
+   SLUONG               INTEGER,
+   TRANGTHAI            INTEGER,
+   constraint PK_THUCPHAM primary key (MATHUCPHAM)
+);
+
 /*==============================================================*/
 /* Table: VE                                                    */
 /*==============================================================*/
-CREATE TABLE VE
-  (
-    MAVE NVARCHAR2(7) NOT NULL,
-    MASUATCHIEU NVARCHAR2(7) NOT NULL,
-    MANHANVIEN NVARCHAR2(7) NOT NULL,
-    MASUKIEN NVARCHAR2(7) NOT NULL,
-    MAHOIVIEN NVARCHAR2(7) NOT NULL,
-    MAGHE NVARCHAR2(7) NOT NULL,
-    NGAYLAP DATE,
-    GIAVE   NUMBER(10,2),
-    CONSTRAINT PK_VE PRIMARY KEY (MAVE)
-  );
-ALTER TABLE CTHDTP ADD CONSTRAINT FK_CTHDTP_HDTHUCPHAM FOREIGN KEY (MAHOADON) REFERENCES HDTHUCPHAM (MAHOADON);
-ALTER TABLE CTHDTP ADD CONSTRAINT FK_CTHDTP_THUCPHAM FOREIGN KEY (MATHUCPHAM) REFERENCES THUCPHAM (MATHUCPHAM);
-ALTER TABLE GHE ADD CONSTRAINT FK_GHE_PHONGCHIEU FOREIGN KEY (MAPHONG) REFERENCES PHONGCHIEU (MAPHONG);
-ALTER TABLE HDTHUCPHAM ADD CONSTRAINT FK_HDTHUCPHAM_NHANVIEN FOREIGN KEY (MANHANVIEN) REFERENCES NHANVIEN (MANHANVIEN);
-ALTER TABLE NHANVIEN ADD CONSTRAINT FK_NHANVIEN_CHUCVU FOREIGN KEY (MACHUCVU) REFERENCES CHUCVU (MACHUCVU);
-ALTER TABLE SUATCHIEU ADD CONSTRAINT FK_SUATCHIEU_SUATPHIM FOREIGN KEY (MASUATPHIM) REFERENCES SUATPHIM (MASUATPHIM);
-ALTER TABLE SUATCHIEU ADD CONSTRAINT FK_SUATCHIEU_PHONGCHIEU FOREIGN KEY (MAPHONG) REFERENCES PHONGCHIEU (MAPHONG);
-ALTER TABLE SUATPHIM ADD CONSTRAINT FK_SUATPHIM_PHIM FOREIGN KEY (MAPHIM) REFERENCES PHIM (MAPHIM);
-ALTER TABLE SUATPHIM ADD CONSTRAINT FK_SUATPHIM_DINHDANG FOREIGN KEY (MADINHDANG) REFERENCES DINHDANG (MADINHDANG);
-ALTER TABLE SUATPHIM ADD CONSTRAINT FK_SUATPHIM_HINHTHUC FOREIGN KEY (MAHINHTHUC) REFERENCES HINHTHUC (MAHINHTHUC);
-ALTER TABLE SUATPHIM ADD CONSTRAINT FK_SUATPHIM_NGONNGU FOREIGN KEY (MANGONNGU) REFERENCES NGONNGU (MANGONNGU);
-ALTER TABLE TAIKHOAN ADD CONSTRAINT FK_TAIKHOAN_NHANVIEN FOREIGN KEY (MANHANVIEN) REFERENCES NHANVIEN (MANHANVIEN);
-ALTER TABLE VE ADD CONSTRAINT FK_VE_NHANVIEN FOREIGN KEY (MANHANVIEN) REFERENCES NHANVIEN (MANHANVIEN);
-ALTER TABLE VE ADD CONSTRAINT FK_VE_HOIVIEN FOREIGN KEY (MAHOIVIEN) REFERENCES HOIVIEN (MAHOIVIEN);
-ALTER TABLE VE ADD CONSTRAINT FK_VE_SUKIEN FOREIGN KEY (MASUKIEN) REFERENCES SUKIEN (MASUKIEN);
-ALTER TABLE VE ADD CONSTRAINT FK_VE_SUATCHIEU FOREIGN KEY (MASUATCHIEU) REFERENCES SUATCHIEU (MASUATCHIEU);
-ALTER TABLE VE ADD CONSTRAINT FK_VE_GHE FOREIGN KEY (MAGHE) REFERENCES GHE (MAGHE);
+create table VE 
+(
+   MAVE                 NVARCHAR2(7)              not null,
+   MASUATCHIEU          NVARCHAR2(7)              not null,
+   MANHANVIEN           NVARCHAR2(7)              not null,
+   MAHOIVIEN            NVARCHAR2(7),
+   MAGHE                NVARCHAR2(7)              not null,
+   NGAYLAP              DATE,
+   GIAVE                NUMBER(10,2),
+   constraint PK_VE primary key (MAVE)
+);
+
+
+ALTER TABLE PHANQUYEN 
+   ADD CONSTRAINT FK_PHANQUYEN_CHUCVU FOREIGN KEY (MACHUCVU)
+      REFERENCES CHUCVU (MACHUCVU);
+
+alter table CTHDTP
+   add constraint FK_CTHDTP_HDTHUCPHAM foreign key (MAHOADON)
+      references HDTHUCPHAM (MAHOADON);
+
+alter table CTHDTP
+   add constraint FK_CTHDTP_THUCPHAM foreign key (MATHUCPHAM)
+      references THUCPHAM (MATHUCPHAM);
+
+alter table GHE
+   add constraint FK_GHE_PHONGCHIEU foreign key (MAPHONG)
+      references PHONGCHIEU (MAPHONG);
+
+alter table HDTHUCPHAM
+   add constraint FK_HDTHUCPHAM_NHANVIEN foreign key (MANHANVIEN)
+      references NHANVIEN (MANHANVIEN);
+
+
+alter table NHANVIEN
+   add constraint FK_NHANVIEN_CHUCVU foreign key (MACHUCVU)
+      references CHUCVU (MACHUCVU);
+
+alter table SUATCHIEU
+   add constraint FK_SUATCHIEU_SUATPHIM foreign key (MASUATPHIM)
+      references SUATPHIM (MASUATPHIM);
+
+alter table SUATCHIEU
+   add constraint FK_SUATCHIEU_PHONGCHIEU foreign key (MAPHONG)
+      references PHONGCHIEU (MAPHONG);
+
+alter table SUATPHIM
+   add constraint FK_SUATPHIM_PHIM foreign key (MAPHIM)
+      references PHIM (MAPHIM);
+
+alter table SUATPHIM
+   add constraint FK_SUATPHIM_DINHDANG foreign key (MADINHDANG)
+      references DINHDANG (MADINHDANG);
+
+alter table SUATPHIM
+   add constraint FK_SUATPHIM_HINHTHUC foreign key (MAHINHTHUC)
+      references HINHTHUC (MAHINHTHUC);
+
+alter table SUATPHIM
+   add constraint FK_SUATPHIM_NGONNGU foreign key (MANGONNGU)
+      references NGONNGU (MANGONNGU);
+
+alter table TAIKHOAN
+   add constraint FK_TAIKHOAN_NHANVIEN foreign key (MANHANVIEN)
+      references NHANVIEN (MANHANVIEN);
+
+alter table VE
+   add constraint FK_VE_NHANVIEN foreign key (MANHANVIEN)
+      references NHANVIEN (MANHANVIEN);
+
+alter table VE
+   add constraint FK_VE_HOIVIEN foreign key (MAHOIVIEN)
+      references HOIVIEN (MAHOIVIEN);
+
+/*alter table VE
+   add constraint FK_VE_SUKIEN foreign key (MASUKIEN)
+      references SUKIEN (MASUKIEN);
+*/
+alter table VE
+   add constraint FK_VE_SUATCHIEU foreign key (MASUATCHIEU)
+      references SUATCHIEU (MASUATCHIEU);
+
+alter table VE
+   add constraint FK_VE_GHE foreign key (MAGHE)
+      references GHE (MAGHE);
+
+
 --CHO DỮ LIỆU VÀO
 --CHO BẢNG CHỨC VỤ
 DELETE FROM CHUCVU;
-INSERT INTO CHUCVU VALUES
-  ('CV00001','QUẢN LÝ',10000000
-  );
-INSERT INTO CHUCVU VALUES
-  ('CV00002','BẢO VỆ',6000000
-  );
-INSERT INTO CHUCVU VALUES
-  ('CV00003','BÁN THỰC PHẨM',6000000
-  );
-INSERT INTO CHUCVU VALUES
-  ('CV00004','KẾ TOÁN',8000000
-  );
-INSERT INTO CHUCVU VALUES
-  ('CV00005','BÁN VÉ',5000000
-  );
+INSERT INTO CHUCVU VALUES ('CV00001','QUẢN LÝ',10000000);
+INSERT INTO CHUCVU VALUES ('CV00002','BÁN VÉ',6000000);
+INSERT INTO CHUCVU VALUES ('CV00003','BÁN THỰC PHẨM',6000000);
+INSERT INTO CHUCVU VALUES ('CV00004','QUẢN LÝ PHIM',8000000);
+INSERT INTO CHUCVU VALUES ('CV00005','QUẢN LÝ THỰC PHẨM',5000000);
+INSERT INTO CHUCVU VALUES ('CV00006','KẾ TOÁN',9000000);
+
 --CHO BẢNG ĐỊNH DẠNG
 DELETE FROM DINHDANG;
-INSERT INTO DINHDANG VALUES
-  ('DD00001','2D','35000'
-  );
-INSERT INTO DINHDANG VALUES
-  ('DD00002','3D','40000'
-  );
-INSERT INTO DINHDANG VALUES
-  ('DD00003','4D','45000'
-  );
-INSERT INTO DINHDANG VALUES
-  ('DD00004','5D','50000'
-  );
+INSERT INTO DINHDANG VALUES ('DD00001','2D','35000');
+INSERT INTO DINHDANG VALUES ('DD00002','3D','40000');
+INSERT INTO DINHDANG VALUES ('DD00003','4D','45000');
+INSERT INTO DINHDANG VALUES ('DD00004','5D','50000');
+
 --CHO BẢNG HÌNH THỨC
 DELETE FROM HINHTHUC;
-INSERT INTO HINHTHUC VALUES
-  ('HT00001','PHU DE TIENG VIET'
-  );
-INSERT INTO HINHTHUC VALUES
-  ('HT00002','PHU DE TIENG ANH'
-  );
-INSERT INTO HINHTHUC VALUES
-  ('HT00003','LONG TIENG'
-  );
-INSERT INTO HINHTHUC VALUES
-  ('HT00004','THUYET MINH'
-  );
+INSERT INTO HINHTHUC VALUES ('HT00001','PHU DE TIENG VIET');
+INSERT INTO HINHTHUC VALUES ('HT00002','PHU DE TIENG ANH');
+INSERT INTO HINHTHUC VALUES ('HT00003','LONG TIENG');
+INSERT INTO HINHTHUC VALUES ('HT00004','THUYET MINH');
+
 --CHO BẢNG NGÔN NGỮ
 DELETE FROM NGONNGU;
-INSERT INTO NGONNGU VALUES
-  ('NN00001','TIENG ANH'
-  );
-INSERT INTO NGONNGU VALUES
-  ('NN00002','TIENG VIET'
-  );
-INSERT INTO NGONNGU VALUES
-  ('NN00003','TIENG TRUNG'
-  );
-INSERT INTO NGONNGU VALUES
-  ('NN00004','TIENG HAN'
-  );
+INSERT INTO NGONNGU VALUES ('NN00001','TIENG ANH');
+INSERT INTO NGONNGU VALUES ('NN00002','TIENG VIET');
+INSERT INTO NGONNGU VALUES ('NN00003','TIENG TRUNG');
+INSERT INTO NGONNGU VALUES ('NN00004','TIENG VIET');
+
 --CHO BẢNG HỘI VIÊN
 DELETE FROM HOIVIEN;
-INSERT
-INTO HOIVIEN VALUES
-  (
-    'HV00001',
-    'ĐẶNG THỊ THÙY NHI',
-    'NỮ',
-    '123456789',
-    TO_DATE('27/04/2000','dd/mm/yyyy'),
-    'nhi@gmail.com',
-    '0923567812',
-    '',
-    0
-  );
-INSERT
-INTO HOIVIEN VALUES
-  (
-    'HV00002',
-    'LÊ ĐỨC ANH',
-    'NAM',
-    '65758745',
-    TO_DATE('27/09/1999','dd/mm/yyyy'),
-    'anh@gmail.com',
-    '0923567862',
-    '',
-    0
-  );
-INSERT
-INTO HOIVIEN VALUES
-  (
-    'HV00003',
-    'NGUYỄN NGỌC HUY',
-    'NAM',
-    '1234566579',
-    TO_DATE('15/03/1999','dd/mm/yyyy'),
-    'huy@gmail.com',
-    '092117812',
-    '',
-    0
-  );
-INSERT
-INTO HOIVIEN VALUES
-  (
-    'HV00004',
-    'NGUYỄN THANH VÂN',
-    'NỮ',
-    '653456789',
-    TO_DATE('12/06/2000','dd/mm/yyyy'),
-    'van@gmail.com',
-    '0923567572',
-    '',
-    0
-  );
---Trigger ngày đăng kí hội viên
-CREATE OR REPLACE TRIGGER AUTO_DANGKI_HOIVIEN BEFORE
-  INSERT OR
-  UPDATE ON HOIVIEN FOR EACH ROW BEGIN :NEW.NGAYDANGKY := SYSDATE();
-END;
---TRIGGER NGÀY VÀO LÀM
-CREATE OR REPLACE TRIGGER AUTO_DANGKI_NHANVIEN BEFORE
-  INSERT OR
-  UPDATE ON NHANVIEN FOR EACH ROW BEGIN :NEW.NGAYVAOLAM := SYSDATE();
-END;
+INSERT INTO HOIVIEN VALUES('HV00001','ĐẶNG THỊ THÙY NHI','NỮ','123456789',TO_DATE('27/04/2000','dd/mm/yyyy'),'nhi@gmail.com','0923567812',TO_DATE('28/04/2017','dd/mm/yyyy'),'40');
+INSERT INTO HOIVIEN VALUES('HV00002','LÊ ĐỨC ANH','NAM','65758745',TO_DATE('27/09/1999','dd/mm/yyyy'),'anh@gmail.com','0923567862',TO_DATE('28/05/2017','dd/mm/yyyy'),'50');
+INSERT INTO HOIVIEN VALUES('HV00003','NGUYỄN NGỌC HUY','NAM','1234566579',TO_DATE('15/03/1999','dd/mm/yyyy'),'huy@gmail.com','092117812',TO_DATE('28/04/2018','dd/mm/yyyy'),'40');
+INSERT INTO HOIVIEN VALUES('HV00004','NGUYỄN THANH VÂN','NỮ','653456789',TO_DATE('12/06/2000','dd/mm/yyyy'),'van@gmail.com','0923567572',TO_DATE('28/04/2019','dd/mm/yyyy'),'60');
+INSERT INTO HOIVIEN VALUES('HV00005','NGUYỄN VĂN A','NAM','234567890',TO_DATE('10/1/2001','dd/mm/yyyy'),'nva@gmail.com','0123456009',TO_DATE('28/04/2018','dd/mm/yyyy'),'40');
+INSERT INTO HOIVIEN VALUES('HV00011','NGUYỄN VĂN B','NAM','258963147',TO_DATE('20/1/2001','dd/mm/yyyy'),'nvb@gmail.com','0123456009',TO_DATE('28/05/2017','dd/mm/yyyy'),'20');
+INSERT INTO HOIVIEN VALUES('HV00006','NGUYỄN VĂN C','NAM','963258741',TO_DATE('20/2/2001','dd/mm/yyyy'),'nvc@gmail.com','1378790009',TO_DATE('28/06/2017','dd/mm/yyyy'),'50');
+INSERT INTO HOIVIEN VALUES('HV00007','NGUYỄN VĂN D','NAM','753159468',TO_DATE('20/8/2001','dd/mm/yyyy'),'nvd@gmail.com','7531587461',TO_DATE('28/07/2017','dd/mm/yyyy'),'40');
+INSERT INTO HOIVIEN VALUES('HV00008','NGUYỄN VĂN E','NAM','963288741',TO_DATE('20/6/2001','dd/mm/yyyy'),'nve@gmail.com','0142657895',TO_DATE('29/04/2017','dd/mm/yyyy'),'50');
+INSERT INTO HOIVIEN VALUES('HV00009','NGUYỄN VĂN F','NAM','963255741',TO_DATE('20/4/2001','dd/mm/yyyy'),'nvf@gmail.com','0123456779',TO_DATE('23/04/2017','dd/mm/yyyy'),'90');
+INSERT INTO HOIVIEN VALUES('HV00010','NGUYỄN VĂN J','NAM','963258771',TO_DATE('20/9/2001','dd/mm/yyyy'),'nvj@gmail.com','0123456788',TO_DATE('28/04/2017','dd/mm/yyyy'),'10');
 --INSERT VÀO BẢNG THỰC PHẨM
 DELETE FROM THUCPHAM;
-INSERT INTO THUCPHAM VALUES
-  ('TP00001','BẮP RANG',30000,10,1
-  );
-INSERT INTO THUCPHAM VALUES
-  ('TP00002','COCA',5000,50,1
-  );
-INSERT INTO THUCPHAM VALUES
-  ('TP00003','KEM',8000,70,1
-  );
-INSERT INTO THUCPHAM VALUES
-  ('TP00004','HAMBUGER',50000,20,1
-  );
-INSERT INTO THUCPHAM VALUES
-  ('TP00005','PIZZA',90000,10,1
-  );
+INSERT INTO THUCPHAM VALUES('TP00001','BẮP RANG',30000,10,1);
+INSERT INTO THUCPHAM VALUES('TP00002','COCA',5000,50,1);
+INSERT INTO THUCPHAM VALUES('TP00003','KEM',8000,70,1);
+INSERT INTO THUCPHAM VALUES('TP00004','HAMBUGER',50000,20,1);
+INSERT INTO THUCPHAM VALUES('TP00005','PIZZA',90000,10,1);
+
+CREATE OR REPLACE TRIGGER TRIG_AUTO_INSERT_MANV_TAIKHOAN
+AFTER INSERT OR UPDATE
+ON NHANVIEN
+FOR EACH ROW
+DECLARE
+  V_MAQUYEN NVARCHAR2(7);
+  V_MACHUCVU NVARCHAR2(7);
+BEGIN
+  V_MACHUCVU:=:NEW.MACHUCVU;
+  SELECT MAQUYEN
+  INTO V_MAQUYEN
+  FROM PHANQUYEN
+  WHERE MACHUCVU=V_MACHUCVU;
+  INSERT INTO TAIKHOAN VALUES(:NEW.MANHANVIEN,NULL,V_MAQUYEN);
+END;
 --INSERT VÀO BẢNG NHÂN VIÊN
 DELETE FROM NHANVIEN;
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00001',
-    'CV00001',
-    'NGUYỄN ANH TUẤN',
-    'tuan@gmail.com',
-    '56367586',
-    'NAM',
-    TO_DATE('12/06/1980','dd/mm/yyyy'),
-    'QUẬN 1,TPHCM',
-    '0898675745',
-    TO_DATE('20/06/2011','dd/mm/yyyy'),
-    0
-  );
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00002',
-    'CV00002',
-    'TRẦN THÚY AN',
-    'an@gmail.com',
-    '76578467',
-    'NAM',
-    TO_DATE('18/06/1990','dd/mm/yyyy'),
-    'QUẬN 3,TPHCM',
-    '08756745',
-    TO_DATE('30/06/2001','dd/mm/yyyy'),
-    0
-  );
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00003',
-    'CV00002',
-    'NGUYỄN HIẾU THẮNG',
-    'thang@gmail.com',
-    '7687874',
-    'NAM',
-    TO_DATE('22/06/1998','dd/mm/yyyy'),
-    'QUẬN 4,TPHCM',
-    '574675745',
-    TO_DATE('15/05/2010','dd/mm/yyyy'),
-    0
-  );
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00004',
-    'CV00003',
-    'NGÔ MINH HƯNG',
-    'hung@gmail.com',
-    '57553245',
-    'NAM',
-    TO_DATE('30/03/1993','dd/mm/yyyy'),
-    'QUẬN 5,TPHCM',
-    '10938675745',
-    TO_DATE('02/02/2016','dd/mm/yyyy'),
-    0
-  );
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00005',
-    'CV00003',
-    'NGÔ XUÂN HIẾU',
-    'hieu@gmail.com',
-    '5627884',
-    'NAM',
-    TO_DATE('05/05/1990','dd/mm/yyyy'),
-    'QUẬN 6,TPHCM',
-    '08654875745',
-    TO_DATE('13/03/2017','dd/mm/yyyy'),
-    0
-  );
-INSERT
-INTO NHANVIEN VALUES
-  (
-    'NV00006',
-    'CV00004',
-    'NGUYỄN THANH THANH',
-    'thanh@gmail.com',
-    '56747884',
-    'NAM',
-    TO_DATE('05/05/1990','dd/mm/yyyy'),
-    'QUẬN 1,TPHCM',
-    '08654875745',
-    TO_DATE('13/03/2017','dd/mm/yyyy'),
-    0
-  );
+INSERT INTO NHANVIEN VALUES ('NV00001','CV00001','NGUYỄN ANH TUẤN','tuan@gmail.com','56367586','NAM',TO_DATE('12/06/1980','dd/mm/yyyy'),'QUẬN 1,TPHCM','0898675745',TO_DATE('20/06/2011','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00002','CV00002','TRẦN THÚY AN','an@gmail.com','76578467','NAM',TO_DATE('18/06/1990','dd/mm/yyyy'),'QUẬN 3,TPHCM','08756745',TO_DATE('30/06/2001','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00003','CV00003','NGUYỄN HIẾU THẮNG','thang@gmail.com','7687874','NAM',TO_DATE('22/06/1998','dd/mm/yyyy'),'QUẬN 4,TPHCM','574675745',TO_DATE('15/05/2010','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00004','CV00004','NGÔ MINH HƯNG','hung@gmail.com','57553245','NAM',TO_DATE('30/03/1993','dd/mm/yyyy'),'QUẬN 5,TPHCM','10938675745',TO_DATE('02/02/2016','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00005','CV00005','NGÔ XUÂN HIẾU','hieu@gmail.com','5627884','NAM',TO_DATE('05/05/1990','dd/mm/yyyy'),'QUẬN 6,TPHCM','08654875745',TO_DATE('13/03/2017','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00006','CV00006','NGUYỄN THANH THANH','thanh@gmail.com','56747884','NAM',TO_DATE('05/05/1990','dd/mm/yyyy'),'QUẬN 1,TPHCM','08654875745',TO_DATE('13/03/2017','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00007','CV00002','NGUYỄN VĂN A','nva@gmail.com','155214664','NAM',TO_DATE('05/07/1994','dd/mm/yyyy'),'QUẬN 1,TPHCM','09654875745',TO_DATE('13/03/2018','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00008','CV00003','NGUYỄN VĂN B','nvb@gmail.com','155214674','NAM',TO_DATE('05/06/1993','dd/mm/yyyy'),'QUẬN 1,TPHCM','09654875145',TO_DATE('13/08/2018','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00009','CV00004','NGUYỄN VĂN C','nvc@gmail.com','155214689','NAM',TO_DATE('05/06/1992','dd/mm/yyyy'),'QUẬN 1,TPHCM','09654877745',TO_DATE('13/04/2019','dd/mm/yyyy'),'1');
+INSERT INTO NHANVIEN VALUES ('NV00010','CV00005','NGUYỄN VĂN D','nvd@gmail.com','155215664','NAM',TO_DATE('05/05/1991','dd/mm/yyyy'),'QUẬN 1,TPHCM','09754875745',TO_DATE('13/03/2018','dd/mm/yyyy'),'1');
+
 --INSERT VÀO BẢNG PHÂN QUYỀN
 DELETE FROM PHANQUYEN;
-INSERT INTO PHANQUYEN VALUES
-  ('PQ00001','ADMIN'
-  );
-INSERT INTO PHANQUYEN VALUES
-  ('PQ00002','BÁN VÉ'
-  );
-INSERT INTO PHANQUYEN VALUES
-  ('PQ00003','BÁN THỰC PHẨM'
-  );
-INSERT INTO PHANQUYEN VALUES
-  ('PQ00004','QUẢN LÝ PHIM'
-  );
-INSERT INTO PHANQUYEN VALUES
-  ('PQ00005','QUẢN LÝ THỰC PHẨM'
-  );
+INSERT INTO PHANQUYEN VALUES ('PQ00001','ADMIN','CV00001');
+INSERT INTO PHANQUYEN VALUES ('PQ00002','BÁN VÉ','CV00002');
+INSERT INTO PHANQUYEN VALUES ('PQ00003','BÁN THỰC PHẨM','CV00003');
+INSERT INTO PHANQUYEN VALUES ('PQ00004','QUẢN LÝ PHIM','CV00004');
+INSERT INTO PHANQUYEN VALUES ('PQ00005','QUẢN LÝ THỰC PHẨM','CV00005');
+INSERT INTO PHANQUYEN VALUES ('PQ00006','KẾ TOÁN','CV00006');
+SELECT * FROM TAIKHOAN;
 --INSERT VÀO BẢNG TÀI KHOẢN
 DELETE FROM TAIKHOAN;
-INSERT INTO TAIKHOAN VALUES
-  ('NV00001','123456','PQ00001'
-  );
-INSERT INTO TAIKHOAN VALUES
-  ('NV00002','123456','PQ00002'
-  );
-INSERT INTO TAIKHOAN VALUES
-  ('NV00003','123456','PQ00003'
-  );
+INSERT INTO TAIKHOAN VALUES ('NV00001','123456','PQ00001');
+INSERT INTO TAIKHOAN VALUES ('NV00002','123456','PQ00002');
+INSERT INTO TAIKHOAN VALUES ('NV00003','123456','PQ00003');
 --INSERT VÀO BẢNG PHÒNG CHIẾU
-DELETE FROM PHONGCHIEU;
-INSERT INTO PHONGCHIEU VALUES
-  ('PC00001','PHÒNG 101',48
-  );
-INSERT INTO PHONGCHIEU VALUES
-  ('PC00002','PHÒNG 205',48
-  );
-INSERT INTO PHONGCHIEU VALUES
-  ('PC00003','PHÒNG 306',48
-  );
-INSERT INTO PHONGCHIEU VALUES
-  ('PC00004','PHÒNG 303',48
-  );
-INSERT INTO PHONGCHIEU VALUES
-  ('PC00005','PHÒNG 200',48
-  );
+INSERT INTO PHONGCHIEU VALUES('PC00001','PHÒNG 101',64);
+INSERT INTO PHONGCHIEU VALUES('PC00002','PHÒNG 205',64);
+INSERT INTO PHONGCHIEU VALUES('PC00003','PHÒNG 306',64);
+INSERT INTO PHONGCHIEU VALUES('PC00004','PHÒNG 303',64);
+INSERT INTO PHONGCHIEU VALUES('PC00005','PHÒNG 200',64);
+
+
 --INSERT VÀO BẢNG PHIM
 DELETE FROM PHIM;
-INSERT
-INTO PHIM VALUES
-  (
-    'PH00001',
-    'MẮT BIẾC',
-    180,
-    'TÌNH CẢM',
-    'VICTO VŨ',
-    2019,
-    'TRÚC ANH,TRẦN NGHĨA',
-    'VIỆT NAM',
-    TO_DATE('20/12/2019','dd/mm/yyyy'),
-    16,
-    'CHUYỆN TÌNH GIỮA NGẠN VÀ HÀ LAN',
-    'ĐANG CHIẾU'
-  );
-INSERT
-INTO PHIM VALUES
-  (
-    'PH00002',
-    'CÔ 3 SÀI GON',
-    100,
-    'TÌNH CẢM',
-    'NGÔ THANH VÂN',
-    2017,
-    'ST,NINH DƯƠNG LAN NGỌC',
-    'VIỆT NAM',
-    TO_DATE('21/03/2017','dd/mm/yyyy'),
-    16,
-    'ÁO DÀI VIỆT NAM',
-    'SẮP CHIẾU'
-  );
-INSERT
-INTO PHIM VALUES
-  (
-    'PH00003',
-    'HAI PHƯỢNG',
-    150,
-    'HÀNH ĐỘNG',
-    '',
-    2015,
-    'NGÔ THANH VÂN',
-    'VIÊT NAM',
-    TO_DATE('05/12/2015','dd/mm/yyyy'),
-    18,
-    'TÌNH MẪU TỮ',
-    'SẮP CHIẾU'
-  );
-INSERT
-INTO PHIM VALUES
-  (
-    'PH00004',
-    'ANH THẦY NGÔI SAO',
-    110,
-    'HÀI',
-    'ĐỨC THỊNH',
-    2020,
-    'THANH TÙNG,QUỲNH ANH',
-    'VIỆT NAM',
-    TO_DATE('03/02/2020','dd/mm/yyyy'),
-    12,
-    'NHIỆT HUYẾT CỦA NGƯỜI GIÁO VIÊN',
-    'ĐANG CHIẾU'
-  );
-INSERT
-INTO PHIM VALUES
-  (
-    'PH00005',
-    'TRẠNG QUỲNH',
-    120,
-    'HÀI',
-    'ĐỨC THỊNH',
-    2018,
-    'NHÃ PHƯƠNG,TRẤN THÀNH',
-    'VIỆT NAM',
-    TO_DATE('02/08/2018','dd/mm/yyyy'),
-    12,
-    'QUỲNH ĐI THI',
-    'ĐÃ KẾT THÚC'
-  );
+INSERT INTO PHIM VALUES ('PH00001','MẮT BIẾC',180,'TÌNH CẢM','VICTO VŨ',2019,'TRÚC ANH,TRẦN NGHĨA','VIỆT NAM',TO_DATE('20/12/2019','dd/mm/yyyy'),16,'CHUYỆN TÌNH GIỮA NGẠN VÀ HÀ LAN','ĐANG CHIẾU');
+INSERT INTO PHIM VALUES ('PH00002','CÔ 3 SÀI GON',100,'TÌNH CẢM','NGÔ THANH VÂN',2017,'ST,NINH DƯƠNG LAN NGỌC','VIỆT NAM',TO_DATE('21/03/2017','dd/mm/yyyy'),16,'ÁO DÀI VIỆT NAM','SẮP CHIẾU');
+INSERT INTO PHIM VALUES ('PH00003','HAI PHƯỢNG',150,'HÀNH ĐỘNG','',2015,'NGÔ THANH VÂN','VIÊT NAM',TO_DATE('05/12/2015','dd/mm/yyyy'),18,'TÌNH MẪU TỮ','SẮP CHIẾU');
+INSERT INTO PHIM VALUES ('PH00004','ANH THẦY NGÔI SAO',110,'HÀI','ĐỨC THỊNH',2020,'THANH TÙNG,QUỲNH ANH','VIỆT NAM',TO_DATE('03/02/2020','dd/mm/yyyy'),12,'NHIỆT HUYẾT CỦA NGƯỜI GIÁO VIÊN','ĐANG CHIẾU');
+INSERT INTO PHIM VALUES ('PH00005','TRẠNG QUỲNH',120,'HÀI','ĐỨC THỊNH',2018,'NHÃ PHƯƠNG,TRẤN THÀNH','VIỆT NAM',TO_DATE('02/08/2018','dd/mm/yyyy'),12,'QUỲNH ĐI THI','ĐÃ KẾT THÚC');
+INSERT INTO PHIM VALUES ('PH00006','ME BEFORE YOU',130,'TÌNH CẢM','THEA SHARROCK',2016,'EMILIA CLARKE','MỸ',TO_DATE('03/06/2016','dd/mm/yyyy'),16,'ĐƯỢC CHUYỂN THỂ TỪ TIỂU THUYẾT CÙNG TÊN','ĐÃ KẾT THÚC');
+INSERT INTO PHIM VALUES ('PH00007','EM CHƯA 18',180,'HÀI,TÌNH CẢM','LÊ THANH SƠN',2017,'KAITY NGUYỄN, KIỀU MINH TUẤN','VIỆT NAM',TO_DATE('28/04/2017','dd/mm/yyyy'),16,'KỂ VỀ CÚ NGÃ TAY CHƠI CỦA HOÀNG','ĐÃ KẾT THÚC');
+INSERT INTO PHIM VALUES ('PH00008','CUA LẠI VỢ BẦU',150,'TÌNH CẢM','NHẤT TRUNG',2019,'NINH DƯƠNG LAN NGỌC, TRẤN THÀNH','VIỆT NAM',TO_DATE('25/01/2019','dd/mm/yyyy'),12,'CUA LẠI VỢ','ĐANG CHIẾU');
+INSERT INTO PHIM VALUES ('PH00009','EM LÀ BÀ NỘI CỦA ANH',120,'HÀI, TÌNH CẢM','PHAN GIA NHẬT LINH ',2015,'MIU LÊ','VIỆT NAM',TO_DATE('11/12/2015','dd/mm/yyyy'),12,'HÓA LẠI TRẺ','ĐÃ KẾT THÚC');
+INSERT INTO PHIM VALUES ('PH00010','CÔ GÁI ĐẾN TỪ HÔM QUA',150,'HÀI, TÌNH CẢM','PHAN GIA NHẬT LINH',2017,'MIU LÊ, NGÔ KIẾN HUY','VIỆT NAM',TO_DATE('13/07/2017','dd/mm/yyyy'),12,'CHUYỆN TÌNH LÚC NHỎ','ĐANG CHIẾU');
+
+/*UPDATE PHIM
+SET THOILUONG=100;*/
 --INSERT SUẤT PHIM
-DELETE FROM SUATPHIM;
-INSERT
-INTO SUATPHIM VALUES
-  (
-    'SP00001',
-    'NN00001',
-    'DD00002',
-    'PH00001',
-    'HT00003'
-  );
-INSERT
-INTO SUATPHIM VALUES
-  (
-    'SP00002',
-    'NN00001',
-    'DD00001',
-    'PH00001',
-    'HT00002'
-  );
-INSERT
-INTO SUATPHIM VALUES
-  (
-    'SP00003',
-    'NN00001',
-    'DD00001',
-    'PH00002',
-    'HT00003'
-  );
-INSERT
-INTO SUATPHIM VALUES
-  (
-    'SP00004',
-    'NN00002',
-    'DD00001',
-    'PH00003',
-    'HT00001'
-  );
-INSERT
-INTO SUATPHIM VALUES
-  (
-    'SP00005',
-    'NN00003',
-    'DD00001',
-    'PH00004',
-    'HT00001'
-  );
+INSERT INTO SUATPHIM VALUES('SP00001','NN00001','DD00002','PH00001','HT00003');
+INSERT INTO SUATPHIM VALUES('SP00002','NN00001','DD00001','PH00001','HT00002');
+INSERT INTO SUATPHIM VALUES('SP00003','NN00001','DD00001','PH00002','HT00003');
+INSERT INTO SUATPHIM VALUES('SP00004','NN00002','DD00001','PH00003','HT00001');
+INSERT INTO SUATPHIM VALUES('SP00005','NN00003','DD00001','PH00004','HT00001');
+INSERT INTO SUATPHIM VALUES('SP00006','NN00001','DD00002','PH00005','HT00003');
+INSERT INTO SUATPHIM VALUES('SP00007','NN00003','DD00001','PH00006','HT00001');
+INSERT INTO SUATPHIM VALUES('SP00008','NN00003','DD00001','PH00004','HT00001');
+INSERT INTO SUATPHIM VALUES('SP00009','NN00003','DD00001','PH00008','HT00001');
+INSERT INTO SUATPHIM VALUES('SP00010','NN00003','DD00001','PH00009','HT00001');
+
+
+
 --INSERT SỰ KIỆN
+
+/*INSERT INTO SUKIEN VALUES('SK00001','NGÀY 8-3','NGÀY QUỐC TẾ PHỤ NỮ',0.05,TO_DATE('07/03/2020','DD/MM/YYYY'),TO_DATE('09/03/2020','DD/MM/YYYY'));
+INSERT INTO SUKIEN VALUES('SK00002','NGÀY 1-5','NGÀY QUỐC TẾ LAO ĐỘNG',0.07,TO_DATE('30/04/2020','DD/MM/YYYY'),TO_DATE('02/05/2020','DD/MM/YYYY'));
+INSERT INTO SUKIEN VALUES('SK00003','NGÀY 1-6','NGÀY QUỐC TẾ THIẾU NHI',0.12,TO_DATE('31/5/2020','DD/MM/YYYY'),TO_DATE('02/06/2020','DD/MM/YYYY'));
+
+
 DELETE FROM SUKIEN;
-INSERT
-INTO SUKIEN VALUES
-  (
-    'SK00001',
-    'NGÀY 8-3',
-    'NGÀY QUỐC TẾ PHỤ NỮ',
-    0.05,
-    TO_DATE('07/03/2020','DD/MM/YYYY'),
-    TO_DATE('09/03/2020','DD/MM/YYYY')
-  );
-INSERT
-INTO SUKIEN VALUES
-  (
-    'SK00002',
-    'NGÀY 1-5',
-    'NGÀY QUỐC TẾ LAO ĐỘNG',
-    0.07,
-    TO_DATE('30/04/2020','DD/MM/YYYY'),
-    TO_DATE('02/05/2020','DD/MM/YYYY')
-  );
-INSERT
-INTO SUKIEN VALUES
-  (
-    'SK00003',
-    'NGÀY 1-6',
-    'NGÀY QUỐC TẾ THIẾU NHI',
-    0.12,
-    TO_DATE('31/5/2020','DD/MM/YYYY'),
-    TO_DATE('02/06/2020','DD/MM/YYYY')
-  );
+
+select * from sukien;
+*/
+
 --INSERT SUẤT CHIẾU
-DELETE FROM SUATCHIEU;
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00001',
-    'PC00001',
-    'SP00001',
-    TO_DATE('06/06/2019','dd/mm/yyyy'),
-    'Còn chỗ'
-  );
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00002',
-    'PC00002',
-    'SP00003',
-    TO_DATE('08/01/2020','dd/mm/yyyy'),
-    'Còn chỗ'
-  );
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00003',
-    'PC00004',
-    'SP00002',
-    TO_DATE('12/04/2018','dd/mm/yyyy'),
-    'Còn chỗ'
-  );
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00004',
-    'PC00003',
-    'SP00002',
-    TO_DATE('25/06/2017','dd/mm/yyyy'),
-    'Còn chỗ'
-  );
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00005',
-    'PC00003',
-    'SP00001',
-    TO_DATE('07/07/2019','dd/mm/yyyy'),
-    'Còn chỗ'
-  );
---TRIGGER TỰ ĐỘNG INSERT NGÀY LẬP VÉ
-CREATE OR REPLACE TRIGGER AUTO_NGAYLAP_VE BEFORE
-  INSERT OR
-  UPDATE ON VE FOR EACH ROW BEGIN :NEW.NGAYLAP := SYSDATE();
+INSERT INTO SUATCHIEU VALUES('SC00001','PC00001','SP00001',TO_DATE('06/06/2019','dd/mm/yyyy'),'CÒN CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00002','PC00002','SP00003',TO_DATE('08/01/2020','dd/mm/yyyy'),'CÒN CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00003','PC00004','SP00002',TO_DATE('12/04/2018','dd/mm/yyyy'),'CÒN CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00004','PC00003','SP00002',TO_DATE('25/06/2017','dd/mm/yyyy'),'CÒN CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00005','PC00003','SP00001',TO_DATE('07/09/2019','dd/mm/yyyy'),'CÒN CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00006','PC00001','SP00003',TO_DATE('07/07/2019','dd/mm/yyyy'),'HẾT CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00007','PC00001','SP00001',TO_DATE('07/08/2019','dd/mm/yyyy'),'HẾT CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00008','PC00001','SP00002',TO_DATE('05/08/2019','dd/mm/yyyy'),'HẾT CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00009','PC00002','SP00004',TO_DATE('08/08/2019','dd/mm/yyyy'),'HẾT CHỖ');
+INSERT INTO SUATCHIEU VALUES('SC00010','PC00003','SP00001',TO_DATE('11/08/2019','dd/mm/yyyy'),'HẾT CHỖ');
+
+--TRIGGER ĐĂNG KÍ
+CREATE OR REPLACE TRIGGER AUTO_DANGKI_HOIVIEN
+BEFORE INSERT OR UPDATE ON HOIVIEN
+FOR EACH ROW
+BEGIN
+    :NEW.NGAYDANGKY := SYSDATE();
+    :NEW.DIEMTICHLUY := 0;
 END;
+--TRIGGER NGÀY VÀO LÀM
+CREATE OR REPLACE TRIGGER AUTO_DANGKI_NHANVIEN
+BEFORE INSERT OR UPDATE ON NHANVIEN
+FOR EACH ROW
+BEGIN
+    :NEW.NGAYVAOLAM := SYSDATE();
+    :NEW.TRANGTHAI:=1;
+END;
+--INSERT BÁN VÉ
+CREATE OR REPLACE TRIGGER AUTO_NGAYLAP_VE
+BEFORE INSERT OR UPDATE ON VE
+FOR EACH ROW
+BEGIN
+    :NEW.NGAYLAP := SYSDATE();
+END;
+
 --TRIGGER TỰ ĐỘNG INSERT MÃ NHÂN VIÊN VÀO BẢNG TÀI KHOẢN
-CREATE OR REPLACE TRIGGER TRIG_AUTO_INSERT_MANV_TAIKHOAN AFTER
-  INSERT OR
-  UPDATE ON NHANVIEN FOR EACH ROW BEGIN
-  INSERT INTO TAIKHOAN VALUES
-    (:NEW.MANHANVIEN,NULL,NULL
-    );
+
+--INSERT CTHDTP
+/*CREATE OR REPLACE PROCEDURE PRO_AUTO_INSERT_MAHD_CTHD
+IS
+  V_MAHD HOADONTHUCPHAM.MAHOADON%TYPE;
+BEGIN
+  SELECT MAHOADON INTO V_MAHD FROM HOADONTHUCPHAM WHERE ROWNUM=(SELECT MAX(ROWNUM) FROM HOADONTHUCPHAM);
+  INSERT INTO CTHDTP VALUES(V_MAHD,NULL,SYSDATE(),NULL);
+END PRO_AUTO_INSERT_MAHD_CTHD;
+*/
+/*--TẠO MÃ HÓA ĐƠN
+CREATE OR REPLACE PROCEDURE PRO_ID_HOADON
+  (V_MAHD IN OUT HDTHUCPHAM.MAHOADON%TYPE)
+IS
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MAHOADON,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM HDTHUCPHAM;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MAHD:=CONCAT('HD',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
 END;
+--TẠO MÃ NHÂN VIÊN
+CREATE OR REPLACE PROCEDURE PRO_ID_NHANVIEN
+  (V_MANV IN OUT NHANVIEN.MANHANVIEN%TYPE)
+IS 
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MANHANVIEN,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM NHANVIEN;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MANV:=CONCAT('NV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ GHẾ
+CREATE OR REPLACE PROCEDURE PRO_ID_GHE
+  (V_MAGHE IN OUT GHE.MAGHE%TYPE)
+IS 
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MAGHE,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM GHE;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MAGHE:=CONCAT('GHE',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ PHIM
+CREATE OR REPLACE PROCEDURE PRO_ID_PHIM
+  (V_MAPHIM IN OUT PHIM.MAPHIM%TYPE)
+IS 
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MAPHIM,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM PHIM;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MAPHIM:=CONCAT('PH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ SUẤT CHIẾU
+CREATE OR REPLACE PROCEDURE PRO_ID_SUATCHIEU
+  (V_MASC IN OUT SUATCHIEU.MASUATCHIEU%TYPE)
+IS
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MASUATCHIEU,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM SUATCHIEU;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MASC:=CONCAT('SC',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ SUẤT PHIM
+CREATE OR REPLACE PROCEDURE PRO_ID_SUATPHIM
+  (V_MASP IN OUT SUATPHIM.MASUATPHIM%TYPE)
+IS  
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MASUATPHIM,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM SUATPHIM;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MASP:=CONCAT('SP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ THỰC PHẨM
+CREATE OR REPLACE PROCEDURE PRO_ID_THUCPHAM
+  (V_MATP IN OUT THUCPHAM.MATHUCPHAM%TYPE)
+IS 
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MATHUCPHAM,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM THUCPHAM;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MATP:=CONCAT('TP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+--TẠO MÃ HỘI VIÊN
+CREATE OR REPLACE PROCEDURE PRO_ID_HOIVIEN
+  (V_MAHV IN OUT HOIVIEN.MAHOIVIEN%TYPE)
+IS 
+  LAST_VALUE NUMBER;
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MAHOIVIEN,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM HOIVIEN;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MAHV:=CONCAT('HV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+END;
+*/
 -- TẠO NGÀY LẬP
 CREATE OR REPLACE FUNCTION AUTO_NGAYLAP
   RETURN DATE
@@ -846,524 +743,354 @@ BEGIN
 END;
 --TẠO MÃ HÓA ĐƠN
 CREATE OR REPLACE FUNCTION ID_HOADON
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MAHD     VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MAHD VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MAHOADON,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MAHOADON,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM HDTHUCPHAM;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MAHD:=CONCAT('HD',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MAHD);
+  V_MAHD:=CONCAT('HD',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MAHD);
 END;
 --TẠO MÃ NHÂN VIÊN
 CREATE OR REPLACE FUNCTION ID_NHANVIEN
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MANV     VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MANV VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MANHANVIEN,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MANHANVIEN,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM NHANVIEN;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MANV:=CONCAT('NV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MANV);
+  V_MANV:=CONCAT('NV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MANV);
 END;
 --TẠO MÃ PHIM
 CREATE OR REPLACE FUNCTION ID_PHIM
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MAPHIM   VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MAPHIM VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MAPHIM,-5,5) AS NUMBER)) INTO LAST_VALUE FROM PHIM;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	SELECT MAX(CAST (SUBSTR(MAPHIM,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM PHIM;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MAPHIM:=CONCAT('PH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MAPHIM);
+  V_MAPHIM:=CONCAT('PH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MAPHIM);
 END;
 --TẠO MÃ SUẤT CHIẾU
 CREATE OR REPLACE FUNCTION ID_SUATCHIEU
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MASC     VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MASC VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MASUATCHIEU,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MASUATCHIEU,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM SUATCHIEU;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MASC:=CONCAT('SC',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MASC);
+  V_MASC:=CONCAT('SC',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MASC);
 END;
 --TẠO MÃ SUẤT PHIM
 CREATE OR REPLACE FUNCTION ID_SUATPHIM
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MASP     VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MASP VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MASUATPHIM,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MASUATPHIM,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM SUATPHIM;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MASP:=CONCAT('SP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MASP);
+  V_MASP:=CONCAT('SP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MASP);
 END;
 --TẠO MÃ THỰC PHẨM
-CREATE OR REPLACE FUNCTION ID_THUCPHAM
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MATP     VARCHAR2(7);
+CREATE OR REPLACE FUNCTION ID_SUATPHIM
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MATP VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MATHUCPHAM,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MATHUCPHAM,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM THUCPHAM;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MATP:=CONCAT('TP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MATP);
+  V_MATP:=CONCAT('TP',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MATP);
 END;
 --TẠO MÃ HỘI VIÊN
 CREATE OR REPLACE FUNCTION ID_HOIVIEN
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MAHV     VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MAHV VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MAHOIVIEN,-5,5) AS NUMBER))
+	SELECT MAX(CAST (SUBSTR(MAHOIVIEN,-5,5) AS NUMBER))  
   INTO LAST_VALUE
   FROM HOIVIEN;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MAHV:=CONCAT('HV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MAHV);
+  V_MAHV:=CONCAT('HV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MAHV);
 END;
 --TẠO MÃ GHẾ
 CREATE OR REPLACE FUNCTION ID_GHE
-  RETURN VARCHAR2
-AS
-  LAST_VALUE NUMBER;
-  V_MAGHE    VARCHAR2(7);
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MAGHE VARCHAR2(7);
 BEGIN
-  SELECT MAX(CAST (SUBSTR(MAGHE,-5,5) AS NUMBER)) INTO LAST_VALUE FROM GHE;
-  IF LAST_VALUE IS NULL THEN
-    LAST_VALUE  :=0 ;
+	SELECT MAX(CAST (SUBSTR(MAGHE,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM GHE;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
   END IF;
-V_MAGHE:=CONCAT('GH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
-RETURN(V_MAGHE);
+  V_MAGHE:=CONCAT('GH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MAGHE);
 END;
---HIỂN THỊ SUẤT CHIẾU
-/*CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATCHIEU
-(V_MASC SUATCHIEU.MASUATCHIEU%TYPE)
-IS
-V_MASP SUATPHIM.MASUATPHIM%TYPE;
-V_TENPHONG PHONGCHIEU.TENPHONG%TYPE;
-V_TENPHIM PHIM.TENPHIM%TYPE;
-BEGIN
-SELECT SP.MASUATPHIM,TENPHONG,TENPHIM
-INTO V_MASP,V_TENPHONG,V_TENPHIM
-FROM SUATPHIM SP,PHIM P,PHONGCHIEU PC,SUATCHIEU SC
-WHERE SP.MASUATPHIM=SC.MASUATPHIM
-AND P.MAPHIM=SP.MAPHIM
-AND PC.MAPHONG=SC.MAPHONG
-AND MASUATCHIEU=V_MASC;
-END;*/
---HIỂN THỊ SUẤT CHIẾU
-/*CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATCHIEU
-(V_MASC SUATCHIEU.MASUATCHIEU%TYPE)
-IS
-V_MASP SUATPHIM.MASUATPHIM%TYPE;
-V_TENDD DINHDANG.TENDINHDANG%TYPE;
-V_TENNN NGONNGU.TENNGONNGU%TYPE;
-V_TENHT HINHTHUC.TENHINHTHUC%TYPE;
-V_MAPHIM SUATPHIM.MAPHIM%TYPE;
-BEGIN
-SELECT PHIM.MAPHIM
-INTO V_MAPHIM
-FROM PHIM,SUATCHIEU,SUATPHIM
-WHERE SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
-AND SUATPHIM.MAPHIM=PHIM.MAPHIM
-AND SUATCHIEU.MASUATCHIEU=V_MASC;
-SELECT MASUATPHIM,TENNGONNGU,TENDINHDANG,TENHINHTHUC
-INTO V_MASP,V_TENNN,V_TENDD,V_TENHT
-FROM SUATPHIM SP,DINHDANG DD,NGONNGU NN,HINHTHUC HT
-WHERE SP.MADINHDANG=DD.MADINHDANG
-AND SP.MANGONNGU=NN.MANGONNGU
-AND SP.MAHINHTHUC=HT.MAHINHTHUC
-AND SP.MAPHIM=V_MAPHIM;
-END;*/
 --INSERT GHẾ
-CREATE OR REPLACE PROCEDURE PRO_INSERT_GHE(
-      V_MAPHONG IN PHONGCHIEU.MAPHONG%TYPE)
-  IS
-  BEGIN
-    FOR LOOP_COUNTER IN 01..48
-    LOOP
-      INSERT INTO GHE VALUES
-        (ID_GHE(),V_MAPHONG,LOOP_COUNTER
-        );
-    END LOOP;
-  END;
+CREATE OR REPLACE PROCEDURE PRO_INSERT_GHE
+  (V_MAPHONG IN PHONGCHIEU.MAPHONG%TYPE)
+IS
+
+BEGIN
+  FOR LOOP_COUNTER IN 01..64
+  LOOP
+    
+    INSERT INTO GHE VALUES(ID_GHE(),V_MAPHONG,LOOP_COUNTER);
+  END LOOP;
+END;
 --LẤY DANH SÁCH GHẾ ĐÃ ĐẶT
-CREATE OR REPLACE PROCEDURE PRO_BANVE_GHE
-    (
-      V_MASC IN VE.MASUATCHIEU%TYPE
-    )
-  IS
-    V_SOGHE GHE.SOGHE%TYPE;
-  BEGIN
+/*CREATE OR REPLACE PROCEDURE PRO_BANVE_GHE
+  (V_MASC IN VE.MASUATCHIEU%TYPE)
+IS
+  V_SOGHE GHE.SOGHE%TYPE;
+BEGIN
     SELECT SOGHE
     INTO V_SOGHE
-    FROM VE,
-      GHE
-    WHERE VE.MAGHE    =GHE.MAGHE
+    FROM VE,GHE
+    WHERE VE.MAGHE=GHE.MAGHE
     AND VE.MASUATCHIEU=V_MASC;
-  END;
+END;
+CREATE OR REPLACE PROCEDURE PRO_BANVE_GHE
+  (V_MASC IN VE.MASUATCHIEU%TYPE,
+  P_RECORDSET OUT SYS_REFCURSOR)
+IS
+
+BEGIN
+    OPEN P_RECORDSET FOR
+    SELECT SOGHE,VE.MAGHE,VE.MASUATCHIEU
+    FROM VE,GHE
+    WHERE VE.MAGHE=GHE.MAGHE
+    AND VE.MASUATCHIEU=V_MASC;
+END;*/
+--EXECUTE PRO_BANVE_GHE
 --INSERT GHẾ THỬ
 BEGIN
-  PRO_INSERT_GHE('PC00001');
+PRO_INSERT_GHE('PC00001');
 END;
 SELECT * FROM GHE;
-DELETE FROM GHE;
+--DELETE FROM GHE;
+
 --HÀM INSERT PHIM
--- Tự xử thành công
-/*CREATE OR REPLACE PROCEDURE PRO_INSERT_PHIM(
-V_MAPHIM        IN PHIM.MAPHIM%TYPE,
-V_TENPHIM       IN PHIM.TENPHIM%TYPE,
-V_THOILUONG     IN PHIM.THOILUONG%TYPE,
-V_THELOAI       IN PHIM.THELOAI%TYPE,
-V_NHASANXUAT    IN PHIM.NHASANXUAT%TYPE,
-V_NAMSANXUAT    IN PHIM.NAMSANXUAT%TYPE,
-V_DIENVIEN      IN PHIM.DIENVIEN%TYPE,
-V_NUOCSANXUAT   IN PHIM.NUOCSANXUAT%TYPE,
-V_NGAYKHOICHIEU IN PHIM.NGAYKHOICHIEU%TYPE,
-V_GIOIHANTUOI   IN PHIM.GIOIHANTUOI%TYPE,
-V_TOMTAT        IN PHIM.TOMTAT%TYPE,
-V_TRANGTHAI     IN PHIM.TRANGTHAI%TYPE)
+CREATE OR REPLACE PROCEDURE PRO_INSERT_PHIM
+  (V_MAPHIM IN PHIM.MAPHIM%TYPE,
+  V_TENPHIM IN PHIM.TENPHIM%TYPE,
+  V_THOILUONG IN PHIM.THOILUONG%TYPE,
+  V_THELOAI IN PHIM.THELOAI%TYPE,
+  V_NHASANXUAT IN PHIM.NHASANXUAT%TYPE,
+  V_NAMSANXUAT IN PHIM.NAMSANXUAT%TYPE,
+  V_DIENVIEN IN PHIM.DIENVIEN%TYPE,
+  V_NUOCSANXUAT IN PHIM.NUOCSANXUAT%TYPE,
+  V_NGAYKHOICHIEU IN PHIM.NGAYKHOICHIEU%TYPE,
+  V_GIOIHANTUOI IN PHIM.GIOIHANTUOI%TYPE,
+  V_TOMTAT IN PHIM.TOMTAT%TYPE,
+  V_TRANGTHAI IN PHIM.TRANGTHAI%TYPE)
 IS
 BEGIN
-INSERT
-INTO PHIM VALUES
-(
-V_MAPHIM,
-V_TENPHIM,
-V_THOILUONG,
-V_THELOAI,
-V_NHASANXUAT,
-V_NAMSANXUAT,
-V_DIENVIEN,
-V_NUOCSANXUAT,
-V_NGAYKHOICHIEU,
-V_GIOIHANTUOI,
-V_TOMTAT,
-V_TRANGTHAI
-);
-END;*/
+  INSERT INTO PHIM VALUES(V_MAPHIM,V_TENPHIM,V_THOILUONG,V_THELOAI,V_NHASANXUAT,V_NAMSANXUAT,V_DIENVIEN,V_NUOCSANXUAT,V_NGAYKHOICHIEU,V_GIOIHANTUOI,V_TOMTAT,V_TRANGTHAI);
+END;
+
 --HÀM INSERT SUẤT PHIM
-CREATE OR REPLACE PROCEDURE PRO_INSERT_SUATPHIM(
-      V_MASUATPHIM IN SUATPHIM.MASUATPHIM%TYPE,
-      V_NGONNGU    IN NGONNGU.TENNGONNGU%TYPE,
-      V_DINHDANG   IN DINHDANG.TENDINHDANG%TYPE,
-      V_MAPHIM     IN SUATPHIM.MAPHIM%TYPE,
-      V_HINHTHUC   IN HINHTHUC.TENHINHTHUC%TYPE )
-  IS
-    V_MANGONNGU SUATPHIM.MANGONNGU%TYPE;
-    V_MADINHDANG SUATPHIM.MADINHDANG%TYPE;
-    V_MAHINHTHUC SUATPHIM.MAHINHTHUC%TYPE;
-  BEGIN
-    SELECT MANGONNGU INTO V_MANGONNGU FROM NGONNGU WHERE TENNGONNGU=V_NGONNGU;
-    SELECT MADINHDANG
-    INTO V_MADINHDANG
-    FROM DINHDANG
-    WHERE TENDINHDANG=V_DINHDANG;
-    SELECT MAHINHTHUC
-    INTO V_MAHINHTHUC
-    FROM HINHTHUC
-    WHERE TENHINHTHUC=V_HINHTHUC;
-    INSERT
-    INTO SUATPHIM VALUES
-      (
-        V_MASUATPHIM,
-        V_MANGONNGU,
-        V_MADINHDANG,
-        V_MAPHIM,
-        V_MAHINHTHUC
-      );
-  END;
+CREATE OR REPLACE PROCEDURE PRO_INSERT_SUATPHIM
+  (V_MASUATPHIM IN SUATPHIM.MASUATPHIM%TYPE,
+  V_NGONNGU IN NGONNGU.TENNGONNGU%TYPE,
+  V_DINHDANG IN DINHDANG.TENDINHDANG%TYPE,
+  V_MAPHIM IN SUATPHIM.MAPHIM%TYPE,
+  V_HINHTHUC IN HINHTHUC.TENHINHTHUC%TYPE)
+IS
+  V_MANGONNGU  SUATPHIM.MANGONNGU%TYPE;
+  V_MADINHDANG SUATPHIM.MADINHDANG%TYPE;
+  V_MAHINHTHUC SUATPHIM.MAHINHTHUC%TYPE;
+  
+BEGIN
+  SELECT MANGONNGU
+  INTO V_MANGONNGU
+  FROM NGONNGU
+  WHERE TENNGONNGU=V_NGONNGU;
+  
+  SELECT MADINHDANG
+  INTO V_MADINHDANG
+  FROM DINHDANG
+  WHERE TENDINHDANG=V_DINHDANG;
+  
+  SELECT MAHINHTHUC
+  INTO V_MAHINHTHUC
+  FROM HINHTHUC
+  WHERE TENHINHTHUC=V_MAHINHTHUC;
+  
+  INSERT INTO SUATPHIM VALUES(V_MASUATPHIM,V_MANGONNGU,V_MADINHDANG,V_MAPHIM,V_MAHINHTHUC);
+END;
+
 --HÀM INSERT SUẤT PHIM VÀ PHIM
--- KHÔNG CẦN
-/*CREATE OR REPLACE PROCEDURE PRO_INSERT_PHIM_SUATPHIM
-(V_MAPHIM IN PHIM.MAPHIM%TYPE,
-V_TENPHIM IN PHIM.TENPHIM%TYPE,
-V_THOILUONG IN PHIM.THOILUONG%TYPE,
-V_THELOAI IN PHIM.THELOAI%TYPE,
-V_NHASANXUAT IN PHIM.NHASANXUAT%TYPE,
-V_NAMSANXUAT IN PHIM.NAMSANXUAT%TYPE,
-V_DIENVIEN IN PHIM.DIENVIEN%TYPE,
-V_NUOCSANXUAT IN PHIM.NUOCSANXUAT%TYPE,
-V_NGAYKHOICHIEU IN PHIM.NGAYKHOICHIEU%TYPE,
-V_GIOIHANTUOI IN PHIM.GIOIHANTUOI%TYPE,
-V_TOMTAT IN PHIM.TOMTAT%TYPE,
-V_TRANGTHAI IN PHIM.TRANGTHAI%TYPE,
-V_MASUATPHIM IN SUATPHIM.MASUATPHIM%TYPE,
-V_NGONNGU IN NGONNGU.TENNGONNGU%TYPE,
-V_DINHDANG IN DINHDANG.TENDINHDANG%TYPE,
-V_HINHTHUC IN HINHTHUC.TENHINHTHUC%TYPE)
+CREATE OR REPLACE PROCEDURE PRO_INSERT_PHIM_SUATPHIM
+ (V_MAPHIM IN PHIM.MAPHIM%TYPE,
+  V_TENPHIM IN PHIM.TENPHIM%TYPE,
+  V_THOILUONG IN PHIM.THOILUONG%TYPE,
+  V_THELOAI IN PHIM.THELOAI%TYPE,
+  V_NHASANXUAT IN PHIM.NHASANXUAT%TYPE,
+  V_NAMSANXUAT IN PHIM.NAMSANXUAT%TYPE,
+  V_DIENVIEN IN PHIM.DIENVIEN%TYPE,
+  V_NUOCSANXUAT IN PHIM.NUOCSANXUAT%TYPE,
+  V_NGAYKHOICHIEU IN PHIM.NGAYKHOICHIEU%TYPE,
+  V_GIOIHANTUOI IN PHIM.GIOIHANTUOI%TYPE,
+  V_TOMTAT IN PHIM.TOMTAT%TYPE,
+  V_TRANGTHAI IN PHIM.TRANGTHAI%TYPE,
+  V_MASUATPHIM IN SUATPHIM.MASUATPHIM%TYPE,
+  V_NGONNGU IN NGONNGU.TENNGONNGU%TYPE,
+  V_DINHDANG IN DINHDANG.TENDINHDANG%TYPE,
+  V_HINHTHUC IN HINHTHUC.TENHINHTHUC%TYPE)
 IS
 BEGIN
-PRO_INSERT_PHIM(V_MAPHIM,V_TENPHIM,V_THOILUONG,V_THELOAI,V_NHASANXUAT,V_NAMSANXUAT,V_DIENVIEN,V_NUOCSANXUAT,V_NGAYKHOICHIEU,V_GIOIHANTUOI,V_TOMTAT,V_TRANGTHAI);
-PRO_INSERT_SUATPHIM(V_MASUATPHIM,V_NGONNGU,V_DINHDANG,V_MAPHIM,V_HINHTHUC);
-END;*/
+  PRO_INSERT_PHIM(V_MAPHIM,V_TENPHIM,V_THOILUONG,V_THELOAI,V_NHASANXUAT,V_NAMSANXUAT,V_DIENVIEN,V_NUOCSANXUAT,V_NGAYKHOICHIEU,V_GIOIHANTUOI,V_TOMTAT,V_TRANGTHAI);
+  PRO_INSERT_SUATPHIM(V_MASUATPHIM,V_NGONNGU,V_DINHDANG,V_MAPHIM,V_HINHTHUC);
+END;
+
 --TÌM MÃ SUẤT PHIM
 CREATE OR REPLACE PROCEDURE FIND_ID_SP
-    (
-      V_TENPHIM IN PHIM.TENPHIM%TYPE
-    )
-  IS
-    V_MASUATPHIM VARCHAR(7);
-  BEGIN
-    SELECT MASUATPHIM
-    INTO V_MASUATPHIM
-    FROM PHIM,
-      SUATPHIM
-    WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
-    AND TENPHIM      =V_TENPHIM;
-  END;
+(V_TENPHIM IN PHIM.TENPHIM%TYPE)
+IS V_MASUATPHIM VARCHAR(7);
+BEGIN
+	SELECT MASUATPHIM
+  INTO V_MASUATPHIM
+  FROM PHIM,SUATPHIM
+  WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
+  AND TENPHIM=V_TENPHIM;
+END;
+
+
 --HÀM THÊM SUẤT CHIẾU
-/*
+/
 CREATE OR REPLACE PROCEDURE PRO_INSERT_SUATCHIEU
 (V_MASC IN SUATCHIEU.MASUATCHIEU%TYPE,
 V_TENPHONG IN PHONGCHIEU.TENPHONG%TYPE,
 V_MASP IN SUATCHIEU.MASUATPHIM%TYPE,
 V_THOIGIANCHIEU IN SUATCHIEU.THOIGIANCHIEU%TYPE)
 IS
-V_THOILUONG PHIM.THOILUONG%TYPE;
-V_MAPHONG SUATCHIEU.MAPHONG%TYPE;
-V_MASC_MIN SUATCHIEU.MASUATCHIEU%TYPE;
-V_TL_MIN PHIM.THOILUONG%TYPE;
-V_TGC_MIN SUATCHIEU.THOIGIANCHIEU%TYPE;
-V_MASC_MAX SUATCHIEU.MASUATCHIEU%TYPE;
-V_TGC_MAX SUATCHIEU.THOIGIANCHIEU%TYPE;
-V_EXISTS_MIN NUMBER(3);
-V_EXISTS_MAX NUMBER(3);
-LOI_SC EXCEPTION;
+  V_THOILUONG PHIM.THOILUONG%TYPE;
+  V_MAPHONG SUATCHIEU.MAPHONG%TYPE;
+  V_MASC_MIN SUATCHIEU.MASUATCHIEU%TYPE;
+  V_TL_MIN PHIM.THOILUONG%TYPE;
+  V_TGC_MIN SUATCHIEU.THOIGIANCHIEU%TYPE;
+  V_MASC_MAX SUATCHIEU.MASUATCHIEU%TYPE;
+  V_TGC_MAX SUATCHIEU.THOIGIANCHIEU%TYPE;
+  V_EXISTS_MIN NUMBER(3);
+  V_EXISTS_MAX NUMBER(3);
+
 BEGIN
-SELECT MAPHONG
-INTO V_MAPHONG
-FROM PHONGCHIEU
-WHERE TENPHONG=V_TENPHONG;
-SELECT DISTINCT THOILUONG
-INTO V_THOILUONG
-FROM PHIM,SUATPHIM
-WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
-AND MASUATPHIM=V_MASP;
-SELECT COUNT(*)
-INTO V_EXISTS_MIN
-FROM SUATCHIEU
-WHERE MAPHONG=V_MAPHONG
-AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU;--SUBTIME
-SELECT COUNT(*)
-INTO V_EXISTS_MAX
-FROM SUATCHIEU
-WHERE MAPHONG=V_MAPHONG
-AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU + INTERVAL '5' HOUR);--ADDTIME
-IF V_EXISTS_MIN!=0 THEN
-BEGIN
-SELECT MASUATCHIEU
-INTO V_MASC_MIN
-FROM SUATCHIEU
-WHERE MAPHONG=V_MAPHONG
-AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU--SUBTIME
-ORDER BY THOIGIANCHIEU DESC
-FETCH FIRST 1 ROW ONLY;
-SELECT THOIGIANCHIEU,THOILUONG
-INTO V_TGC_MIN,V_TL_MIN
-FROM PHIM,SUATCHIEU,SUATPHIM
-WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
-AND SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
-AND MASUATCHIEU=V_MASC_MIN;
---67--
---V_TGTT:=(DATE_ADD(DATE_ADD(V_TGC_MIN,INTERVAL V_TL_MIN MINUTE),INTERVAL '40' MINUTE));
-IF V_THOIGIANCHIEU<(V_TGC_MIN+INTERVAL '40' MINUTE+numtodsinterval(V_TL_MIN,'MINUTE'))
-THEN RAISE LOI_SC;
-ELSE
-GOTO KT_TGIANSUATCHIEUSAU;
-END IF;
-END;
-ELSE
-GOTO KT_TGIANSUATCHIEUSAU;
-END IF;
-<<KT_TGIANSUATCHIEUSAU>>
-BEGIN
-IF V_EXISTS_MAX!=0 THEN
-BEGIN
-SELECT MASUATCHIEU
-INTO V_MASC_MAX
-FROM SUATCHIEU
-WHERE MAPHONG=V_MAPHONG
-AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU+INTERVAL '5' HOUR)--ADDTIME
-ORDER BY THOIGIANCHIEU ASC
-FETCH FIRST 1 ROW ONLY;
-SELECT THOIGIANCHIEU
-INTO V_TGC_MAX
-FROM SUATCHIEU
-WHERE MASUATCHIEU=V_MASC_MAX;
---V_TGTD:=(DATE_ADD(DATE_ADD(V_THOIGIANCHIEU,INTERVAL V_THOILUONG MINUTE),INTERVAL '40' MINUTE));
-IF V_TGC_MAX<(V_THOIGIANCHIEU+INTERVAL '40' MINUTE+numtodsinterval(V_THOILUONG,'MINUTE'))
-THEN RAISE LOI_SC;
-ELSE
-GOTO THANH_CONG;
-END IF;
-END;
-ELSE
-GOTO THANH_CONG;
-END IF;
-END KT_TGIANSUATCHIEUSAU;
-<<THANH_CONG>>
-BEGIN
-INSERT INTO SUATCHIEU VALUES (V_MASC,V_MAPHONG,V_MASP,V_THOIGIANCHIEU,'CÒN CHỖ');
-DBMS_OUTPUT.PUT_LINE('LƯU THÀNH CÔNG');
-END THANH_CONG;
-EXCEPTION
-WHEN LOI_SC THEN
-DBMS_OUTPUT.PUT_LINE('CHỌN THỜI GIAN CHIẾU VÀ PHÒNG BỊ TRÙNG!');
-END;
-*/
---HÀM THÊM SUẤT CHIẾU
-/
-CREATE OR REPLACE PROCEDURE PRO_INSERT_SUATCHIEU(
-      V_MASC          IN SUATCHIEU.MASUATCHIEU%TYPE,
-      V_TENPHONG      IN PHONGCHIEU.TENPHONG%TYPE,
-      V_MASP          IN SUATCHIEU.MASUATPHIM%TYPE,
-      V_THOIGIANCHIEU IN SUATCHIEU.THOIGIANCHIEU%TYPE)
-  IS
-    V_THOILUONG PHIM.THOILUONG%TYPE;
-    V_MAPHONG SUATCHIEU.MAPHONG%TYPE;
-    V_MASC_MIN SUATCHIEU.MASUATCHIEU%TYPE;
-    V_TL_MIN PHIM.THOILUONG%TYPE;
-    V_TGC_MIN SUATCHIEU.THOIGIANCHIEU%TYPE;
-    V_MASC_MAX SUATCHIEU.MASUATCHIEU%TYPE;
-    V_TGC_MAX SUATCHIEU.THOIGIANCHIEU%TYPE;
-    V_EXISTS_MIN NUMBER(3);
-    V_EXISTS_MAX NUMBER(3);
-  BEGIN
-    SELECT MAPHONG INTO V_MAPHONG FROM PHONGCHIEU WHERE TENPHONG=V_TENPHONG;
-    SELECT DISTINCT THOILUONG
-    INTO V_THOILUONG
-    FROM PHIM,
-      SUATPHIM
-    WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
-    AND MASUATPHIM   =V_MASP;
-    SELECT COUNT(*)
-    INTO V_EXISTS_MIN
-    FROM SUATCHIEU
-    WHERE MAPHONG=V_MAPHONG
-    AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU;--SUBTIME
-    SELECT COUNT(                              *)
-    INTO V_EXISTS_MAX
-    FROM SUATCHIEU
-    WHERE MAPHONG=V_MAPHONG
-    AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU + INTERVAL '5' HOUR);--ADDTIME
-    IF V_EXISTS_MIN!=0 THEN
-      BEGIN
-        SELECT MASUATCHIEU
-        INTO V_MASC_MIN
-        FROM SUATCHIEU
-        WHERE MAPHONG=V_MAPHONG
-        AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU--SUBTIME
-        ORDER BY THOIGIANCHIEU DESC
-        FETCH FIRST 1 ROW ONLY;
-        SELECT THOIGIANCHIEU,
-          THOILUONG
-        INTO V_TGC_MIN,
-          V_TL_MIN
-        FROM PHIM,
-          SUATCHIEU,
-          SUATPHIM
-        WHERE PHIM.MAPHIM       =SUATPHIM.MAPHIM
-        AND SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
-        AND MASUATCHIEU         =V_MASC_MIN;
-        --67--
-        --V_TGTT:=(DATE_ADD(DATE_ADD(V_TGC_MIN,INTERVAL V_TL_MIN MINUTE),INTERVAL '40' MINUTE));
-        IF V_THOIGIANCHIEU<(V_TGC_MIN+INTERVAL '40' MINUTE+numtodsinterval(V_TL_MIN,'MINUTE')) THEN
-          RAISE_APPLICATION_ERROR(   -20000,'LỖI SUẤT CHIẾU TRƯỚC');
-        ELSE
-          GOTO KT_TGIANSUATCHIEUSAU;
-        END IF;
-      END;
-    ELSE
-      GOTO KT_TGIANSUATCHIEUSAU;
-    END IF;
-    <<KT_TGIANSUATCHIEUSAU>>
+
+  SELECT MAPHONG
+  INTO V_MAPHONG
+  FROM PHONGCHIEU
+  WHERE TENPHONG=V_TENPHONG;
+  
+  SELECT DISTINCT THOILUONG
+  INTO V_THOILUONG
+  FROM PHIM,SUATPHIM
+  WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
+  AND MASUATPHIM=V_MASP;
+  
+  SELECT COUNT(*)
+  INTO V_EXISTS_MIN
+  FROM SUATCHIEU
+  WHERE MAPHONG=V_MAPHONG
+  AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU;--SUBTIME
+  
+  SELECT COUNT(*)
+  INTO V_EXISTS_MAX
+  FROM SUATCHIEU
+  WHERE MAPHONG=V_MAPHONG
+  AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU + INTERVAL '5' HOUR);--ADDTIME
+  
+  IF V_EXISTS_MIN!=0 THEN
     BEGIN
-      IF V_EXISTS_MAX!=0 THEN
-        BEGIN
-          SELECT MASUATCHIEU
-          INTO V_MASC_MAX
-          FROM SUATCHIEU
-          WHERE MAPHONG=V_MAPHONG
-          AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU+INTERVAL '5' HOUR)--ADDTIME
-          ORDER BY THOIGIANCHIEU ASC
-          FETCH FIRST 1 ROW ONLY;
-          SELECT THOIGIANCHIEU
-          INTO V_TGC_MAX
-          FROM SUATCHIEU
-          WHERE MASUATCHIEU=V_MASC_MAX;
-          --V_TGTD:=(DATE_ADD(DATE_ADD(V_THOIGIANCHIEU,INTERVAL V_THOILUONG MINUTE),INTERVAL '40' MINUTE));
-          IF V_TGC_MAX<(V_THOIGIANCHIEU+INTERVAL '40' MINUTE+numtodsinterval(V_THOILUONG,'MINUTE')) THEN
-            RAISE_APPLICATION_ERROR(   -20000,'LỖI SUẤT CHIẾU SAU');
-          ELSE
-            GOTO THANH_CONG;
-          END IF;
-        END;
+      SELECT MASUATCHIEU
+      INTO V_MASC_MIN
+      FROM SUATCHIEU
+      WHERE MAPHONG=V_MAPHONG
+      AND THOIGIANCHIEU BETWEEN (V_THOIGIANCHIEU - INTERVAL '5' HOUR) AND V_THOIGIANCHIEU--SUBTIME
+      ORDER BY THOIGIANCHIEU DESC
+      FETCH FIRST 1 ROW ONLY;
+                   
+      SELECT THOIGIANCHIEU,THOILUONG
+      INTO V_TGC_MIN,V_TL_MIN
+      FROM PHIM,SUATCHIEU,SUATPHIM
+      WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
+      AND SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
+      AND MASUATCHIEU=V_MASC_MIN;
+--67--      
+      --V_TGTT:=(DATE_ADD(DATE_ADD(V_TGC_MIN,INTERVAL V_TL_MIN MINUTE),INTERVAL '40' MINUTE));
+      
+      IF V_THOIGIANCHIEU<(V_TGC_MIN+INTERVAL '40' MINUTE+numtodsinterval(V_TL_MIN,'MINUTE'))
+        THEN RAISE_APPLICATION_ERROR(-20000,'LỖI SUẤT CHIẾU TRƯỚC');
       ELSE
+        GOTO KT_TGIANSUATCHIEUSAU;
+      END IF;
+    END;
+  ELSE
+    GOTO KT_TGIANSUATCHIEUSAU;
+  END IF;
+ 
+  <<KT_TGIANSUATCHIEUSAU>>
+  BEGIN
+  IF V_EXISTS_MAX!=0 THEN
+    BEGIN
+      SELECT MASUATCHIEU
+      INTO V_MASC_MAX
+      FROM SUATCHIEU
+      WHERE MAPHONG=V_MAPHONG
+      AND THOIGIANCHIEU BETWEEN V_THOIGIANCHIEU AND (V_THOIGIANCHIEU+INTERVAL '5' HOUR)--ADDTIME
+      ORDER BY THOIGIANCHIEU ASC
+      FETCH FIRST 1 ROW ONLY;
+      
+      SELECT THOIGIANCHIEU
+      INTO V_TGC_MAX
+      FROM SUATCHIEU
+      WHERE MASUATCHIEU=V_MASC_MAX;
+      --V_TGTD:=(DATE_ADD(DATE_ADD(V_THOIGIANCHIEU,INTERVAL V_THOILUONG MINUTE),INTERVAL '40' MINUTE));
+
+      IF V_TGC_MAX<(V_THOIGIANCHIEU+INTERVAL '40' MINUTE+numtodsinterval(V_THOILUONG,'MINUTE'))
+        THEN RAISE_APPLICATION_ERROR(-20000,'LỖI SUẤT CHIẾU SAU');
+      ELSE 
         GOTO THANH_CONG;
       END IF;
-    END KT_TGIANSUATCHIEUSAU;
-    <<THANH_CONG>>
-    BEGIN
-      INSERT
-      INTO SUATCHIEU VALUES
-        (
-          V_MASC,
-          V_MAPHONG,
-          V_MASP,
-          V_THOIGIANCHIEU,
-          'Còn chỗ'
-        );
+    END;
+  ELSE
+    GOTO THANH_CONG;
+  END IF;
+  END KT_TGIANSUATCHIEUSAU;
+  
+  <<THANH_CONG>>
+  BEGIN
+      INSERT INTO SUATCHIEU VALUES (V_MASC,V_MAPHONG,V_MASP,V_THOIGIANCHIEU,'CÒN CHỖ');
       DBMS_OUTPUT.PUT_LINE('LƯU THÀNH CÔNG');
-    END THANH_CONG;
-  END;
-/
---THỬ THÊM SUẤT CHIẾU
+  END THANH_CONG;
+END;
+/  
+
+--THỬ THÊM SUẤT CHIẾU  
 SELECT * FROM SUATCHIEU;
-INSERT
-INTO SUATCHIEU VALUES
-  (
-    'SC00006',
-    'PC00003',
-    'SP00003',
-    TO_TIMESTAMP('25/06/2017 16:00:00','DD/MM/YYYY HH24:MI:SS'),
-    'Còn chỗ'
-  );
+
+INSERT INTO SUATCHIEU VALUES('SC00006','PC00003','SP00003',TO_TIMESTAMP('25/06/2017 16:00:00','DD/MM/YYYY HH24:MI:SS'),'CÒN CHỖ');
 BEGIN
-  PRO_INSERT_SUATCHIEU('SC00017','PHÒNG 306','SP00003',TO_TIMESTAMP('25/06/2017 2:20:00','DD/MM/YYYY HH24:MI:SS'));
+PRO_INSERT_SUATCHIEU('SC00018','PHÒNG 306','SP00003',TO_TIMESTAMP('25/06/2017 2:20:00','DD/MM/YYYY HH24:MI:SS'));
 END;
 SELECT * FROM SUATCHIEU;
 SELECT * FROM SUATPHIM;
@@ -1371,127 +1098,133 @@ SELECT THOIGIANCHIEU + INTERVAL '30' MINUTE + numtodsinterval(20,'MINUTE')
 FROM SUATCHIEU
 WHERE MASUATCHIEU='SC00012';
 --GIÁ VÉ
-CREATE OR REPLACE FUNCTION FUNC_GIAVE(
-    V_MASUATCHIEU IN VE.MASUATCHIEU%TYPE)
-  RETURN NUMBER
+
+CREATE OR REPLACE FUNCTION FUNC_GIAVE
+(V_MASUATCHIEU IN VE.MASUATCHIEU%TYPE)
+RETURN NUMBER
 IS
-  V_GIAVE VE.GIAVE%TYPE;
+  V_GIAVE VE.GIAVE%TYPE:=0;
   V_NGAY INTEGER;
   V_GIADINHDANG DINHDANG.GIADINHDANG%TYPE;
-  V_KM SUKIEN.GIAMGIA%TYPE;
+  
 BEGIN
+
   V_NGAY:=(1+TRUNC(SYSDATE)-TRUNC(SYSDATE,'IW'));
+  
   SELECT GIADINHDANG
   INTO V_GIADINHDANG
-  FROM DINHDANG DD,
-    SUATPHIM SP,
-    SUATCHIEU SC
+  FROM DINHDANG DD,SUATPHIM SP,SUATCHIEU SC
   WHERE DD.MADINHDANG=SP.MADINHDANG
-  AND SC.MASUATPHIM  =SP.MASUATPHIM
-  AND SC.MASUATCHIEU =V_MASUATCHIEU;
-  IF V_NGAY          =6 OR V_NGAY=7 THEN
-    V_GIAVE         :=15000;
+  AND SC.MASUATPHIM=SP.MASUATPHIM
+  AND SC.MASUATCHIEU=V_MASUATCHIEU;
+  
+  IF V_NGAY=6 OR V_NGAY=7
+    THEN V_GIAVE:=15000;
   END IF;
-SELECT GIAMGIA
-INTO V_KM
-FROM SUKIEN
-WHERE SYSDATE BETWEEN NGAYBATDAU AND NGAYKETTHUC;
-IF V_KM  IS NOT NULL THEN
-  V_GIAVE:=((V_GIAVE+V_GIADINHDANG)*(1-V_KM));
-ELSE
+  
   V_GIAVE:=(V_GIAVE+V_GIADINHDANG);
-END IF;
+  
 RETURN(V_GIAVE);
 END;
 --BÁN VÉ
-CREATE OR REPLACE PROCEDURE PRO_BANVE(
-      V_MAVE VE.MAVE%TYPE,
-      V_MASC VE.MASUATCHIEU%TYPE,
-      V_MANV VE.MANHANVIEN%TYPE,
-      V_MAHV VE.MAHOIVIEN%TYPE,
-      V_MAGHE VE.MAGHE%TYPE)
-  IS
-    V_MASK SUKIEN.MASUKIEN%TYPE;
-    V_GIAVE VE.GIAVE%TYPE;
-    V_COUNT_GHE INTEGER;
-  BEGIN
-    V_GIAVE:=FUNC_GIAVE(V_MASC);
-    SELECT MASUKIEN
-    INTO V_MASK
-    FROM SUKIEN
-    WHERE SYSDATE BETWEEN NGAYBATDAU AND NGAYKETTHUC;
-    INSERT
-    INTO VE VALUES
-      (
-        V_MAVE,
-        V_MASC,
-        V_MANV,
-        V_MASK,
-        V_MAHV,
-        V_MAGHE,
-        SYSDATE(),
-        V_GIAVE
-      );
-    IF V_MAHV IS NOT NULL THEN
-      UPDATE HOIVIEN
-      SET DIEMTICHLUY=DIEMTICHLUY+V_GIAVE*0.001
-      WHERE MAHOIVIEN=V_MAHV;
-    END IF;
-  END;
-/*SELECT * FROM PHIM;
-SELECT * FROM SUATPHIM;*/
+CREATE OR REPLACE PROCEDURE PRO_BANVE
+(V_MAVE VE.MAVE%TYPE,
+V_MASC VE.MASUATCHIEU%TYPE,
+V_MANV VE.MANHANVIEN%TYPE,
+V_MAHV VE.MAHOIVIEN%TYPE,
+V_MAGHE VE.MAGHE%TYPE)
+IS
+  V_GIAVE VE.GIAVE%TYPE;
+  V_COUNT_GHE INTEGER;
+BEGIN
+  V_GIAVE:=FUNC_GIAVE(V_MASC);
+  
+  INSERT INTO VE VALUES(V_MAVE,V_MASC,V_MANV,V_MAHV,V_MAGHE,SYSDATE(),V_GIAVE);
+  IF V_MAHV IS NOT NULL THEN
+    UPDATE HOIVIEN
+    SET DIEMTICHLUY=DIEMTICHLUY+V_GIAVE*0.001
+    WHERE MAHOIVIEN=V_MAHV;
+  END IF;
+END;
+SELECT * FROM PHIM;
+SELECT * FROM SUATPHIM;
 --HÀM HIỂN THỊ SUẤT PHIM
-/*CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATPHIM
+
+CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATPHIM
 (V_MAPHIM PHIM.MAPHIM%TYPE)
 IS
-V_MASP SUATPHIM.MASUATPHIM%TYPE;
-V_TENDD DINHDANG.TENDINHDANG%TYPE;
-V_TENNN NGONNGU.TENNGONNGU%TYPE;
-V_TENHT HINHTHUC.TENHINHTHUC%TYPE;
+  V_MASP SUATPHIM.MASUATPHIM%TYPE;
+  V_TENDD DINHDANG.TENDINHDANG%TYPE;
+  V_TENNN NGONNGU.TENNGONNGU%TYPE;
+  V_TENHT HINHTHUC.TENHINHTHUC%TYPE;
+BEGIN 
+  SELECT MASUATPHIM,TENNGONNGU,TENDINHDANG,TENHINHTHUC
+  INTO V_MASP,V_TENNN,V_TENDD,V_TENHT
+  FROM SUATPHIM SP,DINHDANG DD,NGONNGU NN,HINHTHUC HT
+  WHERE SP.MADINHDANG=DD.MADINHDANG
+  AND SP.MANGONNGU=NN.MANGONNGU
+  AND SP.MAHINHTHUC=HT.MAHINHTHUC
+  AND SP.MAPHIM=V_MAPHIM;
+END;
+
+CREATE OR REPLACE FUNCTION FUNC_HIENTHI_SUATPHIM
+(V_MAPHIM IN PHIM.MAPHIM%TYPE)
+RETURN SYS_REFCURSOR
+IS
+  L_RC SYS_REFCURSOR;
+BEGIN 
+  OPEN L_RC FOR 
+  SELECT MASUATPHIM,TENNGONNGU,TENDINHDANG,TENHINHTHUC
+  FROM SUATPHIM SP,DINHDANG DD,NGONNGU NN,HINHTHUC HT
+  WHERE SP.MADINHDANG=DD.MADINHDANG
+  AND SP.MANGONNGU=NN.MANGONNGU
+  AND SP.MAHINHTHUC=HT.MAHINHTHUC
+  AND SP.MAPHIM=V_MAPHIM;
+  RETURN L_RC;
+END;
+
+--SELECT FUNC_HIENTHI_SUATPHIM('PH00001') FROM DUAL;
+--HIỂN THỊ SUẤT CHIẾU
+/*CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATCHIEU
+(V_MASC SUATCHIEU.MASUATCHIEU%TYPE)
+IS
+  V_MASP SUATPHIM.MASUATPHIM%TYPE;
+  V_TENDD DINHDANG.TENDINHDANG%TYPE;
+  V_TENNN NGONNGU.TENNGONNGU%TYPE;
+  V_TENHT HINHTHUC.TENHINHTHUC%TYPE;
+  V_MAPHIM SUATPHIM.MAPHIM%TYPE;
 BEGIN
-SELECT MASUATPHIM,TENNGONNGU,TENDINHDANG,TENHINHTHUC
-INTO V_MASP,V_TENNN,V_TENDD,V_TENHT
-FROM SUATPHIM SP,DINHDANG DD,NGONNGU NN,HINHTHUC HT
-WHERE SP.MADINHDANG=DD.MADINHDANG
-AND SP.MANGONNGU=NN.MANGONNGU
-AND SP.MAHINHTHUC=HT.MAHINHTHUC
-AND SP.MAPHIM=V_MAPHIM;
+  SELECT PHIM.MAPHIM
+  INTO V_MAPHIM
+  FROM PHIM,SUATCHIEU,SUATPHIM
+  WHERE SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
+  AND SUATPHIM.MAPHIM=PHIM.MAPHIM
+  AND SUATCHIEU.MASUATCHIEU=V_MASC;
+  
+  SELECT MASUATPHIM,TENNGONNGU,TENDINHDANG,TENHINHTHUC
+  INTO V_MASP,V_TENNN,V_TENDD,V_TENHT
+  FROM SUATPHIM SP,DINHDANG DD,NGONNGU NN,HINHTHUC HT
+  WHERE SP.MADINHDANG=DD.MADINHDANG
+  AND SP.MANGONNGU=NN.MANGONNGU
+  AND SP.MAHINHTHUC=HT.MAHINHTHUC
+  AND SP.MAPHIM=V_MAPHIM;
 END;*/
 --HIỂN THỊ SUẤT CHIẾU
-CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATCHIEU(
-      V_MASC SUATCHIEU.MASUATCHIEU%TYPE)
-  IS
-    V_MASP SUATPHIM.MASUATPHIM%TYPE;
-    V_TENDD DINHDANG.TENDINHDANG%TYPE;
-    V_TENNN NGONNGU.TENNGONNGU%TYPE;
-    V_TENHT HINHTHUC.TENHINHTHUC%TYPE;
-    V_MAPHIM SUATPHIM.MAPHIM%TYPE;
-  BEGIN
-    SELECT PHIM.MAPHIM
-    INTO V_MAPHIM
-    FROM PHIM,
-      SUATCHIEU,
-      SUATPHIM
-    WHERE SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM
-    AND SUATPHIM.MAPHIM       =PHIM.MAPHIM
-    AND SUATCHIEU.MASUATCHIEU =V_MASC;
-    SELECT MASUATPHIM,
-      TENNGONNGU,
-      TENDINHDANG,
-      TENHINHTHUC
-    INTO V_MASP,
-      V_TENNN,
-      V_TENDD,
-      V_TENHT
-    FROM SUATPHIM SP,
-      DINHDANG DD,
-      NGONNGU NN,
-      HINHTHUC HT
-    WHERE SP.MADINHDANG=DD.MADINHDANG
-    AND SP.MANGONNGU   =NN.MANGONNGU
-    AND SP.MAHINHTHUC  =HT.MAHINHTHUC
-    AND SP.MAPHIM      =V_MAPHIM;
-  END;
+CREATE OR REPLACE PROCEDURE PRO_HIENTHI_SUATCHIEU
+(V_MASC SUATCHIEU.MASUATCHIEU%TYPE)
+IS
+  V_MASP SUATPHIM.MASUATPHIM%TYPE;
+  V_TENPHONG PHONGCHIEU.TENPHONG%TYPE;
+  V_TENPHIM PHIM.TENPHIM%TYPE;
+BEGIN
+  SELECT SP.MASUATPHIM,TENPHONG,TENPHIM
+  INTO V_MASP,V_TENPHONG,V_TENPHIM
+  FROM SUATPHIM SP,PHIM P,PHONGCHIEU PC,SUATCHIEU SC
+  WHERE SP.MASUATPHIM=SC.MASUATPHIM
+  AND P.MAPHIM=SP.MAPHIM
+  AND PC.MAPHONG=SC.MAPHONG
+  AND MASUATCHIEU=V_MASC;
+END;
 -- Edit hội viên
 CREATE OR REPLACE PROCEDURE EDIT_HOIVIEN(
       V_MAHOIVIEN HOIVIEN.MAHOIVIEN%TYPE,
@@ -1571,15 +1304,165 @@ CREATE OR REPLACE PROCEDURE TAOTK(
     WHERE MANHANVIEN=V_MANHANVIEN;
   END;
 --TRIGGER CẬP NHẬT TRẠNG THÁI VÀ SỐ LƯỢNG
-CREATE OR REPLACE TRIGGER UPDATE_SOLUONG AFTER
-  INSERT OR
-  UPDATE ON CTHDTP FOR EACH ROW DECLARE V_SLUONG INTEGER;
+CREATE OR REPLACE TRIGGER UPDATE_SOLUONG
+AFTER INSERT OR UPDATE ON CTHDTP
+FOR EACH ROW
+DECLARE V_SLUONG INTEGER;
+BEGIN
+  UPDATE THUCPHAM
+  SET SLUONG=SLUONG - :NEW.SOLUONG
+  WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
+  
+  SELECT SLUONG
+  INTO V_SLUONG
+  FROM THUCPHAM
+  WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
+  
+  IF (V_SLUONG=0) THEN
+      UPDATE THUCPHAM
+      SET TRANGTHAI=0
+      WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
+  END IF;
+END;
+--DÙNG ĐỂ TRÌ TRỆ HỆ THỐNG
+CREATE OR REPLACE PROCEDURE SLEEP(IN_TIME NUMBER)--GIÂY
+AS
+  V_NOW DATE;
+BEGIN
+  SELECT SYSDATE
+  INTO V_NOW
+  FROM DUAL;
+  LOOP
+    EXIT WHEN V_NOW+(IN_TIME*(1/86400))<=SYSDATE;--86400S/DAY
+  END LOOP;
+END;
+--TRANSACTION LOST UPDATE
+CREATE OR REPLACE PROCEDURE PRO_INSERT_CTHDTP
+(MAHD IN CTHDTP.MAHOADON%TYPE,                                           
+MATP IN CTHDTP.MATHUCPHAM%TYPE,
+SL IN CTHDTP.SOLUONG%TYPE,
+MANV IN NHANVIEN.MANHANVIEN%TYPE)
+IS
+  V_SLUONG THUCPHAM.SLUONG%TYPE;
+  V_DONGIA THUCPHAM.DONGIA%TYPE;
+  V_COUNT NUMBER(1);
+BEGIN
+  SELECT COUNT(*)
+  INTO V_COUNT
+  FROM HDTHUCPHAM
+  WHERE MAHOADON=MAHD;
+  IF V_COUNT=0 THEN
+  INSERT INTO HDTHUCPHAM VALUES(MAHD,MANV,0,SYSDATE());
+  END IF;
+  INSERT INTO CTHDTP VALUES(MAHD,MATP,SL);
+
+  SELECT SLUONG,DONGIA
+  INTO V_SLUONG,V_DONGIA
+  FROM THUCPHAM
+  WHERE MATHUCPHAM=MATP;
+  
+  V_SLUONG:=V_SLUONG-SL;
+
+  IF V_SLUONG<0 THEN
+    RAISE_APPLICATION_ERROR(-20001,'QUA SO LUONG');
+  ELSE
   BEGIN
     UPDATE THUCPHAM
-    SET SLUONG      =SLUONG - :NEW.SOLUONG
-    WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
-    SELECT SLUONG INTO V_SLUONG FROM THUCPHAM WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
-    IF (V_SLUONG=0) THEN
-      UPDATE THUCPHAM SET TRANGTHAI=0 WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
+    SET SLUONG=V_SLUONG
+    WHERE MATHUCPHAM=MATP;
+    UPDATE HDTHUCPHAM
+    SET SOTIEN=SOTIEN+V_DONGIA*SL
+    WHERE MAHOADON=MAHD;
+    IF V_SLUONG=0 THEN
+      UPDATE THUCPHAM
+      SET TRANGTHAI=0
+      WHERE MATHUCPHAM=MATP;
     END IF;
   END;
+  END IF;
+END;
+    
+--TRANSACTION LOST UPDATE
+
+UPDATE THUCPHAM
+SET SLUONG=10,TRANGTHAI=1
+WHERE MATHUCPHAM='TP00002';
+COMMIT;
+START TRANSACTION;
+SELECT * 
+FROM THUCPHAM
+WHERE MATHUCPHAM='TP00005';
+--FOR UPDATE;
+--EXECUTE SLEEP(10);
+EXECUTE PRO_INSERT_CTHDTP('HD00045','TP00005',2,'NV00001'); 
+EXECUTE SLEEP(10);
+
+COMMIT;
+SELECT * FROM THUCPHAM;
+
+--TRANSACTION NON REPEATABLE READ
+
+START TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+SELECT MAHOADON,SOTIEN 
+FROM HDTHUCPHAM
+WHERE MAHOADON='HD00045';
+
+EXECUTE SLEEP(10);
+SELECT MAHOADON,SOTIEN 
+FROM HDTHUCPHAM
+WHERE MAHOADON='HD00045';
+COMMIT;
+
+--TRANSACTION PHANTOM READ
+START TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+--SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+SELECT *
+FROM CTHDTP
+WHERE MAHOADON='HD00045';
+EXECUTE SLEEP(10);
+SELECT *
+FROM CTHDTP
+WHERE MAHOADON='HD00045';
+COMMIT;
+
+
+--TRANSACTION DEADLOCK
+
+START TRANSACTION;
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+--LOCK TABLE THUCPHAM IN EXCLUSIVE MODE;
+UPDATE THUCPHAM
+SET SLUONG=10,TRANGTHAI=1
+WHERE MATHUCPHAM='TP00001';
+
+EXECUTE PRO_INSERT_CTHDTP('HD00066','TP00002',1,'NV00001'); 
+COMMIT;
+--------------------------
+SELECT * FROM DINHDANG;
+SELECT * FROM SUATPHIM;
+SELECT * FROM SUATCHIEU;
+select func_GIAve('SC00001') FROM DUAL;
+------XOA SU KIEN
+drop table SUKIEN cascade constraints;
+ALTER TABLE VE
+DROP COLUMN MASUKIEN;
+------XET NULL
+alter table VE modify MAHOIVIEN null;
+-----XOA
+DELETE FROM HOIVIEN;
+DELETE FROM TAIKHOAN;
+DELETE FROM CTHDTP;
+DELETE FROM HDTHUCPHAM;
+DELETE FROM NHANVIEN;
+DELETE FROM CHUCVU;
+ALTER TABLE PHANQUYEN ADD MACHUCVU NVARCHAR2(7);
+DELETE FROM PHANQUYEN;
+DELETE FROM PHONGCHIEU;
+ALTER TABLE PHANQUYEN 
+   ADD CONSTRAINT FK_PHANQUYEN_CHUCVU FOREIGN KEY (MACHUCVU)
+      REFERENCES CHUCVU (MACHUCVU);
+SELECT * FROM CTHDTP;
+

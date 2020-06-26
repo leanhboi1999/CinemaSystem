@@ -1,19 +1,33 @@
 package view;
 
+import controller.HoiVienController;
 import controller.PhimController;
 import controller.SuatChieuController;
+import entity.HoiVien;
 import entity.Phim;
 import entity.SuatChieu;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import util.DateFormat;
 
 public class BanVeUI extends javax.swing.JFrame {
 
     //Khúc này để lấy mã nhân viên đăng nhập vào hệ thống
     private String manhanvien;
     private String maquyen;
+    public static String kt_masuatchieu;
+    public static String kt_tenphim;
+    public static String kt_giochieu;
+    public static String kt_maphong;
+    public static String kt_makhachhang;
+     public static String kt_tenkhachhang;
+    //DateFormat fm = new DateFormat("dd/mm/YYYY HH:MM:ss");
 
     public BanVeUI() {
         initComponents();
@@ -38,6 +52,8 @@ public class BanVeUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSuatChieu = new javax.swing.JTable();
         btnChon = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnTimKiem = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -97,31 +113,40 @@ public class BanVeUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Mã khách hàng:");
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnChon, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 842, 430);
+        jPanel10.setBounds(330, 112, 0, 430);
 
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -195,7 +220,7 @@ public class BanVeUI extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTtenPhim, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -226,7 +251,7 @@ public class BanVeUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tenphim = txtTtenPhim.getText();
+        //String tenphim = txtTtenPhim.getText();
         //Controller tìm tên phim có suất chiếu (trạng thái đang chiếu)
         //ArrayList<Phim> arr = PhimController.timKiem(tenphim);
         //Load phim lên jtable
@@ -238,6 +263,7 @@ public class BanVeUI extends javax.swing.JFrame {
             int row = jTablePhim.getSelectedRow();
             TableModel model = jTablePhim.getModel();
             String maphim = model.getValueAt(row, 0).toString();
+            kt_tenphim=model.getValueAt(row, 1).toString();
             ArrayList<SuatChieu> arr = SuatChieuController.taiSuatChieu(maphim);
             loadSuatChieu(arr);
             //JOptionPane.showMessageDialog(null, maphim);
@@ -250,9 +276,20 @@ public class BanVeUI extends javax.swing.JFrame {
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
         //Xử lý chọn suất chiếu
         int row = jTableSuatChieu.getSelectedRow();
-        String masuatchieu = jTableSuatChieu.getModel().getValueAt(row, 0).toString();
-        GheUITest ui = new GheUITest("App quản lí rạp phim", manhanvien, masuatchieu);
-        ui.showWindows();
+        GheUI gh;
+        kt_masuatchieu= jTableSuatChieu.getModel().getValueAt(row, 0).toString();
+        kt_giochieu= jTableSuatChieu.getModel().getValueAt(row, 2).toString();
+        kt_maphong=jTableSuatChieu.getModel().getValueAt(row, 1).toString();
+        kt_makhachhang=jTextField1.getText();
+        try {
+            HoiVien a=HoiVienController.layThongTin(kt_makhachhang);
+            kt_tenkhachhang=a.getHoten();
+            gh=new GheUI(kt_masuatchieu);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Mã khách hàng không hợp lệ");
+        }
+        
         
     }//GEN-LAST:event_btnChonActionPerformed
 
@@ -268,6 +305,7 @@ public class BanVeUI extends javax.swing.JFrame {
     private javax.swing.JButton btnChon;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
@@ -275,6 +313,7 @@ public class BanVeUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTablePhim;
     private javax.swing.JTable jTableSuatChieu;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtTtenPhim;
     // End of variables declaration//GEN-END:variables
 

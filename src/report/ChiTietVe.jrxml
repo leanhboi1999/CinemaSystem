@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0aaf3546-e093-41b8-83f5-30f64668c38d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mave" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from VE where MAVE = $P{mave}]]>
+	</queryString>
+	<field name="MAVE" class="java.lang.String"/>
+	<field name="MASUATCHIEU" class="java.lang.String"/>
+	<field name="MANHANVIEN" class="java.lang.String"/>
+	<field name="MASUKIEN" class="java.lang.String"/>
+	<field name="MAHOIVIEN" class="java.lang.String"/>
+	<field name="MAGHE" class="java.lang.String"/>
+	<field name="NGAYLAP" class="java.sql.Timestamp"/>
+	<field name="GIAVE" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="172" y="10" width="220" height="57" uuid="0bca22c1-8e99-48e3-bae0-8e2c6ae7133e"/>
+				<textElement textAlignment="Center">
+					<font size="44" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hóa Đơn]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="341" splitType="Stretch">
+			<textField>
+				<reportElement x="172" y="35" width="100" height="20" uuid="b7668729-8359-47fb-9f36-558c525d0c5d"/>
+				<textFieldExpression><![CDATA[$F{MAVE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="88" width="100" height="20" uuid="7dddff63-c824-4dba-bcb7-2abcb911c66b"/>
+				<textFieldExpression><![CDATA[$F{MASUATCHIEU}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="172" width="100" height="20" uuid="bac9b105-9c0d-4625-988c-d28c296c435d"/>
+				<textFieldExpression><![CDATA[$F{MANHANVIEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="172" y="128" width="100" height="20" uuid="8d6b1d4c-eb39-48d6-a618-8d900a3d5fa0"/>
+				<textFieldExpression><![CDATA[$F{MAGHE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="35" width="100" height="20" uuid="593d2159-76e8-4062-b736-26571753ba2c"/>
+				<text><![CDATA[Mã vé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="88" width="100" height="20" uuid="39e02498-af36-4435-8a71-b39e5ff4147d"/>
+				<text><![CDATA[Mã suất chiếu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="128" width="100" height="20" uuid="aa005648-bea8-4da5-8ec8-1a4435249e28"/>
+				<text><![CDATA[Mã ghế]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="172" width="100" height="20" uuid="639bef49-8f12-4711-b8be-92032e45c916"/>
+				<text><![CDATA[Mã nhân viên]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="69" width="555" height="1" uuid="74f16141-717e-4921-a2d8-4e92fcc68126"/>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="172" y="218" width="100" height="20" uuid="0e145489-2fcb-4ff1-8b73-4a7705a81025"/>
+				<textFieldExpression><![CDATA[$F{NGAYLAP}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="218" width="100" height="20" uuid="d0287384-1dab-4583-b582-f551b7955e37"/>
+				<text><![CDATA[Ngày lập]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="248" width="555" height="1" uuid="ab5c37a0-da3d-458e-b21e-6741046cebbb"/>
+			</line>
+			<textField>
+				<reportElement x="172" y="272" width="100" height="20" uuid="9c6fbc2e-a7c4-449c-b530-339bb5cd1540"/>
+				<textFieldExpression><![CDATA[$F{GIAVE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="272" width="100" height="20" uuid="e7a97170-0162-49b3-a2b7-3c821dc727a2"/>
+				<text><![CDATA[Giá vé]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

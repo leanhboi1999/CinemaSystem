@@ -28,4 +28,8 @@ public class GheController {
             return false;
         }
     }
+    public static int giave(String masuatchieu) throws SQLException
+    {
+        return GheModel.giave(masuatchieu);
+    }
 }
