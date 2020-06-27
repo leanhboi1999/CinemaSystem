@@ -39,7 +39,7 @@ import org.w3c.dom.css.RGBColor;
  */
 public class GheUI extends JFrame {
 
-    private static int count = 0;
+    private int count = 0;
     public static String kn_soghe;
     public static int kn_giave;
     public int arrgiave[][] = new int[8][8];
@@ -185,15 +185,15 @@ public class GheUI extends JFrame {
                                     try {
                                         setgiave(BanVeUI.kt_masuatchieu);
                                     } catch (SQLException ex) {
-                                        Logger.getLogger(GheUI.class.getName()).log(Level.SEVERE, null, ex);
+                                        JOptionPane.showMessageDialog(null, ex.getMessage());
                                     }
                                     JOptionPane.showMessageDialog(null, arrgiave[r][c]);
-                                    setCount(count - 1);
-
+                                    setCount(count + 1);
+                                    
                                 } else if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.RED) {
                                     btnArray[r][c].setBackground(Color.WHITE);
                                     btnArray[r][c].setForeground(Color.BLACK);
-                                    setCount(count + 1);
+                                    setCount(count - 1);
                                 }
                             }
                         }
@@ -237,10 +237,20 @@ public class GheUI extends JFrame {
                 if (count > 1) {
                     JOptionPane.showMessageDialog(null, "Chỉ được chọn một ghế");
                 } else {
+                   //xuLyLuu();
                    ChiTietVeUI ui = new ChiTietVeUI();
                    ui.setVisible(true);
                 }
             }
+
+            /*private void xuLyLuu() {
+                   try {
+                       int ketqua = GheController.themVe(s, kn_soghe, kn_soghe, kn_soghe, kn_soghe);
+                    if()
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+            }*/
         });
     }
 
@@ -280,7 +290,7 @@ public class GheUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        GheUI gheUITest = new GheUI(BanVeUI.kt_masuatchieu);
+        GheUI gheUI = new GheUI(BanVeUI.kt_masuatchieu);
     }
 
 }

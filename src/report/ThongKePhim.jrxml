@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9f37b688-6699-4233-9abd-91f9dae5aa8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select tenphim, sum(giave) from ve, suatchieu, suatphim, phim where ve.masuatchieu = suatchieu.masuatchieu and suatchieu.masuatphim = suatphim.masuatphim and suatphim.maphim = phim.maphim group by phim.maphim, phim.tenphim order by sum(giave)]]>
+	</queryString>
+	<field name="TENPHIM" class="java.lang.String"/>
+	<field name="SUM(GIAVE)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="14" width="249" height="40" uuid="6f741d57-afc8-46cd-b6d7-979bf05bb70a"/>
+				<textElement>
+					<font size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Doanh Thu Phim]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="55" y="2" width="100" height="20" uuid="5ae893e1-cc3a-44ff-b9a0-ba8ccb6973eb"/>
+				<text><![CDATA[TENPHIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="404" y="2" width="100" height="20" uuid="e8580d2d-56e4-41dd-b27e-a008e2cfe86c"/>
+				<text><![CDATA[SUM(GIAVE)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="55" y="0" width="100" height="20" uuid="96dbbd3e-9688-497b-9698-16956a5ed0a1"/>
+				<textFieldExpression><![CDATA[$F{TENPHIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="0" width="100" height="20" uuid="691f0bc8-17bb-4257-a042-17500fccef4f"/>
+				<textFieldExpression><![CDATA[$F{SUM(GIAVE)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

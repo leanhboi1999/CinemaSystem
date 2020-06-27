@@ -28,8 +28,17 @@ public class GheController {
             return false;
         }
     }
+    
+    /*public static String hienMaVe () throws SQLException {
+        
+    }*/
+    
     public static int giave(String masuatchieu) throws SQLException
     {
         return GheModel.giave(masuatchieu);
+    }
+    
+    public static int themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe) throws SQLException {
+        return GheModel.themVe(mave, masuatchieu, manhanvien, mahoivien, maghe);
     }
 }

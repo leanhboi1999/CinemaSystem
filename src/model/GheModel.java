@@ -3,6 +3,7 @@ package model;
 import entity.Ghe;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -42,5 +43,18 @@ public class GheModel {
         } finally {
             con.close();
         }
+    }
+    
+    public static int themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe) throws SQLException {
+        Connection con = Database.connect();
+        String sql = "INSERT INTO VE VALUES (?,?,?,?,?,?)";
+        PreparedStatement stm = con.prepareCall(sql);
+        stm.setString(1, mave);
+        stm.setString(2, masuatchieu);
+        stm.setString(3, manhanvien);
+        stm.setString(4, mahoivien);
+        stm.setString(5, maghe);
+        int row = stm.executeUpdate();
+        return row;
     }
 }
