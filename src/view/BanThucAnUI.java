@@ -2,6 +2,7 @@ package view;
 
 import controller.HoaDonThucPhamController;
 import controller.ThucPhamController;
+import static controller.ThucPhamController.inserthd;
 import entity.Cthdtp;
 import entity.HoaDonThucPham;
 import entity.ThucPham;
@@ -9,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import static model.ThucPhamModel.inserthd;
 
 public class BanThucAnUI extends javax.swing.JFrame {
 
@@ -16,6 +19,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
     private DefaultTableModel model;
     private String manhanvien;
     private String maquyen;
+
 
     public BanThucAnUI(String manhanvien, String maquyen) {
         initComponents();
@@ -293,12 +297,49 @@ public class BanThucAnUI extends javax.swing.JFrame {
             check = ThucPhamController.insertcthdtp(hoadon, chitiethoadon);
             if (check) {
                 JOptionPane.showMessageDialog(null, "Thành công");
+                ChiTietThucPham ui = new ChiTietThucPham(manhanvien,maquyen,mahoadon);
+        
+        TableModel model1 = jTableHoaDon.getModel();
+        int indexs[] = jTableHoaDon.getSelectedRows();
+        Object[] row = new  Object[6];
+        
+        DefaultTableModel model2 = (DefaultTableModel) ui.jTable1.getModel();   
+        
+        for(int i = 0; i < indexs.length; i++){
+            row[0] = model1.getValueAt(indexs[i], 0);
+            row[1] = model1.getValueAt(indexs[i], 1);
+            row[2] = model1.getValueAt(indexs[i], 2);
+            row[3] = model1.getValueAt(indexs[i], 3);
+            row[4] = model1.getValueAt(indexs[i], 4);
+            row[5] = model1.getValueAt(indexs[i], 5);
+            model2.addRow(row);
+        }
+        
+        int tongTien = 0;
+       
+       for(int i = 0; i < ui.jTable1.getRowCount(); i++ )
+       {
+           String getgiatien = ui.jTable1.getValueAt(i, 5).toString();
+           float giatien = Float.parseFloat(getgiatien);
+           tongTien = tongTien + (int) giatien;
+           //tongTien = tongTien + Float.parseFloat(jTable1.getValueAt(i, 5).toString());
+           //Integer.valueOf((String)jTable1.getValueAt(i, 5));
+       }
+       String tonggiatien = Integer.toString(tongTien);
+       ui.txtTong.setText(tonggiatien + " VND");
+       
+       dispose();
+        ui.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Thất bại");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+        
+        //insert hóa đơn vào database
+        
+        
     }//GEN-LAST:event_btnBanActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -388,4 +429,5 @@ public class BanThucAnUI extends javax.swing.JFrame {
             table.addRow(row);
         }
     }
+    
 }

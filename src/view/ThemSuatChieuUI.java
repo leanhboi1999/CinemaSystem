@@ -6,7 +6,6 @@ import controller.SuatChieuController;
 import controller.SuatPhimController;
 import entity.Phim;
 import entity.PhongChieu;
-import entity.SuatChieu;
 import entity.SuatPhim;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ThemSuatChieuUI extends javax.swing.JFrame {
+
     private String tenphim = "";
     SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -229,7 +229,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbbPhimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbPhimActionPerformed
-       if (cbbPhim.getSelectedIndex() != -1) {
+        if (cbbPhim.getSelectedIndex() != -1) {
             tenphim = cbbPhim.getItemAt(cbbPhim.getSelectedIndex());
             loadSuatPhim(tenphim);
         }
@@ -242,21 +242,26 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        String maSuatChieu=txtMaSuatChieu.getText();
-        String tenPhong=cbbPhong.getSelectedItem().toString();
-        String maSuatPhim=cbbMaSuatPhim.getSelectedItem().toString();
-        String gio= Gio.getText();
-        String ngaychieu=fm.format(txtDate.getDate());
-        System.out.println(ngaychieu);
-        try {
-            if (SuatChieuController.them(maSuatChieu, tenPhong, maSuatPhim, gio, ngaychieu)) {
-                JOptionPane.showMessageDialog(null, "Thêm thành công");
-            } else {
-                JOptionPane.showMessageDialog(null, "Thêm thất bại");
+        if (kiemTraDayDu()) {
+            String maSuatChieu = txtMaSuatChieu.getText();
+            String tenPhong = cbbPhong.getSelectedItem().toString();
+            String maSuatPhim = cbbMaSuatPhim.getSelectedItem().toString();
+            String gio = Gio.getText();
+            String ngaychieu = fm.format(txtDate.getDate());
+            System.out.println(ngaychieu);
+            try {
+                if (SuatChieuController.them(maSuatChieu, tenPhong, maSuatPhim, gio, ngaychieu)) {
+                    JOptionPane.showMessageDialog(null, "Thêm thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Thêm thất bại");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ dữ liệu");
         }
+
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void GioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GioActionPerformed
@@ -298,7 +303,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void hienthi() {
-          hienPhong();
+        hienPhong();
         hienTrangThai();
         hienPhim();
         try {
@@ -308,11 +313,10 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
-
     }
 
     private void hienPhong() {
-         try {
+        try {
             ArrayList<PhongChieu> arr = PhongChieuController.taiTatCa();
             cbbPhong.removeAllItems();
             for (PhongChieu item : arr) {
@@ -362,6 +366,14 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
+        }
+    }
+
+    private boolean kiemTraDayDu() {
+        if (txtDate.getDate() == null || Gio.getText() == null || cbbMaSuatPhim.getSelectedItem().toString() == null || cbbPhim.getSelectedItem().toString() == null || cbbPhong.getSelectedItem().toString() == null || cbbTrangThai.getSelectedItem().toString() == null) {
+            return false;
+        } else {
+            return true;
         }
     }
 }

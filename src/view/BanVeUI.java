@@ -26,7 +26,7 @@ public class BanVeUI extends javax.swing.JFrame {
     public static String kt_giochieu;
     public static String kt_maphong;
     public static String kt_makhachhang;
-     public static String kt_tenkhachhang;
+    public static String kt_tenkhachhang;
     //DateFormat fm = new DateFormat("dd/mm/YYYY HH:MM:ss");
 
     public BanVeUI() {
@@ -274,7 +274,7 @@ public class BanVeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablePhimMouseClicked
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
-        //Xử lý chọn suất chiếu
+       
         int row = jTableSuatChieu.getSelectedRow();
         GheUI gh;
         kt_masuatchieu= jTableSuatChieu.getModel().getValueAt(row, 0).toString();
@@ -284,6 +284,7 @@ public class BanVeUI extends javax.swing.JFrame {
         try {
             HoiVien a=HoiVienController.layThongTin(kt_makhachhang);
             kt_tenkhachhang=a.getHoten();
+            dispose();
             gh=new GheUI(kt_masuatchieu);
             
         } catch (SQLException ex) {

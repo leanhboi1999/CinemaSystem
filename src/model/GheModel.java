@@ -24,6 +24,15 @@ public class GheModel {
         }
         return arr;
     }
+     public static Ghe timKiemGhe(String maphong,int soghe) throws SQLException {
+        Connection con = Database.connect();
+        String sql = "SELECT * FROM GHE WHERE MAPHONG='" + maphong + "'" + "AND SOGHE='" +soghe+"'";
+        ResultSet rs = Database.callQuery(sql);
+        rs.next();
+        Ghe gh =new Ghe(rs.getString(1), rs.getString(2),rs.getInt(3));
+        Database.connect().close();
+        return gh;
+    }
 
     public static int them() throws SQLException {
         int row = Database.callQueryInsert("ghe", null);
@@ -44,16 +53,28 @@ public class GheModel {
             con.close();
         }
     }
-    
-    public static int themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe) throws SQLException {
+    public static String hienMa() throws SQLException {
+        CallableStatement st = Database.connect().prepareCall("{? = call ID_VE}");
+        st.registerOutParameter(1, Types.VARCHAR);
+        st.execute();
+        return st.getString(1);
+    }
+    public static int themVe(String mave,String masuatchieu, String manhanvien, String mahoivien, String maghe, int giave) throws SQLException {
         Connection con = Database.connect();
-        String sql = "INSERT INTO VE VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO VE VALUES (?,?,?,?,?,'',?)";
         PreparedStatement stm = con.prepareCall(sql);
         stm.setString(1, mave);
+        System.out.println(mave);
         stm.setString(2, masuatchieu);
+        System.out.println(masuatchieu);
         stm.setString(3, manhanvien);
+        System.out.println(manhanvien);
         stm.setString(4, mahoivien);
-        stm.setString(5, maghe);
+        System.out.println(mahoivien);
+        stm.setString(5,maghe);
+        System.out.println(maghe);
+        stm.setInt(6, giave);
+        System.out.println(giave);
         int row = stm.executeUpdate();
         return row;
     }

@@ -11,6 +11,12 @@ package entity;
  */
 public class ThucPham {
 
+    private String mathucpham;
+    private String tenthucpham;
+    private float dongia;
+    private int soluong;
+    private int trangthai;
+
     public ThucPham(String mathucpham, String tenthucpham, int dongia, int soluong, int trangthai) {
         this.mathucpham = mathucpham;
         this.tenthucpham = tenthucpham;
@@ -24,11 +30,9 @@ public class ThucPham {
         this.tenthucpham = tenthucpham;
         this.trangthai = trangthai;
     }
-    
+
     public ThucPham() {
     }
-
-    private String mathucpham;
 
     public String getMathucpham() {
         return mathucpham;
@@ -37,10 +41,6 @@ public class ThucPham {
     public void setMathucpham(String mathucpham) {
         this.mathucpham = mathucpham;
     }
-    private String tenthucpham;
-    private float dongia;
-    private int soluong;
-    private int trangthai;
 
     public String getTenthucpham() {
         return tenthucpham;

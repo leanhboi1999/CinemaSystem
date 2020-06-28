@@ -38,7 +38,16 @@ public class GheController {
         return GheModel.giave(masuatchieu);
     }
     
-    public static int themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe) throws SQLException {
-        return GheModel.themVe(mave, masuatchieu, manhanvien, mahoivien, maghe);
+    public static int themVe(String mave,String masuatchieu, String manhanvien, String mahoivien, String maghe,int giave) throws SQLException {
+        return GheModel.themVe(mave,masuatchieu, manhanvien, mahoivien, maghe,giave);
     }
+    public static String hienMa() throws SQLException
+    {
+        return GheModel.hienMa();
+    }
+    
+     public static Ghe timKiemGhe(String maphong,int soghe) throws SQLException
+     {
+         return GheModel.timKiemGhe(maphong,soghe);
+     }
 }

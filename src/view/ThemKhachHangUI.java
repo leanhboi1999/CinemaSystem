@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class ThemKhachHangUI extends javax.swing.JFrame {
+
     private String maquyen;
     private boolean isInsert;
     private HoiVien hv;
@@ -222,51 +223,50 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-        HoiVien hv = new HoiVien();
-        hv.setMahoivien(txtMaKhachHang.getText());
-        hv.setHoten(txtHoTen.getText());
-        if (jRadioButton1.isSelected()) {
-            hv.setGioitinh(jRadioButton1.getText());
-        }
-        if (jRadioButton2.isSelected()) {
-            hv.setGioitinh(jRadioButton2.getText());
-        }
-        hv.setCmnd(txtCMND.getText());
-        hv.setNgaysinh(jDateNgaySinh.getDate());
-        //String ngaysinh=fm.format(jDateNgaySinh.getDate());
-        hv.setEmail(txtEmail.getText());
-        hv.setSodienthoai(txtDienThoai.getText());
-        hv.setNgaydangki(null);
-        hv.setDiemtichluy(0);
-        if (isInsert) {
-            int kq;
-            try {
-                kq = HoiVienController.insertHoiVien(hv);
-                if (kq > 0) {
-                    JOptionPane.showMessageDialog(null, "Thành công");
-                } else {
-                    JOptionPane.showMessageDialog(null, "That Bai");
+        if (kiemTraDayDu()) {
+            HoiVien hv = new HoiVien();
+            hv.setMahoivien(txtMaKhachHang.getText());
+            hv.setHoten(txtHoTen.getText());
+            if (jRadioButton1.isSelected()) {
+                hv.setGioitinh(jRadioButton1.getText());
+            }
+            if (jRadioButton2.isSelected()) {
+                hv.setGioitinh(jRadioButton2.getText());
+            }
+            hv.setCmnd(txtCMND.getText());
+            hv.setNgaysinh(jDateNgaySinh.getDate());
+            //String ngaysinh=fm.format(jDateNgaySinh.getDate());
+            hv.setEmail(txtEmail.getText());
+            hv.setSodienthoai(txtDienThoai.getText());
+            hv.setNgaydangki(null);
+            hv.setDiemtichluy(0);
+            if (isInsert) {
+                int kq;
+                try {
+                    kq = HoiVienController.insertHoiVien(hv);
+                    if (kq > 0) {
+                        JOptionPane.showMessageDialog(null, "Thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "That Bai");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
                 }
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+            } else {
+                try {
+                    boolean kq1 = HoiVienController.editHoiVien(hv.getMahoivien(), hv.getHoten(), hv.getGioitinh(), hv.getCmnd(), hv.getNgaysinh(), hv.getEmail(), hv.getSodienthoai());
+                    if (kq1) {
+                        JOptionPane.showMessageDialog(null, "Thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Thất bại");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
             }
         } else {
-            try {
-                boolean kq1 = HoiVienController.editHoiVien(hv.getMahoivien(), hv.getHoten(), hv.getGioitinh(), hv.getCmnd(), hv.getNgaysinh(), hv.getEmail(), hv.getSodienthoai());
-                if (kq1) {
-                    JOptionPane.showMessageDialog(null, "Thành công");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Thất bại");
-                }
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-
+            JOptionPane.showMessageDialog(null, "Bạn vui lòng điền đầy đủ thông tin");
         }
-
-
     }//GEN-LAST:event_btnLuuActionPerformed
 
     public static void main(String args[]) {
@@ -323,6 +323,15 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+    }
+
+    private boolean kiemTraDayDu() {
+        if (txtMaKhachHang.getText() == null || txtHoTen.getText() == null || txtCMND.getText() == null || jDateNgaySinh.getDate() == null || txtEmail.getText() == null || txtDienThoai.getText() == null) {
+            return false;
+        } else {
+            return true;
         }
 
     }

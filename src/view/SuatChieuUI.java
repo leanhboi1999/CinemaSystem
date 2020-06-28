@@ -371,7 +371,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
             row[1] = item.getMasuatchieu();
             row[2] = item.getMaphong();
             row[3] = item.getMasuatphim();
-            row[4] = DateFormat.toString(item.getThoigianchieu());
+            row[4] = item.getThoigianchieu();
             row[5] = item.getTrangthai();
             table.addRow(row);
         }

@@ -24,7 +24,7 @@ public class SuatChieuModel {
         String sql = "select * from SuatChieu";
         ResultSet rs = Database.callQuery(sql);
         while (rs.next()) {
-            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5)));
+            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getString(5)));
         }
         return arr;
     }
@@ -34,7 +34,7 @@ public class SuatChieuModel {
         String sql = "SELECT * FROM SUATCHIEU WHERE MASUATCHIEU =" + "'" + masuatchieu + "'";
         ResultSet rs = Database.callQuery(sql);
         while (rs.next()) {
-            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5)));
+            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getString(5)));
         }
         Database.connect().close();
         return arr;
@@ -45,7 +45,7 @@ public class SuatChieuModel {
         String sql = "SELECT * FROM SUATCHIEU WHERE THOIGIANCHIEU>=TO_DATE('" + startDate + "','DD/MM/YYYY') AND THOIGIANCHIEU<=TO_DATE('" + endDate + "','DD/MM/YYYY')";
         ResultSet rs = Database.callQuery(sql);
         while (rs.next()) {
-            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5)));
+            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4), rs.getString(5)));
         }
         Database.connect().close();
         return arr;
@@ -98,7 +98,7 @@ public class SuatChieuModel {
         String sql = "select masuatchieu, maphong, thoigianchieu, sc.trangthai, madinhdang, mangonngu, mahinhthuc from suatchieu sc, suatphim sp, phim p where sc.masuatphim=sp.masuatphim and p.maphim=sp.maphim and p.maphim='" + maphim + "'";
         ResultSet rs = Database.callQuery(sql);
         while(rs.next()) {
-            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
+            arr.add(new SuatChieu(rs.getString(1), rs.getString(2), rs.getTimestamp(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7)));
         }
         return arr;
     }

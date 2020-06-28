@@ -12,7 +12,6 @@
 	<field name="MAVE" class="java.lang.String"/>
 	<field name="MASUATCHIEU" class="java.lang.String"/>
 	<field name="MANHANVIEN" class="java.lang.String"/>
-	<field name="MASUKIEN" class="java.lang.String"/>
 	<field name="MAHOIVIEN" class="java.lang.String"/>
 	<field name="MAGHE" class="java.lang.String"/>
 	<field name="NGAYLAP" class="java.sql.Timestamp"/>

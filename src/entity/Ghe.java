@@ -3,7 +3,7 @@ package entity;
 public class Ghe {
     private String maghe;
     private String maphong;
-    private String soghe;
+    private int soghe;
 
     public String getMaghe() {
         return maghe;
@@ -21,11 +21,11 @@ public class Ghe {
         this.maphong = maphong;
     }
 
-    public String getSoghe() {
+    public int getSoghe() {
         return soghe;
     }
 
-    public void setSoghe(String soghe) {
+    public void setSoghe(int soghe) {
         this.soghe = soghe;
     }
 
@@ -36,7 +36,7 @@ public class Ghe {
         this.maghe = maghe;
     }
     
-    public Ghe(String maghe, String maphong, String soghe) {
+    public Ghe(String maghe, String maphong, int soghe) {
         this.maghe = maghe;
         this.maphong = maphong;
         this.soghe = soghe;

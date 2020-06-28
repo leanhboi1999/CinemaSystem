@@ -15,14 +15,16 @@ import javax.swing.JOptionPane;
  * @author admin
  */
 public class ThemNhanVienUI extends javax.swing.JFrame {
+
     private String maquyen;
     private boolean isInsert;
     private NhanVien nv = new NhanVien();
     public static String ketnoi;
+
     /**
      * Creates new form ThemNhanVienUI
      */
-    public ThemNhanVienUI(boolean isInsert,NhanVien nv, String maquyen) {
+    public ThemNhanVienUI(boolean isInsert, NhanVien nv, String maquyen) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -31,8 +33,9 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
         this.nv = nv;
         this.maquyen = maquyen;
         hienThi();
-        
+
     }
+
     private ThemNhanVienUI() {
     }
 
@@ -282,45 +285,49 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        NhanVien nv = new NhanVien();
-        nv.setManhanvien(txtMaNhanVien.getText());
-        nv.setMachucvu(txtMaChucVu.getText());
-        nv.setHoten(txtHoTen.getText());
-        nv.setEmail(txtEmail.getText());
-        nv.setNgaysinh(txtNgaySinh.getDate());
-        nv.setNgayvaolam(txtNgayVaoLam.getDate());
-        nv.setMachucvu(txtMaChucVu.getText());
-        nv.setCmnd(txtCMND.getText());
-        nv.setGioitinh(txtGioiTinh.getSelectedItem().toString());
-        nv.setDiachi(txtDiaChi.getText());
-        nv.setDienthoai(txtDienThoai.getText());
-        if (isInsert) {
-            int kq;
-            try {
-                kq = NhanVienController.insertNhanVien(nv);
-                if (kq > 0) {
-                    JOptionPane.showMessageDialog(null, "Thành công");
-                } else {
-                    JOptionPane.showMessageDialog(null, "That Bai");
+        if (kiemTraDayDu()) {
+            NhanVien nv = new NhanVien();
+            nv.setManhanvien(txtMaNhanVien.getText());
+            nv.setMachucvu(txtMaChucVu.getText());
+            nv.setHoten(txtHoTen.getText());
+            nv.setEmail(txtEmail.getText());
+            nv.setNgaysinh(txtNgaySinh.getDate());
+            nv.setNgayvaolam(txtNgayVaoLam.getDate());
+            nv.setMachucvu(txtMaChucVu.getText());
+            nv.setCmnd(txtCMND.getText());
+            nv.setGioitinh(txtGioiTinh.getSelectedItem().toString());
+            nv.setDiachi(txtDiaChi.getText());
+            nv.setDienthoai(txtDienThoai.getText());
+            if (isInsert) {
+                int kq;
+                try {
+                    kq = NhanVienController.insertNhanVien(nv);
+                    if (kq > 0) {
+                        JOptionPane.showMessageDialog(null, "Thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "That Bai");
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
                 }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+            } else {
+                try {
+                    boolean kq1 = NhanVienController.editNhanVien(nv.getManhanvien(), nv.getMachucvu(), nv.getHoten(), nv.getEmail(), nv.getCmnd(), nv.getGioitinh(), nv.getNgaysinh(), nv.getDiachi(), nv.getDienthoai(), nv.getNgayvaolam(), nv.getTrangthai());
+                    if (kq1) {
+                        JOptionPane.showMessageDialog(null, "Thành công");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Thất bại");
+                    }
+
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage());
+                }
+
             }
         } else {
-            try {
-                boolean kq1 = NhanVienController.editNhanVien(nv.getManhanvien(), nv.getMachucvu(), nv.getHoten(), nv.getEmail(), nv.getCmnd(), nv.getGioitinh(), nv.getNgaysinh(),nv.getDiachi(), nv.getDienthoai(), nv.getNgayvaolam(), nv.getTrangthai());
-                if (kq1) {
-                    JOptionPane.showMessageDialog(null, "Thành công");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Thất bại");
-                }
-
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-
+            JOptionPane.showMessageDialog(null, "Bạn vui lòng nhập đầy đủ thông tin");
         }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
@@ -395,20 +402,26 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
             if (isInsert) {
                 txtMaNhanVien.setText(NhanVienController.hienMa());
                 txtMaNhanVien.setEnabled(false);
-                ketnoi=NhanVienController.hienMa();
-            }else {
+                ketnoi = NhanVienController.hienMa();
+            } else {
                 txtMaNhanVien.setText(nv.getManhanvien());
                 txtMaNhanVien.setEnabled(false);
                 txtHoTen.setText(nv.getHoten());
                 txtEmail.setText(nv.getEmail());
                 txtNgaySinh.setDate(nv.getNgaysinh());
                 txtNgayVaoLam.setDate(nv.getNgayvaolam());
-                if (nv.getTrangthai()==0) txtTrangThai.setSelectedIndex(0);
-                else txtTrangThai.setSelectedIndex(1);
+                if (nv.getTrangthai() == 0) {
+                    txtTrangThai.setSelectedIndex(0);
+                } else {
+                    txtTrangThai.setSelectedIndex(1);
+                }
                 txtMaChucVu.setText(nv.getMachucvu());
                 txtCMND.setText(nv.getCmnd());
-                if (nv.getGioitinh().equals("NAM")) txtGioiTinh.setSelectedIndex(0);
-                else txtGioiTinh.setSelectedIndex(1);
+                if (nv.getGioitinh().equals("NAM")) {
+                    txtGioiTinh.setSelectedIndex(0);
+                } else {
+                    txtGioiTinh.setSelectedIndex(1);
+                }
                 txtDiaChi.setText(nv.getDiachi());
                 txtDienThoai.setText(nv.getDienthoai());
             }
@@ -417,4 +430,13 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
         }
 
     }
+
+    private boolean kiemTraDayDu() {
+        if (txtMaNhanVien.getText() == null || txtMaChucVu.getText() == null || txtHoTen.getText() == null || txtEmail.getText() == null || txtNgaySinh.getDate() == null || txtNgayVaoLam.getDate() == null || txtMaChucVu.getText() == null || txtCMND.getText() == null || txtGioiTinh.getSelectedItem().toString() == null || txtDiaChi.getText() == null || txtDienThoai.getText() == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
+

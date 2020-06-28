@@ -90,19 +90,23 @@ drop index BAN_FK;
 drop table CTHDTP cascade constraints;
 drop table VE cascade constraints;
 --DROP PROCEDURE
-drop PROCEDURE pro_auto_insert_mahd_cthd;
-drop PROCEDURE pro_banve_ghe;
 drop procedure edit_hoivien;
 drop procedure edit_nhanvien;
 drop procedure edit_thucpham;
 drop procedure find_id_sp;
 drop procedure pro_banve;
 drop procedure pro_hienthi_suatchieu;
+drop procedure pro_hienthi_suatphim;
+drop procedure pro_insert_cthdtp;
 drop procedure pro_insert_ghe;
+drop procedure pro_insert_phim;
+drop procedure pro_insert_phim_suatphim;
 drop procedure pro_insert_suatchieu;
 drop procedure pro_insert_suatphim;
-drop procedure taotk;
+drop procedure sleep;
 --DROP FUNCTION
+drop function auto_ngaylap;
+drop function func_giave;
 drop function ID_GHE;
 drop function ID_HOADON;
 drop function ID_HOIVIEN;
@@ -111,10 +115,7 @@ drop function ID_PHIM;
 drop function ID_SUATCHIEU;
 drop function ID_SUATPHIM;
 drop function ID_VE;
-drop function auto_ngaylap;
-drop function func_giave;
 drop function id_thucpham;
-
 /*==============================================================*/
 /* Table: CHUCVU                                                */
 /*==============================================================*/
@@ -329,7 +330,7 @@ create table SUATPHIM
 create table TAIKHOAN 
 (
    MANHANVIEN           NVARCHAR2(7)             not null,
-   MAT_KHAU             NVARCHAR2(20),
+   MATKHAU              NVARCHAR2(20),
    MAQUYEN              NVARCHAR2(7)
 );
 
@@ -531,6 +532,7 @@ DELETE FROM TAIKHOAN;
 INSERT INTO TAIKHOAN VALUES ('NV00001','123456','PQ00001');
 INSERT INTO TAIKHOAN VALUES ('NV00002','123456','PQ00002');
 INSERT INTO TAIKHOAN VALUES ('NV00003','123456','PQ00003');
+commit;
 --INSERT VÀO BẢNG PHÒNG CHIẾU
 INSERT INTO PHONGCHIEU VALUES('PC00001','PHÒNG 101',64);
 INSERT INTO PHONGCHIEU VALUES('PC00002','PHÒNG 205',64);
@@ -807,7 +809,7 @@ BEGIN
   RETURN(V_MASP);
 END;
 --TẠO MÃ THỰC PHẨM
-CREATE OR REPLACE FUNCTION ID_SUATPHIM
+CREATE OR REPLACE FUNCTION ID_THUCPHAM
 RETURN VARCHAR2
 AS LAST_VALUE NUMBER;V_MATP VARCHAR2(7);
 BEGIN
@@ -832,6 +834,20 @@ BEGIN
   V_MAHV:=CONCAT('HV',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
   RETURN(V_MAHV);
 END;
+--TẠO MÃ VÉ CHO GHẾ
+create or replace 
+FUNCTION ID_VE
+RETURN VARCHAR2
+AS LAST_VALUE NUMBER;V_MAVE VARCHAR2(7);
+BEGIN
+	SELECT MAX(CAST (SUBSTR(MAVE,-5,5) AS NUMBER))  
+  INTO LAST_VALUE
+  FROM VE;
+	IF LAST_VALUE IS NULL THEN LAST_VALUE:=0 ;
+  END IF;
+  V_MAVE:=CONCAT('VE',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
+  RETURN(V_MAVE);
+END;
 --TẠO MÃ GHẾ
 CREATE OR REPLACE FUNCTION ID_GHE
 RETURN VARCHAR2
@@ -845,6 +861,7 @@ BEGIN
   V_MAGHE:=CONCAT('GH',SUBSTR(CONCAT('00000',TO_CHAR(LAST_VALUE + 1)),-5,5));
   RETURN(V_MAGHE);
 END;
+select * from ve;
 --INSERT GHẾ
 CREATE OR REPLACE PROCEDURE PRO_INSERT_GHE
   (V_MAPHONG IN PHONGCHIEU.MAPHONG%TYPE)
@@ -938,7 +955,6 @@ BEGIN
   
   INSERT INTO SUATPHIM VALUES(V_MASUATPHIM,V_MANGONNGU,V_MADINHDANG,V_MAPHIM,V_MAHINHTHUC);
 END;
-
 --HÀM INSERT SUẤT PHIM VÀ PHIM
 CREATE OR REPLACE PROCEDURE PRO_INSERT_PHIM_SUATPHIM
  (V_MAPHIM IN PHIM.MAPHIM%TYPE,
@@ -974,8 +990,6 @@ BEGIN
   WHERE PHIM.MAPHIM=SUATPHIM.MAPHIM
   AND TENPHIM=V_TENPHIM;
 END;
-
-
 --HÀM THÊM SUẤT CHIẾU
 /
 CREATE OR REPLACE PROCEDURE PRO_INSERT_SUATCHIEU
@@ -1098,7 +1112,6 @@ SELECT THOIGIANCHIEU + INTERVAL '30' MINUTE + numtodsinterval(20,'MINUTE')
 FROM SUATCHIEU
 WHERE MASUATCHIEU='SC00012';
 --GIÁ VÉ
-
 CREATE OR REPLACE FUNCTION FUNC_GIAVE
 (V_MASUATCHIEU IN VE.MASUATCHIEU%TYPE)
 RETURN NUMBER
@@ -1324,6 +1337,7 @@ BEGIN
       WHERE MATHUCPHAM=:NEW.MATHUCPHAM;
   END IF;
 END;
+
 --DÙNG ĐỂ TRÌ TRỆ HỆ THỐNG
 CREATE OR REPLACE PROCEDURE SLEEP(IN_TIME NUMBER)--GIÂY
 AS

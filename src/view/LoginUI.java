@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class LoginUI extends javax.swing.JFrame {
-
+    public static String kn_manhanvien;
     public LoginUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -171,6 +171,7 @@ public class LoginUI extends javax.swing.JFrame {
             dispose();
         } else if (evt.getSource() == kButton1) {
             String username = txtUserName.getText();
+            kn_manhanvien=txtUserName.getText();
             String password = txtPassword.getText();
 
             if ("".equals(username) || "".equals(password)) {
@@ -185,9 +186,9 @@ public class LoginUI extends javax.swing.JFrame {
                         ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00002")) {
                        dispose();
-                       //BanVeUI ui = new BanVeUI(username);
-                       //ui.setVisible(true);
-                       //ui.setLocationRelativeTo(null);
+                       BanVeUI ui = new BanVeUI();
+                       ui.setVisible(true);
+                       ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00003")) {
                         //Cái này của bán thực phẩm
                         dispose();

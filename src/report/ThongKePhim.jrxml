@@ -8,6 +8,9 @@
 	</queryString>
 	<field name="TENPHIM" class="java.lang.String"/>
 	<field name="SUM(GIAVE)" class="java.math.BigDecimal"/>
+	<variable name="SUM(GIAVE)_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM(GIAVE)}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -29,11 +32,11 @@
 		<band height="61" splitType="Stretch">
 			<staticText>
 				<reportElement x="55" y="2" width="100" height="20" uuid="5ae893e1-cc3a-44ff-b9a0-ba8ccb6973eb"/>
-				<text><![CDATA[TENPHIM]]></text>
+				<text><![CDATA[Tên Phim]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="404" y="2" width="100" height="20" uuid="e8580d2d-56e4-41dd-b27e-a008e2cfe86c"/>
-				<text><![CDATA[SUM(GIAVE)]]></text>
+				<text><![CDATA[Doanh Thu]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -56,6 +59,18 @@
 		<band height="54" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="404" y="0" width="100" height="20" uuid="63fad1ad-7847-42ba-b3ec-e9d4218d5445"/>
+				<textFieldExpression><![CDATA[$V{SUM(GIAVE)_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="55" y="0" width="100" height="20" uuid="cee77e19-3969-4091-871d-e6ebcb9b9d60"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total: ]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

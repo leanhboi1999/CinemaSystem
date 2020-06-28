@@ -1,5 +1,6 @@
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class SuatChieu {
@@ -7,7 +8,7 @@ public class SuatChieu {
     private String masuatchieu;
     private String maphong;
     private String masuatphim;
-    private Date thoigianchieu;
+    private Timestamp thoigianchieu;
     private String trangthai;
     private String tenphong;
     private String ngonngu;
@@ -79,11 +80,11 @@ public class SuatChieu {
         this.masuatphim = masuatphim;
     }
 
-    public Date getThoigianchieu() {
+    public Timestamp getThoigianchieu() {
         return thoigianchieu;
     }
 
-    public void setThoigianchieu(Date thoigianchieu) {
+    public void setThoigianchieu(Timestamp thoigianchieu) {
         this.thoigianchieu = thoigianchieu;
     }
 
@@ -98,14 +99,14 @@ public class SuatChieu {
     public SuatChieu() {
     }
 
-    public SuatChieu(String masuatchieu, String masuatphim, Date thoigianchieu, String tenphong) {
+    public SuatChieu(String masuatchieu, String masuatphim, Timestamp thoigianchieu, String tenphong) {
         this.masuatchieu = masuatchieu;
         this.masuatphim = masuatphim;
         this.thoigianchieu = thoigianchieu;
         this.tenphong = tenphong;
     }
 
-    public SuatChieu(String masuatchieu, String maphong, String masuatphim, Date thoigianchieu, String trangthai) {
+    public SuatChieu(String masuatchieu, String maphong, String masuatphim, Timestamp thoigianchieu, String trangthai) {
         this.masuatchieu = masuatchieu;
         this.maphong = maphong;
         this.masuatphim = masuatphim;
@@ -113,7 +114,7 @@ public class SuatChieu {
         this.trangthai = trangthai;
     }
 
-    public SuatChieu(String masuatchieu, String maphong, Date thoigianchieu, String trangthai, String ngonngu, String dinhdang, String hinhthuc) {
+    public SuatChieu(String masuatchieu, String maphong, Timestamp thoigianchieu, String trangthai, String ngonngu, String dinhdang, String hinhthuc) {
         this.masuatchieu = masuatchieu;
         this.maphong = maphong;
         this.thoigianchieu = thoigianchieu;

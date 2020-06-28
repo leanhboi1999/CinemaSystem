@@ -25,6 +25,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,7 +39,7 @@ import org.w3c.dom.css.RGBColor;
  * @author admin
  */
 public class GheUI extends JFrame {
-
+    public static String mave;
     private int count = 0;
     public static String kn_soghe;
     public static int kn_giave;
@@ -143,7 +144,7 @@ public class GheUI extends JFrame {
         ThemGhe();
         LoadGhe();
         addEvent();
-        ;
+        
     }
 
     private void LoadGhe() {
@@ -237,20 +238,12 @@ public class GheUI extends JFrame {
                 if (count > 1) {
                     JOptionPane.showMessageDialog(null, "Chỉ được chọn một ghế");
                 } else {
-                   //xuLyLuu();
+                   xuLyLuu();
+                   dispose();
                    ChiTietVeUI ui = new ChiTietVeUI();
                    ui.setVisible(true);
                 }
             }
-
-            /*private void xuLyLuu() {
-                   try {
-                       int ketqua = GheController.themVe(s, kn_soghe, kn_soghe, kn_soghe, kn_soghe);
-                    if()
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                }
-            }*/
         });
     }
 
@@ -267,6 +260,30 @@ public class GheUI extends JFrame {
         }
 
     }
+    
+    private void xuLyLuu(){
+        int soghe=Integer.parseInt(kn_soghe);
+        Ghe tam = null;
+        String maghe;
+        try {
+            tam = GheController.timKiemGhe(BanVeUI.kt_maphong,soghe);
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"ghe sai");
+        }
+        
+        try {
+            mave=GheController.hienMa();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"sai ma ghe");
+        }
+        
+                maghe=tam.getMaghe();
+                   try {
+                       int ketqua = GheController.themVe(mave,BanVeUI.kt_masuatchieu,LoginUI.kn_manhanvien,BanVeUI.kt_makhachhang,maghe,kn_giave);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null,"khong them duoc");
+                }
+            }
 
     public void setgiave(String masuatchieu) throws SQLException {
         int giave = GheController.giave(masuatchieu);

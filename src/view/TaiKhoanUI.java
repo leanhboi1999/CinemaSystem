@@ -158,24 +158,27 @@ public class TaiKhoanUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String manv=jTextField1.getText();
-        String tenquyen=jComboBox1.getSelectedItem().toString();
-        String matkhau=jTextField2.getText();
-        try{
-            if (TaiKhoanController.taoTaiKhoan(manv, tenquyen, matkhau))
-            {
-                JOptionPane.showMessageDialog(null,"thành công");
-            } else {
-                JOptionPane.showMessageDialog(null,"thất bại");
+        if (kiemTraDayDu()) {
+            String manv = jTextField1.getText();
+            String tenquyen = jComboBox1.getSelectedItem().toString();
+            String matkhau = jTextField2.getText();
+            try {
+                if (TaiKhoanController.taoTaiKhoan(manv, tenquyen, matkhau)) {
+                    JOptionPane.showMessageDialog(null, "thành công");
+                } else {
+                    JOptionPane.showMessageDialog(null, "thất bại");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
+        } else {
+            JOptionPane.showConfirmDialog(null, "Bạn vui lòng nhập đầy đủ thông tin");
         }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
@@ -235,4 +238,12 @@ public class TaiKhoanUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
+
+    private boolean kiemTraDayDu() {
+        if (jTextField1.getText() == null || jComboBox1.getSelectedItem().toString() == null || jTextField2.getText() == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

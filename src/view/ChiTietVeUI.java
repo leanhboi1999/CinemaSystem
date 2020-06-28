@@ -5,14 +5,14 @@
  */
 package view;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 import util.Database;
 
 /**
@@ -319,8 +319,10 @@ public class ChiTietVeUI extends javax.swing.JFrame {
             String jrxmlFile = "src/report/ChiTietVe.jrxml";
             Connection con = Database.connect();
             HashMap param = new HashMap();
-            //Chưa xử lý được
-            //param.put("mave", )
+            param.put("mave", GheUI.mave);
+            JasperReport JRpt = JasperCompileManager.compileReport(jrxmlFile);
+            JasperPrint jPrint = JasperFillManager.fillReport(JRpt, param, con);
+            JasperViewer.viewReport(jPrint, false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
