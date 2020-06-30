@@ -2,7 +2,6 @@ package view;
 
 import controller.HoaDonThucPhamController;
 import controller.ThucPhamController;
-import static controller.ThucPhamController.inserthd;
 import entity.Cthdtp;
 import entity.HoaDonThucPham;
 import entity.ThucPham;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import static model.ThucPhamModel.inserthd;
+
 
 public class BanThucAnUI extends javax.swing.JFrame {
 
@@ -20,8 +19,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
     private String manhanvien;
     private String maquyen;
 
-
-    public BanThucAnUI(String manhanvien, String maquyen) {
+    public BanThucAnUI(String maquyen, String manhanvien) {
         initComponents();
         setTitle("App quản lý rạp phim");
         setLocationRelativeTo(null);
@@ -58,6 +56,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
         txtMaNV = new javax.swing.JTextField();
         btnXoa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -260,6 +259,14 @@ public class BanThucAnUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1200, 620);
 
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(10, 20, 90, 80);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -280,7 +287,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
         String date = txtDate.getText();
         String manhanvien = txtMaNV.getText();
         int sum = 0;
-        HoaDonThucPham hoadon = new HoaDonThucPham(mahoadon, manhanvien, sum, date);
+
         for (int i = 0; i < jTableHoaDon.getRowCount(); i++) {
             String mathucpham = jTableHoaDon.getValueAt(i, 1).toString();
             String getsoluong = jTableHoaDon.getValueAt(i, 4).toString();
@@ -292,54 +299,56 @@ public class BanThucAnUI extends javax.swing.JFrame {
             sum = sum + (int) dongia;
         }
 
+        HoaDonThucPham hoadon = new HoaDonThucPham(mahoadon, manhanvien, sum, date);
+
         boolean check;
         try {
             check = ThucPhamController.insertcthdtp(hoadon, chitiethoadon);
             if (check) {
                 JOptionPane.showMessageDialog(null, "Thành công");
-                ChiTietThucPham ui = new ChiTietThucPham(manhanvien,maquyen,mahoadon);
-        
-        TableModel model1 = jTableHoaDon.getModel();
-        int indexs[] = jTableHoaDon.getSelectedRows();
-        Object[] row = new  Object[6];
-        
-        DefaultTableModel model2 = (DefaultTableModel) ui.jTable1.getModel();   
-        
-        for(int i = 0; i < indexs.length; i++){
-            row[0] = model1.getValueAt(indexs[i], 0);
-            row[1] = model1.getValueAt(indexs[i], 1);
-            row[2] = model1.getValueAt(indexs[i], 2);
-            row[3] = model1.getValueAt(indexs[i], 3);
-            row[4] = model1.getValueAt(indexs[i], 4);
-            row[5] = model1.getValueAt(indexs[i], 5);
-            model2.addRow(row);
-        }
-        
-        int tongTien = 0;
-       
-       for(int i = 0; i < ui.jTable1.getRowCount(); i++ )
-       {
-           String getgiatien = ui.jTable1.getValueAt(i, 5).toString();
-           float giatien = Float.parseFloat(getgiatien);
-           tongTien = tongTien + (int) giatien;
-           //tongTien = tongTien + Float.parseFloat(jTable1.getValueAt(i, 5).toString());
-           //Integer.valueOf((String)jTable1.getValueAt(i, 5));
-       }
-       String tonggiatien = Integer.toString(tongTien);
-       ui.txtTong.setText(tonggiatien + " VND");
-       
-       dispose();
-        ui.setVisible(true);
+                dispose();
+                ChiTietThucPham ui = new ChiTietThucPham(manhanvien, maquyen, mahoadon);
+                ui.setVisible(true);
+
+                TableModel model1 = jTableHoaDon.getModel();
+                int indexs[] = jTableHoaDon.getSelectedRows();
+                Object[] row = new Object[6];
+
+                DefaultTableModel model2 = (DefaultTableModel) ui.jTable1.getModel();
+
+                for (int i = 0; i < indexs.length; i++) {
+                    row[0] = model1.getValueAt(indexs[i], 0);
+                    row[1] = model1.getValueAt(indexs[i], 1);
+                    row[2] = model1.getValueAt(indexs[i], 2);
+                    row[3] = model1.getValueAt(indexs[i], 3);
+                    row[4] = model1.getValueAt(indexs[i], 4);
+                    row[5] = model1.getValueAt(indexs[i], 5);
+                    model2.addRow(row);
+                }
+
+                int tongTien = 0;
+
+                for (int i = 0; i < ui.jTable1.getRowCount(); i++) {
+                    String getgiatien = ui.jTable1.getValueAt(i, 5).toString();
+                    float giatien = Float.parseFloat(getgiatien);
+                    tongTien = tongTien + (int) giatien;
+                    //tongTien = tongTien + Float.parseFloat(jTable1.getValueAt(i, 5).toString());
+                    //Integer.valueOf((String)jTable1.getValueAt(i, 5));
+                }
+                String tonggiatien = Integer.toString(tongTien);
+                ui.txtTong.setText(tonggiatien + " VND");
+
+                dispose();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Thất bại");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
         //insert hóa đơn vào database
-        
-        
+
     }//GEN-LAST:event_btnBanActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -367,6 +376,16 @@ public class BanThucAnUI extends javax.swing.JFrame {
         model.removeRow(row);
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        if (maquyen.equalsIgnoreCase("PQ00003")) {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập dashboard");
+        } else {
+            dispose();
+            HomeUI ui = new HomeUI(maquyen, manhanvien);
+            ui.setVisible(true);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -385,6 +404,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -429,5 +449,5 @@ public class BanThucAnUI extends javax.swing.JFrame {
             table.addRow(row);
         }
     }
-    
+
 }

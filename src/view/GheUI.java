@@ -39,6 +39,7 @@ import org.w3c.dom.css.RGBColor;
  * @author admin
  */
 public class GheUI extends JFrame {
+
     public static String mave;
     private int count = 0;
     public static String kn_soghe;
@@ -59,7 +60,7 @@ public class GheUI extends JFrame {
     JLabel right = new JLabel();
     JLabel center = new JLabel();
 
-    JButton btnRs = new JButton("Reset");
+    JButton btnRs = new JButton("Back");
     JButton btnNext = new JButton("Next");
 
     private void ThemGhe() {
@@ -100,11 +101,11 @@ public class GheUI extends JFrame {
         /*Reset Đã đặt*/
         //btnRs.addActionListener(this);
         //btnRs.setActionCommand("resetbtn");
-        btnRs.setBounds(1070, 720, 100, 30);
+        btnRs.setBounds(10, 720, 100, 30);
         /*Chọn và đặt ghế, chuyển sang thanh toán, hoàn tất đặt ghế*/
         //btnNext.addActionListener(this);
         //btnNext.setActionCommand("Nextbtn");
-        btnNext.setBounds(10, 720, 100, 30);
+        btnNext.setBounds(1070, 720, 100, 30);
 
         for (int r = 0; r < size; r++) {
             for (int c = 0; c < size; c++) {
@@ -144,7 +145,7 @@ public class GheUI extends JFrame {
         ThemGhe();
         LoadGhe();
         addEvent();
-        
+
     }
 
     private void LoadGhe() {
@@ -190,7 +191,7 @@ public class GheUI extends JFrame {
                                     }
                                     JOptionPane.showMessageDialog(null, arrgiave[r][c]);
                                     setCount(count + 1);
-                                    
+
                                 } else if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.RED) {
                                     btnArray[r][c].setBackground(Color.WHITE);
                                     btnArray[r][c].setForeground(Color.BLACK);
@@ -221,13 +222,9 @@ public class GheUI extends JFrame {
         btnRs.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int r = 0; r < size; r++) {
-                    for (int c = 0; c < size; c++) {
-                        btnArray[r][c].setEnabled(true);
-                        btnArray[r][c].setBackground(Color.WHITE);
-                        btnArray[r][c].setForeground(Color.BLACK);
-                    }
-                }
+                dispose();
+                BanVeUI a=new BanVeUI();
+                a.setVisible(true);
             }
         });
 
@@ -238,10 +235,10 @@ public class GheUI extends JFrame {
                 if (count > 1) {
                     JOptionPane.showMessageDialog(null, "Chỉ được chọn một ghế");
                 } else {
-                   xuLyLuu();
-                   dispose();
-                   ChiTietVeUI ui = new ChiTietVeUI();
-                   ui.setVisible(true);
+                    xuLyLuu();
+                    dispose();
+                    ChiTietVeUI ui = new ChiTietVeUI();
+                    ui.setVisible(true);
                 }
             }
         });
@@ -252,38 +249,37 @@ public class GheUI extends JFrame {
             for (int c = 0; c < size; c++) {
                 if (btnArray[r][c].getBackground() == Color.RED) {
                     kn_soghe = btnArray[r][c].getText();
-                    kn_giave=arrgiave[r][c];
-                    
+                    kn_giave = arrgiave[r][c];
+
                 }
             }
 
         }
-
     }
-    
-    private void xuLyLuu(){
-        int soghe=Integer.parseInt(kn_soghe);
+
+    private void xuLyLuu() {
+        int soghe = Integer.parseInt(kn_soghe);
         Ghe tam = null;
         String maghe;
         try {
-            tam = GheController.timKiemGhe(BanVeUI.kt_maphong,soghe);
+            tam = GheController.timKiemGhe(BanVeUI.kt_maphong, soghe);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"ghe sai");
+            JOptionPane.showMessageDialog(null, "ghe sai");
         }
-        
+
         try {
-            mave=GheController.hienMa();
+            mave = GheController.hienMa();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"sai ma ghe");
+            JOptionPane.showMessageDialog(null, "sai ma ghe");
         }
-        
-                maghe=tam.getMaghe();
-                   try {
-                       int ketqua = GheController.themVe(mave,BanVeUI.kt_masuatchieu,LoginUI.kn_manhanvien,BanVeUI.kt_makhachhang,maghe,kn_giave);
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null,"khong them duoc");
-                }
-            }
+
+        maghe = tam.getMaghe();
+        try {
+            int ketqua = GheController.themVe(mave, BanVeUI.kt_masuatchieu, LoginUI.kn_manhanvien, BanVeUI.kt_makhachhang, maghe, kn_giave);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "khong them duoc");
+        }
+    }
 
     public void setgiave(String masuatchieu) throws SQLException {
         int giave = GheController.giave(masuatchieu);
@@ -300,7 +296,8 @@ public class GheUI extends JFrame {
     }
 
     public int getCount() {
-        return count;    }
+        return count;
+    }
 
     public void setCount(int count) {
         this.count = count;

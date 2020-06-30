@@ -10,10 +10,15 @@ import util.DateFormat;
 
 public class SuatChieuUI extends javax.swing.JFrame {
 
-    public SuatChieuUI() {
+    private String maquyen;
+    private String manhanvien;
+
+    public SuatChieuUI(String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
+        this.manhanvien = manhanvien;
+        this.maquyen = maquyen;
         setTitle("App quản lí rạp phim");
         try {
             ArrayList<SuatChieu> arr = SuatChieuController.taiTatCa();
@@ -21,6 +26,9 @@ public class SuatChieuUI extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+
+    private SuatChieuUI() {
     }
 
     @SuppressWarnings("unchecked")
@@ -46,6 +54,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
         dateEndDate = new com.toedter.calendar.JDateChooser();
         dateStartDate = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -242,6 +251,14 @@ public class SuatChieuUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(20, 20, 80, 80);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,7 +275,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-        ThemSuatChieuUI themsc = new ThemSuatChieuUI();
+        ThemSuatChieuUI themsc = new ThemSuatChieuUI(maquyen, manhanvien);
         themsc.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -272,7 +289,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
             ArrayList<SuatChieu> arr = SuatChieuController.taiTatCa();
             loadSuatChieu(arr);
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -330,6 +347,12 @@ public class SuatChieuUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        dispose();
+        HomeUI ui = new HomeUI(maquyen, manhanvien);
+        ui.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -349,6 +372,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dateEndDate;
     private com.toedter.calendar.JDateChooser dateStartDate;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

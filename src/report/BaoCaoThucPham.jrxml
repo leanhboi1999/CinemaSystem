@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="thucpham" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5cccb4d-2756-4004-87bd-ac5cf29e8bff">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="9"/>
+	<queryString>
+		<![CDATA[SELECT THUCPHAM.MATHUCPHAM,TENTHUCPHAM,SUM(DONGIA*SOLUONG)
+FROM THUCPHAM,CTHDTP
+WHERE THUCPHAM.MATHUCPHAM=CTHDTP.MATHUCPHAM
+GROUP BY THUCPHAM.MATHUCPHAM,TENTHUCPHAM
+ORDER BY SUM(DONGIA*SOLUONG)]]>
+	</queryString>
+	<field name="MATHUCPHAM" class="java.lang.String"/>
+	<field name="TENTHUCPHAM" class="java.lang.String"/>
+	<field name="SUM(DONGIA*SOLUONG)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="45" width="554" height="34" uuid="4063832b-9b9e-4b7e-bd5c-6b65ce452fb1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU THEO THỨC ĂN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="37" width="556" height="24" backcolor="#362159" uuid="4e3cc52f-7cde-4bb6-8a40-3998d80fb575"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="37" width="220" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="9196836e-eeb0-4e22-8eca-a4de58b9666c"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[TENTHUCPHAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="37" width="145" height="24" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="70563612-27ab-4b2e-94c1-d1b3f1d1afbd"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[MATHUCPHAM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="37" width="190" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="b6705794-637d-485e-9740-fca0cdca1a4b"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[TONG]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="555" height="20" backcolor="#F0F0F0" uuid="fe15954c-6c56-46af-8883-3551d6f7b59a"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="1" y="0" width="144" height="20" forecolor="#000000" backcolor="#FFFF99" uuid="ac1affec-e349-47f4-97e0-1efbfd33c167"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATHUCPHAM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="220" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="1f7727a4-fec6-4d35-aab5-8af95bac5285"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENTHUCPHAM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="0" width="190" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="46993017-5579-443b-8325-7fdd6b90325d"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM(DONGIA*SOLUONG)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

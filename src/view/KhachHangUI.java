@@ -9,14 +9,17 @@ import javax.swing.table.DefaultTableModel;
 import util.DateFormat;
 
 public class KhachHangUI extends javax.swing.JFrame {
+
     private String maquyen;
-    
-    public KhachHangUI(String maquyen) {
+    private String manhanvien;
+
+    public KhachHangUI(String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lí rạp phim");
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         try {
             ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
             loadDanhSach(arr);
@@ -25,7 +28,8 @@ public class KhachHangUI extends javax.swing.JFrame {
         }
     }
 
-    private KhachHangUI() {}
+    private KhachHangUI() {
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -272,7 +276,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         ckCMND.setSelected(false);
         txtTen.setText(null);
         txtCMND.setText(null);
-         try {
+        try {
             ArrayList<HoiVien> arr = HoiVienController.taiTatCa();
             loadDanhSach(arr);
         } catch (Exception e) {
@@ -281,9 +285,9 @@ public class KhachHangUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-       dispose();
-            ThemKhachHangUI themkh = new ThemKhachHangUI(true, null, maquyen);
-            themkh.setVisible(true);
+        dispose();
+        ThemKhachHangUI themkh = new ThemKhachHangUI(true, null, maquyen, manhanvien);
+        themkh.setVisible(true);
 
     }//GEN-LAST:event_btnAddActionPerformed
 
@@ -300,8 +304,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         try {
             if (ckCMND.isSelected() && ckTen.isSelected()) {
                 JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
-            } else if (ckTen.isSelected()
-                    ) {
+            } else if (ckTen.isSelected()) {
                 String ten = txtTen.getText();
                 ArrayList<HoiVien> arr = HoiVienController.timKiemTen(ten);
                 loadDanhSach(arr);
@@ -326,7 +329,7 @@ public class KhachHangUI extends javax.swing.JFrame {
                 String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
                 HoiVien hv = HoiVienController.layThongTin(makhachhang);
                 dispose();
-                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv, maquyen);
+                ThemKhachHangUI themkh = new ThemKhachHangUI(false, hv, maquyen, manhanvien);
                 themkh.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -335,7 +338,7 @@ public class KhachHangUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-         int row = jTableKhachHang.getSelectedRow();
+        int row = jTableKhachHang.getSelectedRow();
         String maHoiVien = jTableKhachHang.getValueAt(row, 1).toString();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
@@ -360,6 +363,8 @@ public class KhachHangUI extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         dispose();
+        HomeUI ui = new HomeUI(maquyen, manhanvien);
+        ui.setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     public static void main(String args[]) {

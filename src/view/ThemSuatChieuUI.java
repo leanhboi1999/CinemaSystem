@@ -14,15 +14,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class ThemSuatChieuUI extends javax.swing.JFrame {
 
+    private String maquyen;
+    private String manhanvien;
     private String tenphim = "";
     SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
-    public ThemSuatChieuUI() {
+    public ThemSuatChieuUI(String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
+        this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         hienthi();
     }
+
+    private ThemSuatChieuUI() {}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -237,7 +243,7 @@ public class ThemSuatChieuUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         dispose();
-        SuatChieuUI ui = new SuatChieuUI();
+        SuatChieuUI ui = new SuatChieuUI(maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 

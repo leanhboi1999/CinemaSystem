@@ -9,12 +9,14 @@ import javax.swing.table.DefaultTableModel;
 
 public class ThucAnUI extends javax.swing.JFrame {
     private String maquyen;
-    public ThucAnUI(String maquyen) {
+    private String manhanvien;
+    public ThucAnUI(String maquyen, String manhanvien) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         try {
             ArrayList<ThucPham> arr = ThucPhamController.taiTatCa();
             hienThi(arr);
@@ -265,7 +267,7 @@ public class ThucAnUI extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         dispose();
-        ThemThucAnUI ui = new ThemThucAnUI(true, null, maquyen);
+        ThemThucAnUI ui = new ThemThucAnUI(true, null, maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -291,7 +293,7 @@ public class ThucAnUI extends javax.swing.JFrame {
                 String maThucAn = jTableThucAn.getModel().getValueAt(row, 1).toString();
                 ThucPham thucpham = ThucPhamController.layThongTin(maThucAn);
                 dispose();
-                ThemThucAnUI themtp = new ThemThucAnUI(false, thucpham, maquyen);
+                ThemThucAnUI themtp = new ThemThucAnUI(false, thucpham, maquyen, manhanvien);
                 themtp.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -325,7 +327,7 @@ public class ThucAnUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        HomeUI ui = new HomeUI(maquyen);
+        HomeUI ui = new HomeUI(maquyen, manhanvien);
         dispose();
         ui.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked

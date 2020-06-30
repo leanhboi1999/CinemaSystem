@@ -38,9 +38,9 @@ public class TaiKhoanController {
         return TaiKhoanModel.GetQuyen(username);
     }
     
-    public static boolean taoTaiKhoan(String manhanvien,String tenquyen,String matkhau) throws SQLException
+    public static boolean taoTaiKhoan(String manhanvien,String matkhau) throws SQLException
     {
-        return TaiKhoanModel.taoTaiKhoan(manhanvien,tenquyen,matkhau);
+        return TaiKhoanModel.taoTaiKhoan(manhanvien,matkhau);
     }
     
     /*public static int Inset(String user, String pass) throws SQLException{

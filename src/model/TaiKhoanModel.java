@@ -48,20 +48,14 @@ public class TaiKhoanModel {
         return maQuyen;
     }
 
-    public static boolean taoTaiKhoan(String manhanvien, String tenquyen, String matkhau) throws SQLException {
+    public static boolean taoTaiKhoan(String manhanvien, String matkhau) throws SQLException {
         Connection con = Database.connect();
         try {
-            String sql = "{call TAOTK(?,?,?)}";
+            String sql = "{call TAOTK(?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
             cstmt.setString(1, manhanvien);
             //System.out.println();
-            cstmt.setString(2, tenquyen);
-            System.out.println(tenquyen);
-            //System.out.println(tenhv);
-            cstmt.setString(3, matkhau);
-            //System.out.println(gioitinh);
-            cstmt.executeUpdate();
-            System.out.println("hhhh");
+            cstmt.setString(2, matkhau);
             return true;
         } catch (Exception e) {
             return false;

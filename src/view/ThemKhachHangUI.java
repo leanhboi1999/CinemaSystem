@@ -9,11 +9,12 @@ import javax.swing.JOptionPane;
 public class ThemKhachHangUI extends javax.swing.JFrame {
 
     private String maquyen;
+    private String manhanvien;
     private boolean isInsert;
     private HoiVien hv;
     private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
-    public ThemKhachHangUI(boolean isInsert, HoiVien hv, String maquyen) {
+    public ThemKhachHangUI(boolean isInsert, HoiVien hv, String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
@@ -21,6 +22,7 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
         this.isInsert = isInsert;
         this.hv = hv;
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         hienThi();
     }
 
@@ -218,7 +220,7 @@ public class ThemKhachHangUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         dispose();
-        KhachHangUI ui = new KhachHangUI(maquyen);
+        KhachHangUI ui = new KhachHangUI(maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 

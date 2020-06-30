@@ -8,10 +8,11 @@ import javax.swing.JOptionPane;
 public class ThemThucAnUI extends javax.swing.JFrame {
 
     private String maquyen;
+    private String manhanvien;
     private boolean isInsert;
     private ThucPham tp = null;
 
-    public ThemThucAnUI(boolean isInsert, ThucPham tp, String maquyen) {
+    public ThemThucAnUI(boolean isInsert, ThucPham tp, String maquyen, String manhanvien) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
@@ -19,6 +20,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
         this.isInsert = isInsert;
         this.tp = tp;
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         hienThi();
     }
 
@@ -174,7 +176,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         dispose();
-        ThucAnUI ui = new ThucAnUI(maquyen);
+        ThucAnUI ui = new ThucAnUI(maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 

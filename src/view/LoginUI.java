@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class LoginUI extends javax.swing.JFrame {
+
     public static String kn_manhanvien;
+
     public LoginUI() {
         initComponents();
         setLocationRelativeTo(null);
@@ -25,7 +27,6 @@ public class LoginUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         kButton1 = new keeptoo.KButton();
-        kButton2 = new keeptoo.KButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -72,13 +73,6 @@ public class LoginUI extends javax.swing.JFrame {
             }
         });
 
-        kButton2.setText("FORGET PASSWORD");
-        kButton2.setFocusable(false);
-        kButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        kButton2.setkHoverEndColor(new java.awt.Color(153, 255, 255));
-        kButton2.setkHoverForeGround(new java.awt.Color(0, 102, 204));
-        kButton2.setkHoverStartColor(new java.awt.Color(0, 102, 204));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,9 +90,7 @@ public class LoginUI extends javax.swing.JFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -116,9 +108,7 @@ public class LoginUI extends javax.swing.JFrame {
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         kGradientPanel1.add(jPanel1);
@@ -126,31 +116,27 @@ public class LoginUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("<html> Text here <br> Text here");
         kGradientPanel1.add(jLabel1);
         jLabel1.setBounds(130, 210, 370, 48);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("*#####*");
         kGradientPanel1.add(jLabel2);
-        jLabel2.setBounds(140, 100, 200, 20);
+        jLabel2.setBounds(140, 100, 200, 0);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 153, 255));
-        jLabel4.setText("Text here");
         kGradientPanel1.add(jLabel4);
         jLabel4.setBounds(130, 170, 200, 40);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/grap.png"))); // NOI18N
         kGradientPanel1.add(jLabel9);
-        jLabel9.setBounds(130, 320, 360, 200);
+        jLabel9.setBounds(130, 200, 360, 200);
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Text here");
         kGradientPanel1.add(jLabel11);
-        jLabel11.setBounds(130, 70, 200, 32);
+        jLabel11.setBounds(130, 70, 200, 0);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,11 +153,9 @@ public class LoginUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
-        if (evt.getSource() == kButton2) {
-            dispose();
-        } else if (evt.getSource() == kButton1) {
+        if (evt.getSource() == kButton1) {
             String username = txtUserName.getText();
-            kn_manhanvien=txtUserName.getText();
+            kn_manhanvien = txtUserName.getText();
             String password = txtPassword.getText();
 
             if ("".equals(username) || "".equals(password)) {
@@ -181,18 +165,22 @@ public class LoginUI extends javax.swing.JFrame {
                     String quyen = TaiKhoanController.GetQuyen(username);
                     if (quyen.equalsIgnoreCase("PQ00001") || quyen.equalsIgnoreCase("PQ00004") || quyen.equalsIgnoreCase("PQ00005")) {
                         dispose();
-                        HomeUI ui = new HomeUI(quyen);
+                        HomeUI ui = new HomeUI(quyen, username);
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
                     } else if (quyen.equalsIgnoreCase("PQ00002")) {
-                       dispose();
-                       BanVeUI ui = new BanVeUI();
-                       ui.setVisible(true);
-                       ui.setLocationRelativeTo(null);
-                    } else if (quyen.equalsIgnoreCase("PQ00003")) {
-                        //Cái này của bán thực phẩm
                         dispose();
-                        BanThucAnUI ui = new BanThucAnUI(username, quyen);
+                        BanVeUI ui = new BanVeUI();
+                        ui.setVisible(true);
+                        ui.setLocationRelativeTo(null);
+                    } else if (quyen.equalsIgnoreCase("PQ00003")) {
+                        dispose();
+                        BanThucAnUI ui = new BanThucAnUI(quyen, username);
+                        ui.setVisible(true);
+                        ui.setLocationRelativeTo(null);
+                    } else if (quyen.equalsIgnoreCase("PQ00006")) {
+                        dispose();
+                        ListBaoCaoUI ui = new ListBaoCaoUI(quyen, username);
                         ui.setVisible(true);
                         ui.setLocationRelativeTo(null);
                     }
@@ -229,7 +217,6 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private keeptoo.KButton kButton1;
-    private keeptoo.KButton kButton2;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;

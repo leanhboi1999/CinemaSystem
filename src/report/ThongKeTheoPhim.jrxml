@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KHACHHANG" language="groovy" pageWidth="800" pageHeight="842" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e8bf00e-1d35-47e8-ae75-2f168d881ef6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT TENPHIM,DIENVIEN,THELOAI,NUOCSANXUAT,SUM(GIAVE) AS TONG
+FROM PHIM,VE,SUATCHIEU,SUATPHIM
+WHERE VE.MASUATCHIEU=SUATCHIEU.MASUATCHIEU AND SUATCHIEU.MASUATPHIM=SUATPHIM.MASUATPHIM AND SUATPHIM.MAPHIM=PHIM.MAPHIM
+GROUP BY TENPHIM,DIENVIEN,THELOAI,NUOCSANXUAT]]>
+	</queryString>
+	<field name="TENPHIM" class="java.lang.String"/>
+	<field name="DIENVIEN" class="java.lang.String"/>
+	<field name="THELOAI" class="java.lang.String"/>
+	<field name="NUOCSANXUAT" class="java.lang.String"/>
+	<field name="TONG" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="22" width="760" height="34" uuid="d7d197b9-1e07-4472-925a-be89d2302157"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU THEO PHIM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="760" height="24" backcolor="#362159" uuid="209a6641-e559-41c1-8baf-0b47cf822252"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="175" height="24" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="8f24dae5-9892-4120-a402-da8dc600291a"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TENPHIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="180" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="15a2e3c3-334d-47f0-8e9b-cd7d2b89f653"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[DIENVIEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="147" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="9a7572ef-9c68-4ff2-934d-9c9a2e44ddb1"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[THELOAI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="502" y="0" width="129" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="59ddd99c-3e18-4cbc-863e-86a3a6d10b3c"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[NUOCSANXUAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="631" y="0" width="129" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="f9e0eaf5-f1cb-4657-ac6f-6f5d01fd908e"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="DejaVu Sans" size="14"/>
+				</textElement>
+				<text><![CDATA[TONG]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="760" height="20" backcolor="#F0F0F0" uuid="5360b67f-ca95-4b5b-ad34-67e1410ab37b"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="0" width="175" height="20" forecolor="#000000" backcolor="#FFFF99" uuid="313397c0-c933-4111-afcf-67c8ac8b0ff2"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENPHIM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="0" width="180" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="082ece28-7d3d-4576-a3b9-fd482bdab5af"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DIENVIEN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="0" width="129" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="e5bfc5e3-4e23-4a1b-8893-e28d0198a8a2"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NUOCSANXUAT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="355" y="0" width="147" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="38903e9b-eb89-4fb2-a0ce-805eadbdaa2b"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{THELOAI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="631" y="0" width="129" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="4da80d0c-9671-4241-ac7e-eb07fd5dd9a2"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

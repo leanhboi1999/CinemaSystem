@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import controller.NhanVienController;
@@ -12,19 +7,18 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author admin
- */
 public class NhanVienUI extends javax.swing.JFrame {
+
     private String maquyen;
-    
-    public NhanVienUI(String maquyen) {
+    private String manhanvien;
+
+    public NhanVienUI(String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lí rạp phim");
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         try {
             ArrayList<NhanVien> arr = NhanVienController.taiTatCa();
             loadDanhSach(arr);
@@ -33,7 +27,8 @@ public class NhanVienUI extends javax.swing.JFrame {
         }
     }
 
-    private NhanVienUI() {}
+    private NhanVienUI() {
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +55,7 @@ public class NhanVienUI extends javax.swing.JFrame {
         btnThem = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -233,6 +229,14 @@ public class NhanVienUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 20, 80, 80);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,14 +254,13 @@ public class NhanVienUI extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         dispose();
-        ThemNhanVienUI themnv = new ThemNhanVienUI(true, null, maquyen);
+        ThemNhanVienUI themnv = new ThemNhanVienUI(true, null, maquyen, manhanvien);
         themnv.setVisible(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnViewAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewAllActionPerformed
         // TODO add your handling code here:
         try {
-            txttimkiem.setText(null);
             ArrayList<NhanVien> arr = NhanVienController.taiTatCa();
             loadDanhSach(arr);
         } catch (Exception e) {
@@ -266,7 +269,13 @@ public class NhanVienUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnViewAllActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        txttimkiem.setText("");
+        txttimkiem.setText(null);
+         try {
+            ArrayList<NhanVien> arr = NhanVienController.taiTatCa();
+            loadDanhSach(arr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -278,7 +287,7 @@ public class NhanVienUI extends javax.swing.JFrame {
                 String manhanvien = jTableNhanVien.getModel().getValueAt(row, 1).toString();
                 NhanVien nv = NhanVienController.layThongTin(manhanvien);
                 dispose();
-                ThemNhanVienUI themnv = new ThemNhanVienUI(false, nv, maquyen);
+                ThemNhanVienUI themnv = new ThemNhanVienUI(false, nv, maquyen, manhanvien);
                 themnv.setVisible(true);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -301,9 +310,16 @@ public class NhanVienUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        TaiKhoanUI taikhoan = new TaiKhoanUI();
+        dispose();
+        TaiKhoanUI taikhoan = new TaiKhoanUI(maquyen, manhanvien);
         taikhoan.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        dispose();
+        HomeUI ui = new HomeUI(maquyen, manhanvien);
+        ui.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,6 +367,7 @@ public class NhanVienUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DoanhThuThucAnTheoThang" language="groovy" pageWidth="800" pageHeight="3000" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3437813f-1e01-488d-9ade-fffeb40a3ae9">
+	<property name="ireport.zoom" value="1.3636363636363635"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="80"/>
+	<parameter name="ThucAnYear" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT THUCPHAM.MATHUCPHAM, THUCPHAM.TENTHUCPHAM,TO_CHAR(HDTHUCPHAM.NGAYLAP, 'MM/YYYY')AS NAM, SUM(CTHDTP.SOLUONG) AS TONG, SUM(DONGIA*SOLUONG) AS TONGTIEN
+FROM CTHDTP, HDTHUCPHAM, THUCPHAM
+WHERE CTHDTP.MAHOADON = HDTHUCPHAM.MAHOADON AND THUCPHAM.MATHUCPHAM = CTHDTP.MATHUCPHAM
+AND TO_CHAR(HDTHUCPHAM.NGAYLAP, 'YYYY') = $P{ThucAnYear}
+GROUP BY THUCPHAM.MATHUCPHAM, THUCPHAM.TENTHUCPHAM, TO_CHAR(HDTHUCPHAM.NGAYLAP, 'MM/YYYY')]]>
+	</queryString>
+	<field name="MATHUCPHAM" class="java.lang.String"/>
+	<field name="TENTHUCPHAM" class="java.lang.String"/>
+	<field name="NAM" class="java.lang.String"/>
+	<field name="TONG" class="java.math.BigDecimal"/>
+	<field name="TONGTIEN" class="java.math.BigDecimal"/>
+	<variable name="TONGTIEN_1" class="java.math.BigDecimal" resetType="Group" resetGroup="ThucAnTheoThang" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONGTIEN}]]></variableExpression>
+	</variable>
+	<variable name="TONGTIEN_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TONGTIEN}]]></variableExpression>
+	</variable>
+	<group name="ThucAnTheoThang">
+		<groupExpression><![CDATA[$F{NAM}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<staticText>
+					<reportElement mode="Opaque" x="0" y="0" width="760" height="24" backcolor="#362159" uuid="4c627ae3-dc01-4000-9815-69b97201cd5f"/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="165" y="0" width="162" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="f026f587-c099-40bd-bc47-4850b2b4e75b"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+						<font fontName="DejaVu Sans" size="14"/>
+					</textElement>
+					<text><![CDATA[TÊN THỨC ĂN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="464" y="0" width="177" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="11d82f00-cc46-4cca-ab38-b1d71cdf45a7"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+						<font fontName="DejaVu Sans" size="14"/>
+					</textElement>
+					<text><![CDATA[TỔNG TIỀN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="327" y="0" width="137" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="6b8711fa-bf82-4052-a254-67198e2f1a99"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+						<font fontName="DejaVu Sans" size="14"/>
+					</textElement>
+					<text><![CDATA[TỔNG SỐ LƯỢNG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="641" y="0" width="119" height="24" forecolor="#FFFFFF" backcolor="#FFFF66" uuid="292ceaba-bb58-41cc-b1e2-acaefcf909f0"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+						<font fontName="DejaVu Sans" size="14"/>
+					</textElement>
+					<text><![CDATA[THÁNG]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="0" width="164" height="24" forecolor="#FFFFFF" backcolor="#FFFFFF" uuid="77c8b12c-4c1a-4f38-a8cf-03978bdc0e76"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+						<font fontName="DejaVu Sans" size="14"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[MÃ THỨC ĂN]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="81">
+				<staticText>
+					<reportElement mode="Opaque" x="113" y="0" width="164" height="52" uuid="9ae21823-ea80-4945-a3ed-9258ab3c5b20"/>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="358" y="28" width="194" height="24" uuid="4dfbb19b-9ec2-4028-940c-2d30b8871fd8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[TỔNG TIỀN TRONG THÁNG:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="566" y="28" width="159" height="24" uuid="ebd2ae5a-a4de-4047-b0c2-4576f86a1124"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TONGTIEN_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="66" width="758" height="1" uuid="bd3ea2ee-6850-48b6-9ea8-1244f705f7ca"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="760" height="79" uuid="d0453d7a-1f54-465b-a3c9-4093bb48f4eb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[THỐNG KÊ DOANH THU THỨC ĂN TRONG NĂM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="760" height="20" backcolor="#F0F0F0" uuid="d0dc98eb-0701-44e8-b4d6-a8d18d01c0ff"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="641" y="0" width="118" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="ffcb7be0-781b-4d3a-96fd-b63e16c9150c"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="0" width="162" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="cf1b3431-f13b-4365-a1ba-753a1af8f66a"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENTHUCPHAM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="0" width="137" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="833642bc-2b9d-4df0-814c-c96a21d094b1"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="464" y="0" width="177" height="20" forecolor="#333333" backcolor="#FFFF99" uuid="747aecaf-e9a1-4a26-b970-5ce9ec635815"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TONGTIEN}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement positionType="Float" x="1" y="0" width="164" height="20" forecolor="#000000" backcolor="#FFFF99" uuid="8b3ce46c-1786-4de5-9da0-19309efd64bb"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MATHUCPHAM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="937" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="566" y="33" width="159" height="20" backcolor="#CCCCFF" uuid="9785848c-abc0-49e0-b10a-6428462d12c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TONGTIEN_2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="327" y="33" width="225" height="20" uuid="b6186b0e-f10d-4e6c-8ede-c1decbfb316e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[TỔNG DOANH THU TRONG NĂM:]]></text>
+			</staticText>
+			<bar3DChart>
+				<chart>
+					<reportElement x="1" y="108" width="758" height="721" uuid="cdd0e02c-13f7-4b88-a223-75c008bbbe91"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{NAM}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{TONGTIEN}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{TONGTIEN}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</summary>
+</jasperReport>

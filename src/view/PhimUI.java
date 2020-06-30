@@ -9,13 +9,16 @@ import javax.swing.table.DefaultTableModel;
 import util.DateFormat;
 
 public class PhimUI extends javax.swing.JFrame {
+
     private String maquyen;
-    
-    public PhimUI(String maquyen) {
+    private String manhanvien;
+
+    public PhimUI(String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp phim");
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         try {
             ArrayList<Phim> arr = PhimController.taiTatCa();
             loadPhim(arr);
@@ -24,7 +27,8 @@ public class PhimUI extends javax.swing.JFrame {
         }
     }
 
-    private PhimUI() {}
+    private PhimUI() {
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -302,9 +306,9 @@ public class PhimUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-            dispose();
-            ThemPhimUI themphim = new ThemPhimUI(true, null, maquyen);
-            themphim.setVisible(true);
+        dispose();
+        ThemPhimUI themphim = new ThemPhimUI(true, null, maquyen, manhanvien);
+        themphim.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     //Action hiển thị list phim
@@ -325,7 +329,7 @@ public class PhimUI extends javax.swing.JFrame {
         } else {
             String maphim = jTablePhim.getModel().getValueAt(row, 0).toString();
             dispose(); //Hàm này sẽ dừng hiển thị cửa sổ hiện tại
-            ThemPhimUI themphim = new ThemPhimUI(false, maphim, maquyen);
+            ThemPhimUI themphim = new ThemPhimUI(false, maphim, maquyen, manhanvien);
             themphim.setVisible(true);
         }
     }//GEN-LAST:event_btnEditActionPerformed
@@ -378,7 +382,7 @@ public class PhimUI extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         dispose();
-        HomeUI ui = new HomeUI(maquyen);
+        HomeUI ui = new HomeUI(maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 

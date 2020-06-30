@@ -19,19 +19,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class ThemPhimUI extends javax.swing.JFrame {
     private String maquyen;
+    private String manhanvien;
     private boolean isInsert;
     private String maphim;
     SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
     private Phim newPhim = new Phim();
     private ArrayList<SuatPhim> aSuatPhim = new ArrayList<SuatPhim>();
 
-    public ThemPhimUI(boolean isInsert, String maphim, String maquyen) {
+    public ThemPhimUI(boolean isInsert, String maphim, String maquyen, String manhanvien) {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("App quản lý rạp");
         this.isInsert = isInsert;
         this.maphim = maphim;
         this.maquyen = maquyen;
+        this.manhanvien = manhanvien;
         hienthi();
     }
 
@@ -403,7 +405,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         PhimUI PhimUI;
-        PhimUI = new PhimUI(maquyen);
+        PhimUI = new PhimUI(maquyen, manhanvien);
         dispose();
         PhimUI.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
@@ -605,10 +607,10 @@ public class ThemPhimUI extends javax.swing.JFrame {
             taoPhim();
             try {
                 if (PhimController.them(newPhim, aSuatPhim)) {
-                    JOptionPane.showMessageDialog(null, "Thêm thành công");
+                    JOptionPane.showMessageDialog(null, "Thêm thành công 1");
                     hienthi();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Thêm thất bại");
+                    JOptionPane.showMessageDialog(null, "Thêm thất bại 1");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -701,7 +703,6 @@ public class ThemPhimUI extends javax.swing.JFrame {
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());
                     }
-
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Suất phim đã tồn tại");
@@ -728,7 +729,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
                 if (PhimController.sua(newPhim)) {
                     JOptionPane.showMessageDialog(null, "Thông tin phim được cập nhật");
                     dispose();
-                    PhimUI ui = new PhimUI(maquyen);
+                    PhimUI ui = new PhimUI(maquyen, manhanvien);
                     ui.setVisible(true);
                 }
             } catch (Exception e) {

@@ -33,6 +33,7 @@ public class ChiTietVeUI extends javax.swing.JFrame {
         jTextField4.setText(GheUI.kn_soghe);
         jTextField5.setText(BanVeUI.kt_makhachhang);
         jTextField6.setText(BanVeUI.kt_tenkhachhang);
+        jTextField7.setText(LoginUI.kn_manhanvien);
         String giave=String.valueOf(GheUI.kn_giave);
         jTextField8.setText(giave);
         
@@ -81,7 +82,7 @@ public class ChiTietVeUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setText("RẠP CHIẾU PHIM ABC");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/LOGOABC.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/ABCLOGO.png"))); // NOI18N
 
         jLabel3.setText("20/41 Xa lộ Hà Nội, Phường Linh Trung, Thủ Đức, Hồ Chí Minh, Việt Nam");
 
@@ -122,6 +123,11 @@ public class ChiTietVeUI extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jTextField6.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -295,7 +301,7 @@ public class ChiTietVeUI extends javax.swing.JFrame {
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,6 +333,10 @@ public class ChiTietVeUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
