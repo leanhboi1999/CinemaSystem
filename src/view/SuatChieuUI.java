@@ -325,7 +325,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int row = jTableSuatChieu.getSelectedRow();
-        String maphim = jTableSuatChieu.getValueAt(row, 0).toString();
+        String masuatchieu = jTableSuatChieu.getValueAt(row, 1).toString();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -333,7 +333,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
             if (p == 0) {
                 try {
                     //kq = contronllerphim.xoa(tam);
-                    if (SuatChieuController.xoaSuatChieu(maphim)) {
+                    if (SuatChieuController.xoaSuatChieu(masuatchieu)) {
                         JOptionPane.showMessageDialog(null, "Xóa thành công");
                         ArrayList<SuatChieu> arr = SuatChieuController.taiTatCa();
                         loadSuatChieu(arr);

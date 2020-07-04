@@ -187,7 +187,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
             thucpham.setTenthucpham(txtTenThucAn.getText());
             thucpham.setSoluong(jSpinSoLuong.getValue());
             thucpham.setDongia(Integer.parseInt(txtDonGia.getText()));
-
+            System.out.println("flag");
             if (cbbTrangThai.getSelectedItem().toString().equals("Còn bán")) {
                 thucpham.setTrangthai(1);
             } else {
@@ -203,12 +203,14 @@ public class ThemThucAnUI extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "That Bai");
                     }
 
-                } catch (SQLException e) {
+                } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, e.getMessage());
                 }
             } else {
                 try {
                     int kq1 = ThucPhamController.editThucPham(thucpham.getMathucpham(), thucpham.getTenthucpham(), (int) thucpham.getDongia(), thucpham.getSoluong(), thucpham.getTrangthai());
+                    System.out.println("flag 1");
+                    System.out.println(kq1);
                     if (kq1 > 0) {
                         JOptionPane.showMessageDialog(null, "Thành công");
                     } else {

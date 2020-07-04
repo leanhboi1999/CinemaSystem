@@ -3,7 +3,6 @@ package view;
 import controller.HoaDonThucPhamController;
 import controller.ThucPhamController;
 import entity.Cthdtp;
-import entity.HoaDonThucPham;
 import entity.ThucPham;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -299,11 +298,12 @@ public class BanThucAnUI extends javax.swing.JFrame {
             sum = sum + (int) dongia;
         }
 
-        HoaDonThucPham hoadon = new HoaDonThucPham(mahoadon, manhanvien, sum, date);
+        //HoaDonThucPham hoadon = new HoaDonThucPham(mahoadon, manhanvien, sum, date);
 
         boolean check;
         try {
-            check = ThucPhamController.insertcthdtp(hoadon, chitiethoadon);
+            //check = HoaDonThucPhamController.insertcthdtp(hoadon, chitiethoadon);
+            check = HoaDonThucPhamController.insertcthdtp(chitiethoadon);
             if (check) {
                 JOptionPane.showMessageDialog(null, "Thành công");
                 dispose();
@@ -342,6 +342,7 @@ public class BanThucAnUI extends javax.swing.JFrame {
 
             } else {
                 JOptionPane.showMessageDialog(null, "Thất bại");
+                hienThi();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -423,12 +424,12 @@ public class BanThucAnUI extends javax.swing.JFrame {
         txtMaNV.setText(manhanvien);
         txtMaNV.setEnabled(false);
         try {
-            ArrayList<ThucPham> arr = ThucPhamController.taiTatCa();
+            ArrayList<ThucPham> arr = ThucPhamController.taiCoTrangThai();
             loadthucpham(arr);
             txtDate.setText(ThucPhamController.hienngay().toString());
             txtDate.setEnabled(false);
             txtMaHD.setText(HoaDonThucPhamController.hienMa());
-            txtMaHD.setEnabled(false);
+            //txtMaHD.setEnabled(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

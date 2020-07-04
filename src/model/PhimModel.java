@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,54 +23,55 @@ import util.Database;
  * @author leanh
  */
 public class PhimModel {
-
+    static Connection con = Database.connect();
     private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
     public static ArrayList<Phim> taiTatCa() throws SQLException {
         ArrayList<Phim> arr = new ArrayList<>();
         String sql = "Select * from phim";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12)));
         }
-        Database.connect().close();
         return arr;
     }
 
     public static ArrayList<Phim> taiPhimDangChieu() throws SQLException {
         ArrayList<Phim> arr = new ArrayList<>();
         String sql = "SELECT MAPHIM, TENPHIM FROM PHIM WHERE TRANGTHAI = 'ĐANG CHIẾU'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2)));
         }
-        Database.connect().close();
         return arr;
     }
 
     public static Phim getPhim(String maphim) throws SQLException {
         String sql = "select * from phim where maphim = " + "'" + maphim + "'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         rs.next();
         Phim kq = new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12));
-        Database.connect().close();
         return kq;
     }
 
     public static ArrayList<Phim> timKiem(String tenphim) throws SQLException {
         ArrayList<Phim> arr = new ArrayList<>();
         String sql = "SELECT * FROM PHIM WHERE TENPHIM LIKE '%" + tenphim + "%'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12)));
         }
-        Database.connect().close();
         return arr;
     }
 
     public static ArrayList<Phim> timKiem(String startDate, String endDate) throws SQLException {
         String sql = "SELECT * FROM PHIM WHERE NGAYKHOICHIEU>=TO_DATE('" + startDate + "','DD/MM/YYYY') AND NGAYKHOICHIEU<=TO_DATE('" + endDate + "','DD/MM/YYYY')";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         ArrayList<Phim> arr = new ArrayList<>();
         while (rs.next()) {
             Phim k = new Phim(rs.getString(1), rs.getString(2),
@@ -78,32 +80,31 @@ public class PhimModel {
                     rs.getInt(10), rs.getString(11), rs.getString(12));
             arr.add(k);
         }
-        Database.connect().close();
         return arr;
     }
 
     public static int xoaPhim(String maphim) throws SQLException {
         String sql = "DELETE FROM PHIM WHERE MAPHIM = '" + maphim + "'";
-        int rs = Database.callQueryDelete(sql);
-        Database.connect().close();
+        Statement st = con.createStatement();
+        int rs = st.executeUpdate(sql);
         return rs;
     }
 
     public static String hienMa() throws SQLException {
-        CallableStatement st = Database.connect().prepareCall("{? = call ID_PHIM}");
+        CallableStatement st =con.prepareCall("{? = call ID_PHIM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
         return st.getString(1);
     }
 
     public static boolean them(Phim p, ArrayList<SuatPhim> aSuatPhim) throws SQLException {
-        Connection con = Database.connect();
+        //Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             String sql = "INSERT INTO PHIM VALUES (?,?,?,?,?,?,?,?,TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
             PreparedStatement stmt;
             stmt = con.prepareStatement(sql);
-            System.out.println("Flag");
+            //System.out.println("Flag");
             stmt.setString(1, p.getMaphim());
             stmt.setString(2, p.getTenphim());
             stmt.setInt(3, p.getThoiluong());
@@ -116,7 +117,7 @@ public class PhimModel {
             stmt.setInt(10, p.getGioihantuoi());
             stmt.setString(11, p.getTomtat());
             stmt.setString(12, p.getTrangthai());
-            System.out.println("Flag 1");
+            //System.out.println("Flag 1");
             stmt.executeUpdate();
             CallableStatement cstmt;
             for (SuatPhim item : aSuatPhim) {
@@ -127,12 +128,12 @@ public class PhimModel {
                 cstmt.setString(3, item.getTendinhdang());
                 cstmt.setString(4, item.getMaphim());
                 cstmt.setString(5, item.getTenhinhthuc());
-                System.out.println(item.getMasuatphim());
+                /*System.out.println(item.getMasuatphim());
                 System.out.println(item.getTenngonngu());
                 System.out.println(item.getTendinhdang());
                 System.out.println(item.getMaphim());
                 System.out.println(item.getTenhinhthuc());
-                System.out.println("Flag 2");
+                System.out.println("Flag 2");*/
                 cstmt.executeUpdate();
             }
             con.commit();
@@ -141,13 +142,13 @@ public class PhimModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
+        } /*finally {
             con.close();
-        }
+        }*/
     }
 
     public static boolean sua(Phim p) throws SQLException {
-        Connection con = Database.connect();
+        //Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             CallableStatement stmt;
@@ -171,8 +172,8 @@ public class PhimModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
+        } /*finally {
             con.close();
-        }
+        }*/
     }
 }

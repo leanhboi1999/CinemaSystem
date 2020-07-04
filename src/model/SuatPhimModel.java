@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import entity.SuatPhim;
@@ -10,25 +5,25 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import util.Database;
 
-/**
- *
- * @author Lenovo
- */
 public class SuatPhimModel {
+
+    static Connection con = Database.connect();
 
     public static ArrayList<SuatPhim> taiTatCa() throws SQLException {
         ArrayList<SuatPhim> arr = new ArrayList<>();
         String sql = "select * from SuatPhim";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new SuatPhim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-        }
+    }
         return arr;
     }
 
@@ -40,7 +35,8 @@ public class SuatPhimModel {
                 + "  AND SP.MANGONNGU=NN.MANGONNGU\n"
                 + "  AND SP.MAHINHTHUC=HT.MAHINHTHUC\n"
                 + "  AND SP.MAPHIM=" + "'" + maphim + "'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new SuatPhim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
         }
@@ -48,7 +44,6 @@ public class SuatPhimModel {
     }
 
     public static boolean them(SuatPhim sp) throws SQLException {
-        Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             CallableStatement cstmt;
@@ -73,20 +68,21 @@ public class SuatPhimModel {
 
     public static int xoaSuatPhim(String masuatphim) throws SQLException {
         String sql = "DELETE FROM SUATPHIM WHERE MASUATPHIM =" + "'" + masuatphim + "'";
-        int rs = Database.callQueryDelete(sql);
+        Statement st = con.createStatement();
+        int rs = st.executeUpdate(sql);
         Database.connect().close();
         return rs;
     }
 
     public static String hienMa() throws SQLException {
-        CallableStatement st = Database.connect().prepareCall("{? = call ID_SUATPHIM}");
+        CallableStatement st = con.prepareCall("{? = call ID_SUATPHIM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
         return st.getString(1);
     }
-    
+
     public static boolean them(String maSuatChieu, String tenPhong, String maSuatPhim, String gio, String ngaychieu) throws SQLException {
-        Connection con = Database.connect();
+        // Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             String tam = ngaychieu + " " + gio;
@@ -99,17 +95,17 @@ public class SuatPhimModel {
             System.out.println(tenPhong);
             cstmt.setString(3, maSuatPhim);
             System.out.println(maSuatPhim);
-            SimpleDateFormat df=new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
-            cstmt.setTimestamp(4,new Timestamp(df.parse(tam).getTime()));
+            SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
+            cstmt.setTimestamp(4, new Timestamp(df.parse(tam).getTime()));
             cstmt.executeUpdate();
             con.commit();
             return true;
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
-            con.close();
         }
+        /*finally {
+            con.close();
+        }*/
     }
-
 }

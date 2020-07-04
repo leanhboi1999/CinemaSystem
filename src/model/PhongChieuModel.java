@@ -6,8 +6,10 @@
 package model;
 
 import entity.PhongChieu;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import util.Database;
 
@@ -16,10 +18,12 @@ import util.Database;
  * @author Lenovo
  */
 public class PhongChieuModel {
+    static Connection con = Database.connect();
     public static ArrayList<PhongChieu> taiTatCa() throws SQLException {
         ArrayList<PhongChieu> arr = new ArrayList<>();
         String sql = "select * from PhongChieu";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         while(rs.next()) {
             arr.add(new PhongChieu(rs.getString(1), rs.getString(2),rs.getInt(3)));
         }

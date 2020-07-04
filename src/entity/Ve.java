@@ -12,12 +12,14 @@ import java.util.Date;
  * @author leanh
  */
 public class Ve {
+
     private String mave;
     private String masuatchieu;
     private String manhanvien;
-    private String masukien;
     private String mahoivien;
     private String maghe;
+    private String tennhanvien;
+    private String tenhoivien;
     private Date ngaylap;
     private int giave;
     private int diemtichluy;
@@ -44,14 +46,6 @@ public class Ve {
 
     public void setManhanvien(String manhanvien) {
         this.manhanvien = manhanvien;
-    }
-
-    public String getMasukien() {
-        return masukien;
-    }
-
-    public void setMasukien(String masukien) {
-        this.masukien = masukien;
     }
 
     public String getMahoivien() {
@@ -94,11 +88,26 @@ public class Ve {
         this.diemtichluy = diemtichluy;
     }
 
-    public Ve(String mave, String masuatchieu, String manhanvien, String masukien, String mahoivien, String maghe, Date ngaylap, int giave, int diemtichluy) {
+    public String getTennhanvien() {
+        return tennhanvien;
+    }
+
+    public void setTennhanvien(String tennhanvien) {
+        this.tennhanvien = tennhanvien;
+    }
+
+    public String getTenhoivien() {
+        return tenhoivien;
+    }
+
+    public void setTenhoivien(String tenhoivien) {
+        this.tenhoivien = tenhoivien;
+    }
+
+    public Ve(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe, Date ngaylap, int giave, int diemtichluy) {
         this.mave = mave;
         this.masuatchieu = masuatchieu;
         this.manhanvien = manhanvien;
-        this.masukien = masukien;
         this.mahoivien = mahoivien;
         this.maghe = maghe;
         this.ngaylap = ngaylap;
@@ -106,8 +115,26 @@ public class Ve {
         this.diemtichluy = diemtichluy;
     }
 
+    public Ve(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe, Date ngaylap, int giave) {
+        this.mave = mave;
+        this.masuatchieu = masuatchieu;
+        this.manhanvien = manhanvien;
+        this.mahoivien = mahoivien;
+        this.maghe = maghe;
+        this.ngaylap = ngaylap;
+        this.giave = giave;
+    }
+
+    public Ve(String mave, String manhanvien, String mahoivien, String maghe, String tennhanvien, String tenhoivien, int giave) {
+        this.mave = mave;
+        this.manhanvien = manhanvien;
+        this.mahoivien = mahoivien;
+        this.maghe = maghe;
+        this.tennhanvien = tennhanvien;
+        this.tenhoivien = tenhoivien;
+        this.giave = giave;
+    }
+
     public Ve() {
     }
-    
-    
 }

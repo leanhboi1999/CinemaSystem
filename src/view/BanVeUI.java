@@ -7,14 +7,11 @@ import entity.HoiVien;
 import entity.Phim;
 import entity.SuatChieu;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import util.DateFormat;
+
 
 public class BanVeUI extends javax.swing.JFrame {
 
@@ -274,7 +271,7 @@ public class BanVeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablePhimMouseClicked
 
     private void btnChonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonActionPerformed
-       
+
         int row = jTableSuatChieu.getSelectedRow();
         GheUI gh;
         kt_masuatchieu= jTableSuatChieu.getModel().getValueAt(row, 0).toString();
@@ -288,7 +285,7 @@ public class BanVeUI extends javax.swing.JFrame {
             gh=new GheUI(kt_masuatchieu);
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Mã khách hàng không hợp lệ");
+            JOptionPane.showMessageDialog(null,"Mã khách hàng không hợp lệ ");
         }
         
         

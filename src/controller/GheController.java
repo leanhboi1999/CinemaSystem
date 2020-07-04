@@ -38,7 +38,7 @@ public class GheController {
         return GheModel.giave(masuatchieu);
     }
     
-    public static int themVe(String mave,String masuatchieu, String manhanvien, String mahoivien, String maghe,int giave) throws SQLException {
+    public static boolean themVe(String mave,String masuatchieu, String manhanvien, String mahoivien, String maghe,int giave) throws SQLException {
         return GheModel.themVe(mave,masuatchieu, manhanvien, mahoivien, maghe,giave);
     }
     public static String hienMa() throws SQLException

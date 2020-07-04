@@ -288,7 +288,7 @@ public class ChiTietThucPham extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        BanThucAnUI ui = new BanThucAnUI(manhanvien, maquyen);
+        BanThucAnUI ui = new BanThucAnUI(maquyen, manhanvien);
         ui.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -10,6 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import util.Database;
 
@@ -18,10 +19,12 @@ import util.Database;
  * @author leanh
  */
 public class TaiKhoanModel {
+    static Connection con = Database.connect();
 
     public static ArrayList<TaiKhoan> taiTatCa() throws SQLException {
         String sql = "select * from taikhoan";
-        ResultSet rs = Database.callQuery(sql);
+       Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         ArrayList<TaiKhoan> arr = new ArrayList<>();
         while (rs.next()) {
             arr.add(new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3)));
@@ -31,7 +34,8 @@ public class TaiKhoanModel {
 
     public static String layMatKhau(String username) throws SQLException {
         String sql = "select mat_khau from TAIKHOAN where manhanvien = " + "'" + username + "'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         rs.next();
         String pass = rs.getString(1);
         if (pass == null) {
@@ -42,14 +46,15 @@ public class TaiKhoanModel {
 
     public static String GetQuyen(String username) throws SQLException {
         String sql = "select MAQUYEN from TAIKHOAN where manhanvien = " + "'" + username + "'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         rs.next();
         String maQuyen = rs.getString(1);
         return maQuyen;
     }
 
     public static boolean taoTaiKhoan(String manhanvien, String matkhau) throws SQLException {
-        Connection con = Database.connect();
+        //Connection con = Database.connect();
         try {
             String sql = "{call TAOTK(?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
@@ -59,9 +64,9 @@ public class TaiKhoanModel {
             return true;
         } catch (Exception e) {
             return false;
-        } finally {
+        } /*finally {
             con.close();
-        }
+        }*/
     }
 
     /*public static int Insert (String user, String pass) throws SQLException {

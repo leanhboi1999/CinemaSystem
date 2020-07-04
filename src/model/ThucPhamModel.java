@@ -1,13 +1,12 @@
 package model;
 
-import entity.Cthdtp;
-import entity.HoaDonThucPham;
 import entity.ThucPham;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,20 +14,38 @@ import util.Database;
 
 public class ThucPhamModel {
 
+    static Connection con = Database.connect();
+
     public static ArrayList<ThucPham> taiTatCa() throws SQLException {
         String sql = "select * from thucpham";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        ArrayList<ThucPham> arr = new ArrayList<>();
+        while (rs.next()) {
+            arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+            //con.commit();
+        }
+        return arr;
+    }
+
+    public static ArrayList<ThucPham> taiCoTrangThai() throws SQLException {
+
+        String sql = "select * from thucpham where TRANGTHAI = 1";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         ArrayList<ThucPham> arr = new ArrayList<>();
         while (rs.next()) {
             arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
         }
-        Database.connect().close();
         return arr;
     }
 
     public static ArrayList<ThucPham> timKiem(String tenthucpham) throws SQLException {
+        //Cái này để giải quyết non-repeatable read
+        con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         String sql = "SELECT * FROM THUCPHAM WHERE TENTHUCPHAM LIKE '%" + tenthucpham + "%'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         ArrayList<ThucPham> arr = new ArrayList<>();
         while (rs.next()) {
             arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
@@ -37,78 +54,31 @@ public class ThucPhamModel {
     }
 
     public static String hienMa() throws SQLException {
-        CallableStatement st = Database.connect().prepareCall("{? = call ID_THUCPHAM}");
+        CallableStatement st = con.prepareCall("{? = call ID_THUCPHAM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
         return st.getString(1);
     }
 
     public static Date hienngay() throws SQLException {
-        CallableStatement st = Database.connect().prepareCall("{? = call auto_ngaylap}");
+        CallableStatement st = con.prepareCall("{? = call auto_ngaylap}");
         st.registerOutParameter(1, Types.DATE);
         st.execute();
         return st.getDate(1);
     }
 
-    public static int insert(String mahoadon, String mathucpham, int soluong) throws SQLException {
-        int rows = Database.callQueryInsert("CTHDTP", mahoadon, mathucpham, soluong);
-        Database.connect().close();
-        return rows;
-    }
-
-    public static int inserthd(String m1, String m2, String m3) throws SQLException {
-        int rows;
-        rows = Database.callQueryInsert("HDTHUCPHAM", m1, m2, m3);
-        Database.connect().close();
-        return rows;
-    }
-
-    public static boolean inserthd_cthd(HoaDonThucPham hd, ArrayList<Cthdtp> chitiethoadon) throws SQLException {
-        Connection con = Database.connect();
-        try {
-            con.setAutoCommit(false);
-            String sql = "INSERT INTO HDTHUCPHAM VALUES (?,?,?,TO_DATE(?,'YYYY-MM-DD'))";
-            PreparedStatement stmt;
-            stmt = con.prepareStatement(sql);
-            stmt.setString(1, hd.getMahoadon()); // This would set age
-            stmt.setString(2, hd.getManhanvien());
-            stmt.setInt(3, hd.getSotien());
-            stmt.setString(4, hd.getNgaylap());
-            stmt.executeUpdate();
-
-            PreparedStatement stmt2;
-            for (int i = 0; i < chitiethoadon.size(); i++) {
-                String sql2 = "INSERT INTO CTHDTP VALUES (?,?,?)";
-                stmt2 = con.prepareStatement(sql2);
-                stmt2.setString(2, chitiethoadon.get(i).getMathucpham()); // This would set age
-                stmt2.setString(1, chitiethoadon.get(i).getMahoadon());
-                stmt2.setInt(3, chitiethoadon.get(i).getSoluong());
-                stmt2.executeUpdate();
-            }
-            con.commit();
-            return true;
-        } catch (Exception e) {
-            if (con != null) {
-                con.rollback();
-            }
-            e.printStackTrace();
-            return false;
-        } finally {
-            con.close();
-        }
-    }
-
     public static ThucPham layThongTin(String maThucPham) throws SQLException {
         String sql = "SELECT * FROM THUCPHAM WHERE MATHUCPHAM =" + "'" + maThucPham + "'";
-        ResultSet rs = Database.callQuery(sql);
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
         rs.next();
         ThucPham thucpham = new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
-        Database.connect().close();
         return thucpham;
     }
 
     public static int insertThucPham(ThucPham thucpham) throws SQLException {
-        Connection con = Database.connect();
+        //Connection con = Database.connect();
+        con.setAutoCommit(false);
         String sql = "INSERT INTO THUCPHAM VALUES (?,?,?,?,?)";
         PreparedStatement stmt;
         stmt = con.prepareStatement(sql);
@@ -118,26 +88,47 @@ public class ThucPhamModel {
         stmt.setInt(4, thucpham.getSoluong());
         stmt.setInt(5, thucpham.getTrangthai());
         int row = stmt.executeUpdate();
+        //con.commit();
         return row;
     }
 
     public static int editThucPham(String maThucPham, String tenThucPham, int donGia, int soLuong, int trangThai) throws SQLException {
-        Connection con = Database.connect();
+        //Connection con = Database.connect();
         try {
-            int kq = Database.callStoredUpdate("EDIT_THUCPHAM", maThucPham, tenThucPham, donGia, soLuong, trangThai);
-            con.close();
+            con.setAutoCommit(false);
+            String sql = "{call EDIT_THUCPHAM(?,?,?,?,?)}";
+            CallableStatement st = con.prepareCall(sql);
+            System.out.println("flag 2");
+            st.setString(1, maThucPham);
+            st.setString(2, tenThucPham);
+            st.setInt(3, donGia);
+            st.setInt(4, soLuong);
+            st.setInt(5, trangThai);
+            System.out.println(maThucPham);
+            System.out.println(tenThucPham);
+            System.out.println(donGia);
+            System.out.println(soLuong);
+            System.out.println(trangThai);
+            System.out.println("flag 3");
+            int kq = st.executeUpdate();
+            //con.close();
+            //Thay đổi thread để demo non-repeatable read
+            //Thread.sleep(2000);
+            con.commit();
             return kq;
         } catch (Exception e) {
             return 0;
-        } finally {
-            con.close();
         }
+        /*finally {
+            con.close();
+        }*/
     }
 
     public static int xoaThucPham(String maThucPham) throws SQLException {
         String sql = "DELETE FROM THUCPHAM WHERE MATHUCPHAM = '" + maThucPham + "'";
-        int rs = Database.callQueryDelete(sql);
-        Database.connect().close();
+        PreparedStatement st = con.prepareCall(sql);
+        int rs = st.executeUpdate(sql);
+        //Database.connect().close();
         return rs;
     }
 

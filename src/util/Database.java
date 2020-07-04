@@ -36,16 +36,21 @@ public class Database {
     }
 
     //Hàm kết nối dựa vào giá trị từ hàm load
-    public static Connection connect() throws SQLException {
-        if (conn != null) {
+    public static Connection connect() {
+        try {
+            if (conn != null) {
             return conn;
         } else {
             return DriverManager.getConnection(connectionString, userName, password);
         }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }  
     }
-
+    
     //Gọi lệnh
-    public static ResultSet callQuery(String sqlQuery) throws SQLException {
+   /* public static ResultSet callQuery(String sqlQuery) throws SQLException {
         Connection connect = connect();
         Statement st = connect.createStatement();
         return st.executeQuery(sqlQuery);
@@ -149,5 +154,5 @@ public class Database {
         }
         // trả về kết quả
         return call.executeUpdate();
-    }
+    }*/
 }

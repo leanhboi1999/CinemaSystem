@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -16,7 +17,7 @@ public class HoaDonThucPham {
     private String mahoadon;
     private String manhanvien;
     private int sotien;
-    private String ngaylap;
+    private Timestamp ngaylap;
 
     public String getMahoadon() {
         return mahoadon;
@@ -42,22 +43,27 @@ public class HoaDonThucPham {
         this.sotien = sotien;
     }
 
-    public String getNgaylap() {
+    public Timestamp getNgaylap() {
         return ngaylap;
     }
 
-    public void setNgaylap(String ngaylap) {
+    public void setNgaylap(Timestamp ngaylap) {
         this.ngaylap = ngaylap;
     }
 
     public HoaDonThucPham() {
     }
 
-    public HoaDonThucPham(String mahoadon, String manhanvien, int sotien, String ngaylap) {
+    public HoaDonThucPham(String mahoadon, String manhanvien, int sotien, Timestamp ngaylap) {
         this.mahoadon = mahoadon;
         this.manhanvien = manhanvien;
         this.sotien = sotien;
         this.ngaylap = ngaylap;
     }
 
+    public HoaDonThucPham(String mahoadon, int sotien, Timestamp ngaylap) {
+        this.mahoadon = mahoadon;
+        this.sotien = sotien;
+        this.ngaylap = ngaylap;
+    }
 }

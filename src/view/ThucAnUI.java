@@ -134,6 +134,11 @@ public class ThucAnUI extends javax.swing.JFrame {
 
         btnLoad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-invisible-20.png"))); // NOI18N
         btnLoad.setText("Hiển thị tất cả");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
 
         jTableThucAn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -331,6 +336,15 @@ public class ThucAnUI extends javax.swing.JFrame {
         dispose();
         ui.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+         try {
+            ArrayList<ThucPham> arr = ThucPhamController.taiTatCa();
+            hienThi(arr);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnLoadActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

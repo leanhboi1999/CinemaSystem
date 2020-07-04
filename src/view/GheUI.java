@@ -189,7 +189,7 @@ public class GheUI extends JFrame {
                                     } catch (SQLException ex) {
                                         JOptionPane.showMessageDialog(null, ex.getMessage());
                                     }
-                                    JOptionPane.showMessageDialog(null, arrgiave[r][c]);
+                                    JOptionPane.showMessageDialog(null,"Gia ve: " + arrgiave[r][c]);
                                     setCount(count + 1);
 
                                 } else if (e.getSource() == btnArray[r][c] && btnArray[r][c].getBackground() == Color.RED) {
@@ -275,7 +275,8 @@ public class GheUI extends JFrame {
 
         maghe = tam.getMaghe();
         try {
-            int ketqua = GheController.themVe(mave, BanVeUI.kt_masuatchieu, LoginUI.kn_manhanvien, BanVeUI.kt_makhachhang, maghe, kn_giave);
+            if (GheController.themVe(mave, BanVeUI.kt_masuatchieu, LoginUI.kn_manhanvien, BanVeUI.kt_makhachhang, maghe, kn_giave))
+                JOptionPane.showMessageDialog(null, "Them ve thanh cong");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "khong them duoc");
         }

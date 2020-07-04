@@ -1029,7 +1029,7 @@ public class HomeUI extends javax.swing.JFrame {
 
     private void kGradientPanel13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel13MousePressed
         newPressAnotherColor(kGradientPanel13);
-        if (maquyen.equalsIgnoreCase("PQ00001") || maquyen.equalsIgnoreCase("PQ00004")) {
+        if (maquyen.equalsIgnoreCase("PQ00001") || maquyen.equalsIgnoreCase("PQ00005")) {
             dispose();
             BanThucAnUI ui = new BanThucAnUI(maquyen, manhanvien);
             ui.setVisible(true);
