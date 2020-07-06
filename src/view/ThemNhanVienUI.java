@@ -419,6 +419,7 @@ public class ThemNhanVienUI extends javax.swing.JFrame {
                 }
                 txtMaChucVu.setText(nv.getMachucvu());
                 txtCMND.setText(nv.getCmnd());
+                System.out.println(nv.getCmnd());
                 if (nv.getGioitinh().equals("NAM")) {
                     txtGioiTinh.setSelectedIndex(0);
                 } else {

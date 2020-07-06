@@ -53,7 +53,7 @@ public class SuatChieuModel {
     }
 
     public static int xoaSuatChieu(String masuatchieu) throws SQLException {
-        String sql = "DELETE * FROM SUATCHIEU WHERE MASUATCHIEU = '" + masuatchieu + "'";
+        String sql = "DELETE FROM SUATCHIEU WHERE MASUATCHIEU = '" + masuatchieu + "'";
         Statement st = con.createStatement();
         int rs = st.executeUpdate(sql);
         Database.connect().close();

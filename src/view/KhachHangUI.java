@@ -310,7 +310,7 @@ public class KhachHangUI extends javax.swing.JFrame {
                 loadDanhSach(arr);
             } else if (ckCMND.isSelected()) {
                 String cmnd = txtCMND.getText();
-                ArrayList<HoiVien> arr = HoiVienController.timKiemTen(cmnd);
+                ArrayList<HoiVien> arr = HoiVienController.timKiemCMND(cmnd);
                 loadDanhSach(arr);
             } else {
                 JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");

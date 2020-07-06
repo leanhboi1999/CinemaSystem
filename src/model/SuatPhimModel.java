@@ -23,7 +23,7 @@ public class SuatPhimModel {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new SuatPhim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
-    }
+        }
         return arr;
     }
 
@@ -47,7 +47,6 @@ public class SuatPhimModel {
         try {
             con.setAutoCommit(false);
             CallableStatement cstmt;
-            //Database.callStoredUpdate("PRO_INSERT_SUATPHIM", sp.getMasuatphim(), sp.getTenngonngu(), sp.getTendinhdang(), sp.getMaphim(), sp.getTenhinhthuc());
             String sql2 = "{call PRO_INSERT_SUATPHIM (?,?,?,?,?)}";
             cstmt = con.prepareCall(sql2);
             cstmt.setString(1, sp.getMasuatphim());
@@ -61,16 +60,15 @@ public class SuatPhimModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
-            con.close();
         }
     }
 
     public static int xoaSuatPhim(String masuatphim) throws SQLException {
+        con.setAutoCommit(false);
         String sql = "DELETE FROM SUATPHIM WHERE MASUATPHIM =" + "'" + masuatphim + "'";
         Statement st = con.createStatement();
         int rs = st.executeUpdate(sql);
-        Database.connect().close();
+        con.commit();
         return rs;
     }
 
@@ -82,7 +80,7 @@ public class SuatPhimModel {
     }
 
     public static boolean them(String maSuatChieu, String tenPhong, String maSuatPhim, String gio, String ngaychieu) throws SQLException {
-        // Connection con = Database.connect();
+
         try {
             con.setAutoCommit(false);
             String tam = ngaychieu + " " + gio;
@@ -104,8 +102,5 @@ public class SuatPhimModel {
             con.rollback();
             return false;
         }
-        /*finally {
-            con.close();
-        }*/
     }
 }

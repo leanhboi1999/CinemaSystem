@@ -16,8 +16,6 @@ import javax.swing.table.TableModel;
 public class BanVeUI extends javax.swing.JFrame {
 
     //Khúc này để lấy mã nhân viên đăng nhập vào hệ thống
-    private String manhanvien;
-    private String maquyen;
     public static String kt_masuatchieu;
     public static String kt_tenphim;
     public static String kt_giochieu;
@@ -31,7 +29,7 @@ public class BanVeUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lý rạp phim");
-        //this.manhanvien = manhanvien;
+       
         try {
             ArrayList<Phim> arr = PhimController.taiPhimDangChieu();
             hienThi(arr);
@@ -39,6 +37,8 @@ public class BanVeUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
+
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,6 +57,7 @@ public class BanVeUI extends javax.swing.JFrame {
         jTablePhim = new javax.swing.JTable();
         txtTtenPhim = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -143,7 +144,7 @@ public class BanVeUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 848, 430);
+        jPanel10.setBounds(330, 112, 842, 430);
 
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -233,6 +234,15 @@ public class BanVeUI extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 1170, 545);
 
+        jLabel3.setText("jLabel3");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(20, 20, 80, 80);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,6 +301,12 @@ public class BanVeUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnChonActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        HomeUI ui = new HomeUI(LoginUI.kn_quyen, LoginUI.kn_manhanvien);
+        dispose();
+        ui.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -304,6 +320,7 @@ public class BanVeUI extends javax.swing.JFrame {
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;

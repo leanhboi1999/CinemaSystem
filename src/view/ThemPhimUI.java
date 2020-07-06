@@ -731,6 +731,9 @@ public class ThemPhimUI extends javax.swing.JFrame {
                     dispose();
                     PhimUI ui = new PhimUI(maquyen, manhanvien);
                     ui.setVisible(true);
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

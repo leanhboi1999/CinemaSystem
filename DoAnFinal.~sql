@@ -90,6 +90,7 @@ drop index BAN_FK;
 drop table CTHDTP cascade constraints;
 drop table VE cascade constraints;
 --DROP PROCEDURE
+drop procedure EDIT_PHIM
 drop procedure edit_hoivien;
 drop procedure edit_nhanvien;
 drop procedure edit_thucpham;
@@ -1326,7 +1327,7 @@ BEGIN
       WHERE MAVE = V_MAVE;
 END;
 begin
-EDIT_VE('VE00001','SC00002',	'NV00002',	'HV00001',	'GH00001',55000.00);
+EDIT_VE('VE00001','SC00002','NV00002','HV00001','GH00001',55000.00);
 end;
 --Tạo tài khoản
 CREATE OR REPLACE PROCEDURE TAOTK(

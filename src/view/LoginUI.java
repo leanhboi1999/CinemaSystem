@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 public class LoginUI extends javax.swing.JFrame {
 
     public static String kn_manhanvien;
+    public static String kn_quyen;
 
     public LoginUI() {
         initComponents();

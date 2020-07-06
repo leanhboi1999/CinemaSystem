@@ -28,7 +28,6 @@ public class HomeUI extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.maquyen = maquyen;
         this.manhanvien = manhanvien;
-
     }
 
     private HomeUI() {
@@ -119,6 +118,15 @@ public class HomeUI extends javax.swing.JFrame {
         kGradientPanel13 = new keeptoo.KGradientPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
+        kGradientPanel12 = new keeptoo.KGradientPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        kGradientPanel14 = new keeptoo.KGradientPanel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -385,15 +393,17 @@ public class HomeUI extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(kGradientPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel35)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(kGradientPanel10Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         kGradientPanel10Layout.setVerticalGroup(
             kGradientPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel10Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel35)
                 .addGap(40, 40, 40))
         );
@@ -404,11 +414,11 @@ public class HomeUI extends javax.swing.JFrame {
             }
         });
         kGradientPanel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                kGradientPanel9MouseExited(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 kGradientPanel9MousePressed(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kGradientPanel9MouseExited(evt);
             }
         });
         kGradientPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -598,11 +608,11 @@ public class HomeUI extends javax.swing.JFrame {
             }
         });
         kGradientPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                kGradientPanel2MouseExited(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 kGradientPanel2MousePressed(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kGradientPanel2MouseExited(evt);
             }
         });
 
@@ -673,6 +683,114 @@ public class HomeUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        kGradientPanel12.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                kGradientPanel12MouseMoved(evt);
+            }
+        });
+        kGradientPanel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                kGradientPanel12MousePressed(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kGradientPanel12MouseExited(evt);
+            }
+        });
+
+        jLabel41.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
+        jLabel41.setText("HĐTP");
+
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/income.png"))); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel12Layout = new javax.swing.GroupLayout(kGradientPanel12);
+        kGradientPanel12.setLayout(kGradientPanel12Layout);
+        kGradientPanel12Layout.setHorizontalGroup(
+            kGradientPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel12Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel12Layout.createSequentialGroup()
+                .addContainerGap(58, Short.MAX_VALUE)
+                .addComponent(jLabel41)
+                .addGap(56, 56, 56))
+        );
+        kGradientPanel12Layout.setVerticalGroup(
+            kGradientPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel12Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel41)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        kGradientPanel14.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                kGradientPanel14MouseMoved(evt);
+            }
+        });
+        kGradientPanel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                kGradientPanel14MousePressed(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                kGradientPanel14MouseExited(evt);
+            }
+        });
+
+        jLabel43.setFont(new java.awt.Font("Arial", 1, 30)); // NOI18N
+        jLabel43.setText("Vé");
+
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/validating-ticket.png"))); // NOI18N
+
+        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/validating-ticket.png"))); // NOI18N
+
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/validating-ticket.png"))); // NOI18N
+
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/validating-ticket.png"))); // NOI18N
+
+        javax.swing.GroupLayout kGradientPanel14Layout = new javax.swing.GroupLayout(kGradientPanel14);
+        kGradientPanel14.setLayout(kGradientPanel14Layout);
+        kGradientPanel14Layout.setHorizontalGroup(
+            kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                .addGroup(kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel43))
+                    .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                                .addComponent(jLabel45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel47))
+                            .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                                .addComponent(jLabel44)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel46)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        kGradientPanel14Layout.setVerticalGroup(
+            kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel44)
+                    .addComponent(jLabel46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(kGradientPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel45)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel43)
+                        .addGap(35, 35, 35))
+                    .addGroup(kGradientPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel47)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -694,7 +812,11 @@ public class HomeUI extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                     .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(kGradientPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -704,18 +826,21 @@ public class HomeUI extends javax.swing.JFrame {
                     .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(kGradientPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                    .addComponent(kGradientPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addComponent(kGradientPanel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(kGradientPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(kGradientPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                        .addComponent(kGradientPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                        .addComponent(kGradientPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(kGradientPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                    .addComponent(kGradientPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel8);
-        jPanel8.setBounds(370, 110, 940, 600);
+        jPanel8.setBounds(370, 110, 1170, 600);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -746,13 +871,13 @@ public class HomeUI extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(400, 20, 60, 70);
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(370, 0, 940, 700);
+        jLabel1.setBounds(370, 0, 1170, 700);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1310, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1540, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1038,6 +1163,50 @@ public class HomeUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_kGradientPanel13MousePressed
 
+    private void kGradientPanel12MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel12MouseMoved
+        // TODO add your handling code here:
+        newAnotherMoveColor(kGradientPanel12);
+    }//GEN-LAST:event_kGradientPanel12MouseMoved
+
+    private void kGradientPanel12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel12MousePressed
+        // TODO add your handling code here:
+        newPressAnotherColor(kGradientPanel12);
+        if (maquyen.equalsIgnoreCase("PQ00001") || maquyen.equalsIgnoreCase("PQ00005")) {
+            dispose();
+            HoaDonUI ui = new HoaDonUI(maquyen, manhanvien);
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
+    }//GEN-LAST:event_kGradientPanel12MousePressed
+
+    private void kGradientPanel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel12MouseExited
+        // TODO add your handling code here:
+         newAnotherResetColor(kGradientPanel12);
+    }//GEN-LAST:event_kGradientPanel12MouseExited
+
+    private void kGradientPanel14MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel14MouseMoved
+        // TODO add your handling code here:
+        newAnotherMoveColor(kGradientPanel14);
+    }//GEN-LAST:event_kGradientPanel14MouseMoved
+
+    private void kGradientPanel14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel14MousePressed
+        // TODO add your handling code here:
+        newPressAnotherColor(kGradientPanel14);
+        if (maquyen.equalsIgnoreCase("PQ00001") || maquyen.equalsIgnoreCase("PQ00004")) {
+            dispose();
+            VeUI ui = new VeUI(maquyen, manhanvien);
+            ui.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Bạn không có quyền truy cập chức năng này");
+        }
+    }//GEN-LAST:event_kGradientPanel14MousePressed
+
+    private void kGradientPanel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kGradientPanel14MouseExited
+        // TODO add your handling code here:
+        newAnotherResetColor(kGradientPanel14);
+    }//GEN-LAST:event_kGradientPanel14MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1106,7 +1275,18 @@ public class HomeUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1118,8 +1298,12 @@ public class HomeUI extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel1;
     private keeptoo.KGradientPanel kGradientPanel10;
     private keeptoo.KGradientPanel kGradientPanel11;
+    private keeptoo.KGradientPanel kGradientPanel12;
     private keeptoo.KGradientPanel kGradientPanel13;
+    private keeptoo.KGradientPanel kGradientPanel14;
     private keeptoo.KGradientPanel kGradientPanel2;
+    private keeptoo.KGradientPanel kGradientPanel3;
+    private keeptoo.KGradientPanel kGradientPanel4;
     private keeptoo.KGradientPanel kGradientPanel5;
     private keeptoo.KGradientPanel kGradientPanel7;
     private keeptoo.KGradientPanel kGradientPanel8;

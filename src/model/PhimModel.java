@@ -27,6 +27,8 @@ public class PhimModel {
     private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
 
     public static ArrayList<Phim> taiTatCa() throws SQLException {
+        con.setAutoCommit(false);
+        con.commit();
         ArrayList<Phim> arr = new ArrayList<>();
         String sql = "Select * from phim";
         Statement st = con.createStatement();
@@ -98,13 +100,11 @@ public class PhimModel {
     }
 
     public static boolean them(Phim p, ArrayList<SuatPhim> aSuatPhim) throws SQLException {
-        //Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             String sql = "INSERT INTO PHIM VALUES (?,?,?,?,?,?,?,?,TO_DATE(?,'dd/mm/yyyy'),?,?,?)";
             PreparedStatement stmt;
             stmt = con.prepareStatement(sql);
-            //System.out.println("Flag");
             stmt.setString(1, p.getMaphim());
             stmt.setString(2, p.getTenphim());
             stmt.setInt(3, p.getThoiluong());
@@ -117,7 +117,6 @@ public class PhimModel {
             stmt.setInt(10, p.getGioihantuoi());
             stmt.setString(11, p.getTomtat());
             stmt.setString(12, p.getTrangthai());
-            //System.out.println("Flag 1");
             stmt.executeUpdate();
             CallableStatement cstmt;
             for (SuatPhim item : aSuatPhim) {
@@ -128,12 +127,6 @@ public class PhimModel {
                 cstmt.setString(3, item.getTendinhdang());
                 cstmt.setString(4, item.getMaphim());
                 cstmt.setString(5, item.getTenhinhthuc());
-                /*System.out.println(item.getMasuatphim());
-                System.out.println(item.getTenngonngu());
-                System.out.println(item.getTendinhdang());
-                System.out.println(item.getMaphim());
-                System.out.println(item.getTenhinhthuc());
-                System.out.println("Flag 2");*/
                 cstmt.executeUpdate();
             }
             con.commit();
