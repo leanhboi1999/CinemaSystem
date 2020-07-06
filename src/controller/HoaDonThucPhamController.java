@@ -16,6 +16,10 @@ public class HoaDonThucPhamController {
         return HoaDonThucPhamModel.timKiemMa(mahoadon);
     }
 
+    public static ArrayList<HoaDonThucPham> timKiemNgay(String startDate, String endDate) throws SQLException {
+        return HoaDonThucPhamModel.timKiemNgay(startDate, endDate);
+    }
+
     public static String hienMa() throws SQLException {
         return HoaDonThucPhamModel.hienMa();
     }

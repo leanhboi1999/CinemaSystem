@@ -10,7 +10,6 @@ import java.sql.Timestamp;
 import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import static model.SuKienModel.con;
 import util.Database;
 
 public class SuatChieuModel {
@@ -75,13 +74,9 @@ public class SuatChieuModel {
             String tam = ngaychieu + " " + gio;
             String sql = "{call PRO_INSERT_SUATCHIEU(?,?,?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
-            System.out.println("flag 1");
             cstmt.setString(1, maSuatChieu);
-            System.out.println(maSuatChieu);
             cstmt.setString(2, tenPhong);
-            System.out.println(tenPhong);
             cstmt.setString(3, maSuatPhim);
-            System.out.println(maSuatPhim);
             SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss");
             cstmt.setTimestamp(4, new Timestamp(df.parse(tam).getTime()));
             cstmt.executeUpdate();
@@ -90,9 +85,7 @@ public class SuatChieuModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } /*finally {
-            con.close();
-        }*/
+        }
     }
 
     public static ArrayList<SuatChieu> taiSuatChieu(String maphim) throws SQLException {

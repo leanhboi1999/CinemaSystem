@@ -303,7 +303,7 @@ public class KhachHangUI extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         try {
             if (ckCMND.isSelected() && ckTen.isSelected()) {
-                JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
+                JOptionPane.showMessageDialog(null, "Vui lòng chỉ chọn 1 trong 2");
             } else if (ckTen.isSelected()) {
                 String ten = txtTen.getText();
                 ArrayList<HoiVien> arr = HoiVienController.timKiemTen(ten);
@@ -313,7 +313,7 @@ public class KhachHangUI extends javax.swing.JFrame {
                 ArrayList<HoiVien> arr = HoiVienController.timKiemCMND(cmnd);
                 loadDanhSach(arr);
             } else {
-                JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn chức năng tìm kiếm");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -323,7 +323,7 @@ public class KhachHangUI extends javax.swing.JFrame {
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         int row = jTableKhachHang.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Cần được xác định đối tượng trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 String makhachhang = jTableKhachHang.getModel().getValueAt(row, 1).toString();
@@ -341,7 +341,7 @@ public class KhachHangUI extends javax.swing.JFrame {
         int row = jTableKhachHang.getSelectedRow();
         String maHoiVien = jTableKhachHang.getValueAt(row, 1).toString();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
             if (p == 0) {

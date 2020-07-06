@@ -281,7 +281,7 @@ public class NhanVienUI extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int row = jTableNhanVien.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 String manhanvien = jTableNhanVien.getModel().getValueAt(row, 1).toString();

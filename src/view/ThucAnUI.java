@@ -283,7 +283,7 @@ public class ThucAnUI extends javax.swing.JFrame {
                 ArrayList<ThucPham> arr = ThucPhamController.timKiem(tenthucpham);
                 hienThi(arr);
             } else {
-               JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");
+               JOptionPane.showMessageDialog(null, "Vui lòng chọn trước");
             }
         } catch (Exception e) {
         }
@@ -292,7 +292,7 @@ public class ThucAnUI extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int row = jTableThucAn.getSelectedRow();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 String maThucAn = jTableThucAn.getModel().getValueAt(row, 1).toString();
@@ -311,7 +311,7 @@ public class ThucAnUI extends javax.swing.JFrame {
         int row = jTableThucAn.getSelectedRow();
         String maThucPham = jTableThucAn.getValueAt(row, 1).toString();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
             if (p == 0) {

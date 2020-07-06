@@ -428,7 +428,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
         int row = jTableSuatPhim.getSelectedRow();
         String masuatphim = jTableSuatPhim.getValueAt(row, 0).toString();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Bạn vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
             if (p == 0) {
@@ -607,10 +607,10 @@ public class ThemPhimUI extends javax.swing.JFrame {
             taoPhim();
             try {
                 if (PhimController.them(newPhim, aSuatPhim)) {
-                    JOptionPane.showMessageDialog(null, "Thêm thành công 1");
+                    JOptionPane.showMessageDialog(null, "Thêm thành công");
                     hienthi();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Thêm thất bại 1");
+                    JOptionPane.showMessageDialog(null, "Thêm thất bại");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -620,7 +620,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
 
     private boolean check() {
         if (txtTenPhim.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Quên tên phim kìa thánh");
+            JOptionPane.showMessageDialog(null, "Quên tên phim rồi");
             return false;
         }
         /*if (jTableSuatPhim.getRowCount() != 1) {

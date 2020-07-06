@@ -22,7 +22,6 @@ public class BanVeUI extends javax.swing.JFrame {
     public static String kt_maphong;
     public static String kt_makhachhang;
     public static String kt_tenkhachhang;
-    //DateFormat fm = new DateFormat("dd/mm/YYYY HH:MM:ss");
 
     public BanVeUI() {
         initComponents();

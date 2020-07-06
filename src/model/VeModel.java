@@ -59,8 +59,29 @@ public class VeModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
-            con.close();
         }
     }
+
+    public static ArrayList<Ve> timKiem(String mave) throws SQLException {
+        ArrayList<Ve> arr = new ArrayList<>();
+        String sql = "SELECT * FROM VE WHERE MAVE LIKE +'%" + mave + "%'";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            arr.add(new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7)));
+        }
+        return arr;
+    }
+
+    public static ArrayList<Ve> timKiemNgay(String startDate, String endDate) throws SQLException {
+        String sql = "SELECT * FROM VE WHERE NGAYLAP>=TO_DATE('" + startDate + "','DD/MM/YYYY') AND NGAYLAP<=TO_DATE('" + endDate + "','DD/MM/YYYY')";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        ArrayList<Ve> arr = new ArrayList<>();
+        while (rs.next()) {
+            arr.add(new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7)));
+        }
+        return arr;
+    }
+
 }

@@ -305,7 +305,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         try {
             if (ckMaSuatChieu.isSelected() && ckThoiGian.isSelected()) {
-                JOptionPane.showMessageDialog(null, "Tham vừa thôi, tìm 1 diều kiện là được rồi");
+                JOptionPane.showMessageDialog(null, "Vui lòng chỉ chọn 1 trong 2");
             } else if (ckMaSuatChieu.isSelected()) {
                 String masuatchieu = txtTenPhim.getText();
                 ArrayList<SuatChieu> arr = SuatChieuController.timKiem(masuatchieu);
@@ -316,7 +316,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
                 ArrayList<SuatChieu> list = SuatChieuController.timKiem(startDate, endDate);
                 loadSuatChieu(list);
             } else {
-                JOptionPane.showMessageDialog(null, "Tức đó, không chọn gì đòi tìm gì hả");
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn trước");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -327,7 +327,7 @@ public class SuatChieuUI extends javax.swing.JFrame {
         int row = jTableSuatChieu.getSelectedRow();
         String masuatchieu = jTableSuatChieu.getValueAt(row, 1).toString();
         if (row == -1) {
-            JOptionPane.showMessageDialog(null, "Không click chọn có mà hiển thị bằng niềm tin", "Null Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn trước", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
             int p = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa dữ liệu không?", "Delete", JOptionPane.YES_NO_OPTION);
             if (p == 0) {

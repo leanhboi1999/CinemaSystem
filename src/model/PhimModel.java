@@ -130,18 +130,14 @@ public class PhimModel {
                 cstmt.executeUpdate();
             }
             con.commit();
-            System.out.println("Flag 3");
             return true;
         } catch (Exception e) {
             con.rollback();
             return false;
-        } /*finally {
-            con.close();
-        }*/
+        }
     }
 
     public static boolean sua(Phim p) throws SQLException {
-        //Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             CallableStatement stmt;
@@ -165,8 +161,6 @@ public class PhimModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } /*finally {
-            con.close();
-        }*/
+        }
     }
 }
