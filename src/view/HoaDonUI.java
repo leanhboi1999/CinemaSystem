@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import util.DateFormat;
 
 public class HoaDonUI extends javax.swing.JFrame {
     
@@ -368,7 +369,14 @@ public class HoaDonUI extends javax.swing.JFrame {
             }
             
         } else if (ckThoiGian.isSelected()) {
-            //Load controller
+            String startDate = DateFormat.toString(jDateStart.getDate());
+            String endDate = DateFormat.toString(jDateEnd.getDate());
+            try {
+                ArrayList<HoaDonThucPham> arr = HoaDonThucPhamController.timKiemNgay(startDate, endDate);
+                hienThi(arr);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn cách tìm kiếm");
         }

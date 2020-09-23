@@ -59,10 +59,7 @@ public class GheModel {
             return st.getInt(1);
         } catch (Exception e) {
             return 0;
-        }
-        /*finally {
-            con.close();
-        }*/
+        } 
     }
 
     public static String hienMa() throws SQLException {
@@ -73,7 +70,6 @@ public class GheModel {
     }
 
     public static boolean themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe, int giave) throws SQLException {
-        //Connection con = Database.connect();
         try {
             String sql = "{call PRO_BANVE(?,?,?,?,?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
@@ -82,7 +78,6 @@ public class GheModel {
             cstmt.setString(3, manhanvien);
             cstmt.setString(4, mahoivien);
             cstmt.setString(5, maghe);
-            //System.out.println(fm.format(ngaysinh));
             cstmt.setInt(6, giave);
             cstmt.executeUpdate();
             return true;

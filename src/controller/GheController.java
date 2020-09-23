@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import entity.Ghe;
@@ -10,10 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.GheModel;
 
-/**
- *
- * @author leanh
- */
 public class GheController {
 
     public static ArrayList<Ghe> taiTatCa(String masuatchieu) throws SQLException {
@@ -28,26 +19,20 @@ public class GheController {
             return false;
         }
     }
-    
-    /*public static String hienMaVe () throws SQLException {
-        
-    }*/
-    
-    public static int giave(String masuatchieu) throws SQLException
-    {
+
+    public static int giave(String masuatchieu) throws SQLException {
         return GheModel.giave(masuatchieu);
     }
-    
-    public static boolean themVe(String mave,String masuatchieu, String manhanvien, String mahoivien, String maghe,int giave) throws SQLException {
-        return GheModel.themVe(mave,masuatchieu, manhanvien, mahoivien, maghe,giave);
+
+    public static boolean themVe(String mave, String masuatchieu, String manhanvien, String mahoivien, String maghe, int giave) throws SQLException {
+        return GheModel.themVe(mave, masuatchieu, manhanvien, mahoivien, maghe, giave);
     }
-    public static String hienMa() throws SQLException
-    {
+
+    public static String hienMa() throws SQLException {
         return GheModel.hienMa();
     }
-    
-     public static Ghe timKiemGhe(String maphong,int soghe) throws SQLException
-     {
-         return GheModel.timKiemGhe(maphong,soghe);
-     }
+
+    public static Ghe timKiemGhe(String maphong, int soghe) throws SQLException {
+        return GheModel.timKiemGhe(maphong, soghe);
+    }
 }

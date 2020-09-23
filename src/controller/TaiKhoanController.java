@@ -42,9 +42,4 @@ public class TaiKhoanController {
     {
         return TaiKhoanModel.taoTaiKhoan(manhanvien,matkhau);
     }
-    
-    /*public static int Inset(String user, String pass) throws SQLException{
-        return TaiKhoanModel.Insert(user, pass);
-             
-    }*/
 }

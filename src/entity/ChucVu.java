@@ -10,6 +10,7 @@ package entity;
  * @author leanh
  */
 public class ChucVu {
+
     private String machucvu;
     private String tenchucvu;
     private int luongcoban;

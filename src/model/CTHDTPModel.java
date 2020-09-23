@@ -3,7 +3,6 @@ package model;
 import entity.Cthdtp;
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,8 +38,6 @@ public class CTHDTPModel {
     }
 
     public static int insert(String mahoadon, String mathucpham, int soluong) throws SQLException, InterruptedException {
-        //int rows = Database.callQueryInsert("CTHDTP", mahoadon, mathucpham, soluong);
-        //Connection con = Database.connect();
         con.setAutoCommit(false);
         CallableStatement stmt = con.prepareCall("call {PRO_INSERT_CTHDTP(?,?,?)}");
         stmt.setString(1, mahoadon);
@@ -48,7 +45,6 @@ public class CTHDTPModel {
         stmt.setInt(3, soluong);
         Thread.sleep(1000);
         int row = stmt.executeUpdate();
-        //Database.connect().close();
         return row;
     }
 

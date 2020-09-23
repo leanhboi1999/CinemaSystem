@@ -41,7 +41,6 @@ public class NhanVienModel {
         CallableStatement st = con.prepareCall("{? = call ID_NHANVIEN}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
-        System.out.println(st.getString(1));
         return st.getString(1);
     }
 
@@ -66,33 +65,25 @@ public class NhanVienModel {
     }
 
     public static boolean editNhanVien(String manv, String chucvu, String tennv, String email, String CMND, String gioitinh, Date ngaysinh, String diachi, String dienthoai, Date ngayvl, int trangthai) throws SQLException {
-        //Connection con = Database.connect();
         try {
             String sql = "{call EDIT_NHANVIEN(?,?,?,?,?,?,?,?,?,?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
-            cstmt.setString(1, manv);
-            //System.out.println();
+            cstmt.setString(1, manv);         
             cstmt.setString(2, chucvu);
-            //System.out.println(tenhv);
             cstmt.setString(3, tennv);
-            //System.out.println(gioitinh);
             cstmt.setString(4, email);
-            //System.out.println(CMND);
             cstmt.setString(5, CMND);
             cstmt.setString(6, gioitinh);
             cstmt.setString(7, df.format(ngaysinh));
             cstmt.setString(8, diachi);
             cstmt.setString(9, dienthoai);
             cstmt.setString(10, df.format(ngayvl));
-            System.out.println(df.format(ngayvl));
             cstmt.setInt(11, trangthai);
             cstmt.executeUpdate();
             return true;
         } catch (Exception e) {
             return false;
-        } /*finally {
-            con.close();
-        }*/
+        }
     }
 
     public static NhanVien layThongTin(String manhanvien) throws SQLException {

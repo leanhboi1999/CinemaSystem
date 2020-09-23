@@ -23,13 +23,11 @@ public class ThucPhamModel {
         ArrayList<ThucPham> arr = new ArrayList<>();
         while (rs.next()) {
             arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
-            //con.commit();
         }
         return arr;
     }
 
     public static ArrayList<ThucPham> taiCoTrangThai() throws SQLException {
-
         String sql = "select * from thucpham where TRANGTHAI = 1";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -41,8 +39,6 @@ public class ThucPhamModel {
     }
 
     public static ArrayList<ThucPham> timKiem(String tenthucpham) throws SQLException {
-        //Cái này để giải quyết non-repeatable read
-        con.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
         String sql = "SELECT * FROM THUCPHAM WHERE TENTHUCPHAM LIKE '%" + tenthucpham + "%'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
@@ -77,7 +73,6 @@ public class ThucPhamModel {
     }
 
     public static int insertThucPham(ThucPham thucpham) throws SQLException {
-        //Connection con = Database.connect();
         con.setAutoCommit(false);
         String sql = "INSERT INTO THUCPHAM VALUES (?,?,?,?,?)";
         PreparedStatement stmt;
@@ -88,47 +83,31 @@ public class ThucPhamModel {
         stmt.setInt(4, thucpham.getSoluong());
         stmt.setInt(5, thucpham.getTrangthai());
         int row = stmt.executeUpdate();
-        //con.commit();
         return row;
     }
 
     public static int editThucPham(String maThucPham, String tenThucPham, int donGia, int soLuong, int trangThai) throws SQLException {
-        //Connection con = Database.connect();
         try {
             con.setAutoCommit(false);
             String sql = "{call EDIT_THUCPHAM(?,?,?,?,?)}";
             CallableStatement st = con.prepareCall(sql);
-            System.out.println("flag 2");
             st.setString(1, maThucPham);
             st.setString(2, tenThucPham);
             st.setInt(3, donGia);
             st.setInt(4, soLuong);
             st.setInt(5, trangThai);
-            System.out.println(maThucPham);
-            System.out.println(tenThucPham);
-            System.out.println(donGia);
-            System.out.println(soLuong);
-            System.out.println(trangThai);
-            System.out.println("flag 3");
             int kq = st.executeUpdate();
-            //con.close();
-            //Thay đổi thread để demo non-repeatable read
-            //Thread.sleep(2000);
             con.commit();
             return kq;
         } catch (Exception e) {
             return 0;
         }
-        /*finally {
-            con.close();
-        }*/
     }
 
     public static int xoaThucPham(String maThucPham) throws SQLException {
         String sql = "DELETE FROM THUCPHAM WHERE MATHUCPHAM = '" + maThucPham + "'";
         PreparedStatement st = con.prepareCall(sql);
         int rs = st.executeUpdate(sql);
-        //Database.connect().close();
         return rs;
     }
 

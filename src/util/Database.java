@@ -25,11 +25,11 @@ public class Database {
     public static Connection conn;
 
     //Hàm khởi tạo giá trị cho kết nối database
-    /*public static void Load() {
+    public static void Load() {
         userName = "quanlirap";
         password = "123456";
         connectionString = "jdbc:oracle:thin:@localhost:1521:sid";
-    }*/
+    }
     //Hàm kết nối dùng giá trị riêng
     public static Connection connect(String jdbcString, String username, String password) throws SQLException {
         return DriverManager.getConnection(jdbcString, username, password);
@@ -50,7 +50,7 @@ public class Database {
     }
     
     //Gọi lệnh
-   /* public static ResultSet callQuery(String sqlQuery) throws SQLException {
+   public static ResultSet callQuery(String sqlQuery) throws SQLException {
         Connection connect = connect();
         Statement st = connect.createStatement();
         return st.executeQuery(sqlQuery);
@@ -154,5 +154,5 @@ public class Database {
         }
         // trả về kết quả
         return call.executeUpdate();
-    }*/
+    }
 }

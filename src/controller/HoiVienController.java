@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import entity.HoiVien;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import model.HoiVienModel;
 
-/**
- *
- * @author leanh
- */
 public class HoiVienController {
 
     public static ArrayList<HoiVien> taiTatCa() throws SQLException {
@@ -45,12 +36,12 @@ public class HoiVienController {
     public static String hienMa() throws SQLException {
         return HoiVienModel.hienMa();
     }
-    public static int insertHoiVien(HoiVien hv) throws SQLException
-    {
+
+    public static int insertHoiVien(HoiVien hv) throws SQLException {
         return HoiVienModel.insertHoiVien(hv);
     }
-     public static boolean editHoiVien(String mahv,String tenhv,String gioitinh,String CMND,Date ngaysinh,String email,String dienthoai) throws SQLException
-     {
-         return HoiVienModel.editHoiVien(mahv, tenhv, gioitinh, CMND,ngaysinh,email, dienthoai);
-     }
+
+    public static boolean editHoiVien(String mahv, String tenhv, String gioitinh, String CMND, Date ngaysinh, String email, String dienthoai) throws SQLException {
+        return HoiVienModel.editHoiVien(mahv, tenhv, gioitinh, CMND, ngaysinh, email, dienthoai);
+    }
 }

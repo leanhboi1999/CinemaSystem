@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import entity.Cthdtp;
@@ -10,10 +5,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.CTHDTPModel;
 
-/**
- *
- * @author leanh
- */
 public class CTHDTPController {
 
     public static ArrayList<Cthdtp> tatTatCa() throws SQLException {

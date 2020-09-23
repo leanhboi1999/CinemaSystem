@@ -34,7 +34,18 @@ public class HoaDonThucPhamModel {
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            arr.add(new HoaDonThucPham(rs.getString(1), rs.getInt(2), rs.getTimestamp(3)));
+            arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
+        }
+        return arr;
+    }
+
+    public static ArrayList<HoaDonThucPham> timKiemNgay(String startDate, String endDate) throws SQLException {
+        ArrayList<HoaDonThucPham> arr = new ArrayList<>();
+        String sql = "SELECT * FROM HDTHUCPHAM WHERE NGAYLAP>=TO_DATE('" + startDate + "','DD/MM/YYYY') AND NGAYLAP<=TO_DATE('" + endDate + "','DD/MM/YYYY')";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
         }
         return arr;
     }
@@ -56,27 +67,10 @@ public class HoaDonThucPhamModel {
         return rows;
     }
 
-    //public static boolean inserthd_cthd(HoaDonThucPham hd, ArrayList<Cthdtp> chitiethoadon) throws SQLException {
     public static boolean inserthd_cthd(ArrayList<Cthdtp> chitiethoadon) throws SQLException {
-        //Connection con = Database.connect();
         try {
-            /*con.setAutoCommit(false);
-            String sql = "INSERT INTO HDTHUCPHAM VALUES (?,?,?,TO_DATE(?,'YYYY-MM-DD'))";
-            PreparedStatement stmt;
-            stmt = con.prepareStatement(sql);
-            stmt.setString(1, hd.getMahoadon()); // This would set age
-            stmt.setString(2, hd.getManhanvien());
-            stmt.setInt(3, hd.getSotien());
-            stmt.setString(4, hd.getNgaylap());
-            stmt.executeUpdate();
-            //PreparedStatement stmt2;*/
             for (int i = 0; i < chitiethoadon.size(); i++) {
-                /*String sql2 = "INSERT INTO CTHDTP VALUES (?,?,?)";
-                stmt2 = con.prepareStatement(sql2);
-                stmt2.setString(2, chitiethoadon.get(i).getMathucpham()); // This would set age
-                stmt2.setString(1, chitiethoadon.get(i).getMahoadon());
-                stmt2.setInt(3, chitiethoadon.get(i).getSoluong());
-                stmt2.executeUpdate();*/
+
                 con.setAutoCommit(false);
                 CallableStatement stmt1 = con.prepareCall("call PRO_INSERT_CTHDTP(?,?,?,?)");
                 stmt1.setString(1, chitiethoadon.get(i).getMahoadon());
@@ -100,9 +94,6 @@ public class HoaDonThucPhamModel {
             }
             return false;
         }
-        /*finally {
-            con.close();
-        }*/
     }
 
 }

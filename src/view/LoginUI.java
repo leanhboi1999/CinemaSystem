@@ -158,7 +158,6 @@ public class LoginUI extends javax.swing.JFrame {
             String username = txtUserName.getText();
             kn_manhanvien = txtUserName.getText();
             String password = txtPassword.getText();
-
             if ("".equals(username) || "".equals(password)) {
                 JOptionPane.showMessageDialog(null, "Hey, nhập thông tin đầy đủ coi nào");
             } else if (TaiKhoanController.DangNhap(username, password) == true) {
