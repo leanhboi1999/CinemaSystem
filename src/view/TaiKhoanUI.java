@@ -149,9 +149,9 @@ public class TaiKhoanUI extends javax.swing.JFrame {
             String matkhau = jTextField2.getText();
             try {
                 if (TaiKhoanController.taoTaiKhoan(manv, matkhau)) {
-                    JOptionPane.showMessageDialog(null, "thành công");
+                    JOptionPane.showMessageDialog(null, "Thành công");
                 } else {
-                    JOptionPane.showMessageDialog(null, "thất bại");
+                    JOptionPane.showMessageDialog(null, "Thất bại");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());

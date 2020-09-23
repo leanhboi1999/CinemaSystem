@@ -91,18 +91,11 @@ public class ThucPhamModel {
             con.setAutoCommit(false);
             String sql = "{call EDIT_THUCPHAM(?,?,?,?,?)}";
             CallableStatement st = con.prepareCall(sql);
-            System.out.println("flag 2");
             st.setString(1, maThucPham);
             st.setString(2, tenThucPham);
             st.setInt(3, donGia);
             st.setInt(4, soLuong);
             st.setInt(5, trangThai);
-            System.out.println(maThucPham);
-            System.out.println(tenThucPham);
-            System.out.println(donGia);
-            System.out.println(soLuong);
-            System.out.println(trangThai);
-            System.out.println("flag 3");
             int kq = st.executeUpdate();
             con.commit();
             return kq;

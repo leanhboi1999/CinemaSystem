@@ -59,8 +59,6 @@ public class VeModel {
         } catch (Exception e) {
             con.rollback();
             return false;
-        } finally {
-            con.close();
         }
     }
 

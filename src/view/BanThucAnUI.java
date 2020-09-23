@@ -297,12 +297,10 @@ public class BanThucAnUI extends javax.swing.JFrame {
             float dongia = Float.parseFloat(getdongia);
             sum = sum + (int) dongia;
         }
-
-        //HoaDonThucPham hoadon = new HoaDonThucPham(mahoadon, manhanvien, sum, date);
-
+      
         boolean check;
         try {
-            //check = HoaDonThucPhamController.insertcthdtp(hoadon, chitiethoadon);
+     
             check = HoaDonThucPhamController.insertcthdtp(chitiethoadon);
             if (check) {
                 JOptionPane.showMessageDialog(null, "Thành công");
@@ -332,8 +330,6 @@ public class BanThucAnUI extends javax.swing.JFrame {
                     String getgiatien = ui.jTable1.getValueAt(i, 5).toString();
                     float giatien = Float.parseFloat(getgiatien);
                     tongTien = tongTien + (int) giatien;
-                    //tongTien = tongTien + Float.parseFloat(jTable1.getValueAt(i, 5).toString());
-                    //Integer.valueOf((String)jTable1.getValueAt(i, 5));
                 }
                 String tonggiatien = Integer.toString(tongTien);
                 ui.txtTong.setText(tonggiatien + " VND");
@@ -347,9 +343,6 @@ public class BanThucAnUI extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
-        //insert hóa đơn vào database
-
     }//GEN-LAST:event_btnBanActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed

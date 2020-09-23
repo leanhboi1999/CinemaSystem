@@ -200,7 +200,7 @@ public class ThemThucAnUI extends javax.swing.JFrame {
                     if (kq > 0) {
                         JOptionPane.showMessageDialog(null, "Thành công");
                     } else {
-                        JOptionPane.showMessageDialog(null, "That Bai");
+                        JOptionPane.showMessageDialog(null, "Thất bại");
                     }
 
                 } catch (Exception e) {

@@ -33,7 +33,6 @@ public class HoiVienModel {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             arr.add(new HoiVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
-            System.out.println(rs.getDate(5));
         }
         return arr;
     }
@@ -90,7 +89,6 @@ public class HoiVienModel {
     }
 
     public static int insertHoiVien(HoiVien hv) throws SQLException {
-        //Connection con = Database.connect();
         String sql = "INSERT INTO HOIVIEN VALUES (?,?,?,?,TO_DATE(?,'DD-MM-YYYY'),?,?,?,?)";
         PreparedStatement stmt;
         stmt = con.prepareStatement(sql);
@@ -99,7 +97,6 @@ public class HoiVienModel {
         stmt.setString(3, hv.getGioitinh());
         stmt.setString(4, hv.getCmnd());
         stmt.setString(5, fm.format(hv.getNgaysinh()));
-        System.out.println(fm.format(hv.getNgaysinh()));
         stmt.setString(6, hv.getEmail());
         stmt.setString(7, hv.getSodienthoai());
         stmt.setDate(8, (java.sql.Date) (Date) hv.getNgaydangki());
@@ -109,31 +106,21 @@ public class HoiVienModel {
     }
 
     public static boolean editHoiVien(String mahv, String tenhv, String gioitinh, String CMND, Date ngaysinh, String email, String dienthoai) throws SQLException {
-        //Connection con = Database.connect();
         try {
             String sql = "{call EDIT_HOIVIEN(?,?,?,?,?,?,?)}";
             CallableStatement cstmt = con.prepareCall(sql);
             cstmt.setString(1, mahv);
-            System.out.println(mahv);
             cstmt.setString(2, tenhv);
-            System.out.println(tenhv);
             cstmt.setString(3, gioitinh);
-            System.out.println(gioitinh);
             cstmt.setString(4, CMND);
-            System.out.println(CMND);
             cstmt.setString(5, fm.format(ngaysinh));
-            System.out.println(fm.format(ngaysinh));
             cstmt.setString(6, email);
-            System.out.println(email);
             cstmt.setString(7, dienthoai);
-            System.out.println(dienthoai);
             cstmt.executeUpdate();
             return true;
         } catch (Exception e) {
             return false;
-        } /*finally {
-            con.close();
-        }*/
+        }
     }
 
 }

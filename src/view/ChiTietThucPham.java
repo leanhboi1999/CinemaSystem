@@ -7,12 +7,9 @@ package view;
 
 import controller.NhanVienController;
 import entity.NhanVien;
-import entity.ThucPham;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**

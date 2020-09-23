@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/util/Database.java</file>
-            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/model/TaiKhoanModel.java</file>
-            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/view/LoginUI.java</file>
             <file>file:/E:/Project/Java_App/AppQuanLiRap/src/controller/TaiKhoanController.java</file>
+            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/view/LoginUI.java</file>
+            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/model/TaiKhoanModel.java</file>
+            <file>file:/E:/Project/Java_App/AppQuanLiRap/src/util/Database.java</file>
         </group>
     </open-files>
 </project-private>
