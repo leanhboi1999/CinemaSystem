@@ -34,7 +34,18 @@ public class HoaDonThucPhamModel {
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            arr.add(new HoaDonThucPham(rs.getString(1), rs.getInt(2), rs.getTimestamp(3)));
+            arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
+        }
+        return arr;
+    }
+
+    public static ArrayList<HoaDonThucPham> timKiemNgay(String startDate, String endDate) throws SQLException {
+        ArrayList<HoaDonThucPham> arr = new ArrayList<>();
+        String sql = "SELECT * FROM HDTHUCPHAM WHERE NGAYLAP>=TO_DATE('" + startDate + "','DD/MM/YYYY') AND NGAYLAP<=TO_DATE('" + endDate + "','DD/MM/YYYY')";
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
         }
         return arr;
     }

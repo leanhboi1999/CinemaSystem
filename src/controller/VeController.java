@@ -10,6 +10,14 @@ public class VeController {
     public static ArrayList<Ve> taiTatCa() throws SQLException {
         return VeModel.taiTatCa();
     }
+    
+    public static ArrayList<Ve> timKiem(String mave) throws SQLException {
+        return VeModel.timKiem(mave);
+    }
+    
+    public static ArrayList<Ve> timKiemNgay(String startDate, String endDate) throws SQLException {
+        return VeModel.timKiemNgay(startDate, endDate);
+    }
 
     public static Ve chiTietVe(String mave) throws SQLException {
         return VeModel.chiTietVe(mave);

@@ -23,7 +23,7 @@ public class TaiKhoanModel {
 
     public static ArrayList<TaiKhoan> taiTatCa() throws SQLException {
         String sql = "select * from taikhoan";
-       Statement st = con.createStatement();
+        Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         ArrayList<TaiKhoan> arr = new ArrayList<>();
         while (rs.next()) {
@@ -33,11 +33,12 @@ public class TaiKhoanModel {
     }
 
     public static String layMatKhau(String username) throws SQLException {
-        String sql = "select mat_khau from TAIKHOAN where manhanvien = " + "'" + username + "'";
+        String sql = "select matkhau from TAIKHOAN where manhanvien = " + "'" + username + "'";
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         String pass = rs.getString(1);
+        System.out.println(pass);
         if (pass == null) {
             throw new SQLException();
         }
@@ -61,6 +62,7 @@ public class TaiKhoanModel {
             cstmt.setString(1, manhanvien);
             //System.out.println();
             cstmt.setString(2, matkhau);
+            cstmt.executeUpdate();
             return true;
         } catch (Exception e) {
             return false;

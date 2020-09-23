@@ -2,6 +2,7 @@ package view;
 
 import controller.VeController;
 import entity.Ve;
+import javax.swing.JOptionPane;
 
 public class CTVeUI extends javax.swing.JFrame {
 
@@ -244,7 +245,9 @@ public class CTVeUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLuuActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-
+        VeUI ui = new VeUI(maquyen, manhanvien);
+        dispose();
+        ui.setVisible(true);
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
@@ -301,7 +304,7 @@ public class CTVeUI extends javax.swing.JFrame {
             txtTenNhanVien.setText(chitiet.getTennhanvien());
             jSpinGiaVe.setValue(chitiet.getGiave());
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
