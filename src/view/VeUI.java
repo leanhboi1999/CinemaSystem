@@ -252,7 +252,7 @@ public class VeUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 842, 430);
+        jPanel10.setBounds(330, 112, 838, 430);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -300,8 +300,8 @@ public class VeUI extends javax.swing.JFrame {
         ui.setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int row = jTableVe.getSelectedRow();
+    private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
+       int row = jTableVe.getSelectedRow();
         if (row == -1) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn vé cần thêm", "Null Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -318,9 +318,29 @@ public class VeUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-
     }//GEN-LAST:event_btnInActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+         try {
+            if (ckMaVe.isSelected() && ckThoiGian.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn 1 trong 2");
+            } else if (ckMaVe.isSelected()) {
+                String mave = txtMaVe.getText();
+                ArrayList<Ve> arr = VeController.timKiem(mave);
+                hienThi(arr);
+            } else if (ckThoiGian.isSelected()) {
+                String startDate = DateFormat.toString(txtStartDate.getDate());
+                String endDate = DateFormat.toString(txtEndDate.getDate());
+                ArrayList<Ve> arr = VeController.timKiemNgay(startDate, endDate);
+                hienThi(arr);
+            } else {
+                JOptionPane.showMessageDialog(null, "Vui lòng chọn trước");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+                              
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
