@@ -1,5 +1,5 @@
 # AppQuanLiRap </br>
-If you have any problem, please contact me at: [a link](fb.com/leanhboi1999)
+If you have any problem, please contact me at: [Facebook](fb.com/leanhboi1999)
 ### File config </br>
 - Thiết lập lại cấu hình database tại hàm load, file database.java
 ### Cấu trúc thư mục </br>
