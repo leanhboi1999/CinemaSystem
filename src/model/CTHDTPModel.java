@@ -34,7 +34,9 @@ public class CTHDTPModel {
         while (rs.next()) {
             arr.add(new Cthdtp(rs.getString(1), rs.getString(2), rs.getInt(3)));
         }
+        Database.connect().close();
         return arr;
+        
     }
 
     public static int insert(String mahoadon, String mathucpham, int soluong) throws SQLException, InterruptedException {
@@ -43,8 +45,8 @@ public class CTHDTPModel {
         stmt.setString(1, mahoadon);
         stmt.setString(2, mathucpham);
         stmt.setInt(3, soluong);
-        Thread.sleep(1000);
         int row = stmt.executeUpdate();
+        Database.connect().close();
         return row;
     }
 

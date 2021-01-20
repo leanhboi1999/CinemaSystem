@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import entity.TaiKhoan;
@@ -30,6 +25,7 @@ public class TaiKhoanModel {
         while (rs.next()) {
             arr.add(new TaiKhoan(rs.getString(1), rs.getString(2), rs.getString(3)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -39,10 +35,10 @@ public class TaiKhoanModel {
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         String pass = rs.getString(1);
-        System.out.println(pass);
         if (pass == null) {
             throw new SQLException();
         }
+        Database.connect().close();
         return pass;
     }
 
@@ -52,6 +48,7 @@ public class TaiKhoanModel {
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         String maQuyen = rs.getString(1);
+        Database.connect().close();
         return maQuyen;
     }
 
@@ -62,8 +59,12 @@ public class TaiKhoanModel {
             cstmt.setString(1, manhanvien);
             cstmt.setString(2, matkhau);
             cstmt.executeUpdate();
+            con.commit();
+            Database.connect().close();
             return true;
         } catch (Exception e) {
+            con.rollback();
+            Database.connect().close();
             return false;
         }
     }

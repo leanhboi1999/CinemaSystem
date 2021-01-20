@@ -26,6 +26,7 @@ public class GheModel {
         while (rs.next()) {
             arr.add(new Ghe(rs.getString(1)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -45,6 +46,7 @@ public class GheModel {
         PreparedStatement st = con.prepareCall(sql);
         st.setString(1, null);
         int row = st.executeUpdate();
+        Database.connect().close();
         return row;
     }
 
@@ -56,8 +58,10 @@ public class GheModel {
             st.setString(2, masuatchieu);
             st.execute();
             System.out.println(st.getInt(1));
+            Database.connect().close();
             return st.getInt(1);
         } catch (Exception e) {
+            Database.connect().close();
             return 0;
         } 
     }
@@ -66,6 +70,7 @@ public class GheModel {
         CallableStatement st = con.prepareCall("{? = call ID_VE}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 
@@ -80,8 +85,10 @@ public class GheModel {
             cstmt.setString(5, maghe);
             cstmt.setInt(6, giave);
             cstmt.executeUpdate();
+            Database.connect().close();
             return true;
         } catch (Exception e) {
+            Database.connect().close();
             return false;
         }
     }

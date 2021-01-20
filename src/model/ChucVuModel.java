@@ -19,6 +19,7 @@ public class ChucVuModel {
         while(rs.next()) {
             arr.add(new ChucVu(rs.getString(1), rs.getString(2),rs.getInt(3)));
         }
+        Database.connect().close();
         return arr;
     }
 }

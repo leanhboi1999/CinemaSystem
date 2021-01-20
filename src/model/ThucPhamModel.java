@@ -46,6 +46,7 @@ public class ThucPhamModel {
         while (rs.next()) {
             arr.add(new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -53,6 +54,7 @@ public class ThucPhamModel {
         CallableStatement st = con.prepareCall("{? = call ID_THUCPHAM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 
@@ -60,6 +62,7 @@ public class ThucPhamModel {
         CallableStatement st = con.prepareCall("{? = call auto_ngaylap}");
         st.registerOutParameter(1, Types.DATE);
         st.execute();
+        Database.connect().close();
         return st.getDate(1);
     }
 
@@ -69,6 +72,7 @@ public class ThucPhamModel {
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         ThucPham thucpham = new ThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));
+        Database.connect().close();
         return thucpham;
     }
 
@@ -98,8 +102,11 @@ public class ThucPhamModel {
             st.setInt(5, trangThai);
             int kq = st.executeUpdate();
             con.commit();
+            Database.connect().close();
             return kq;
         } catch (Exception e) {
+            con.rollback();
+            Database.connect().close();
             return 0;
         }
     }
@@ -108,6 +115,7 @@ public class ThucPhamModel {
         String sql = "DELETE FROM THUCPHAM WHERE MATHUCPHAM = '" + maThucPham + "'";
         PreparedStatement st = con.prepareCall(sql);
         int rs = st.executeUpdate(sql);
+        Database.connect().close();
         return rs;
     }
 

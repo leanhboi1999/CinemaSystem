@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import entity.Phim;
@@ -36,6 +31,7 @@ public class PhimModel {
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -47,6 +43,7 @@ public class PhimModel {
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -56,6 +53,7 @@ public class PhimModel {
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         Phim kq = new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12));
+        Database.connect().close();
         return kq;
     }
 
@@ -67,6 +65,7 @@ public class PhimModel {
         while (rs.next()) {
             arr.add(new Phim(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getInt(10), rs.getString(11), rs.getString(12)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -82,6 +81,7 @@ public class PhimModel {
                     rs.getInt(10), rs.getString(11), rs.getString(12));
             arr.add(k);
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -89,6 +89,7 @@ public class PhimModel {
         String sql = "DELETE FROM PHIM WHERE MAPHIM = '" + maphim + "'";
         Statement st = con.createStatement();
         int rs = st.executeUpdate(sql);
+        Database.connect().close();
         return rs;
     }
 
@@ -96,6 +97,7 @@ public class PhimModel {
         CallableStatement st =con.prepareCall("{? = call ID_PHIM}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 

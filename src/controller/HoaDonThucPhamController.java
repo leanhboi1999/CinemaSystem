@@ -28,13 +28,6 @@ public class HoaDonThucPhamController {
         return HoaDonThucPhamModel.inserthd(m1, m2, m3);
     }
 
-    /*public static boolean insertcthdtp(HoaDonThucPham hd, ArrayList<Cthdtp> chitiethoadon) throws SQLException {
-        if (HoaDonThucPhamModel.inserthd_cthd(hd, chitiethoadon)) {
-            return true;
-        } else {
-            return false;
-        }
-    }*/
     public static boolean insertcthdtp(ArrayList<Cthdtp> chitiethoadon) throws SQLException {
         if (HoaDonThucPhamModel.inserthd_cthd(chitiethoadon)) {
             return true;

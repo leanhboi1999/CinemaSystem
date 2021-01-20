@@ -19,6 +19,7 @@ public class HinhThucModel {
         while(rs.next()) {
             arr.add(new HinhThuc(rs.getString(1), rs.getString(2)));
         }
+        Database.connect().close();
         return arr;
     }
 }

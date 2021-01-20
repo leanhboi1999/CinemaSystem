@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import entity.NhanVien;
@@ -11,10 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import model.NhanVienModel;
 
-/**
- *
- * @author admin
- */
 public class NhanVienController {
 
     public static ArrayList<NhanVien> taiTatCa() throws SQLException {

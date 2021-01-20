@@ -20,6 +20,7 @@ public class NgonNguModel {
         while(rs.next()) {
             arr.add(new NgonNgu(rs.getString(1), rs.getString(2)));
         }
+        Database.connect().close();
         return arr;
     }
 }

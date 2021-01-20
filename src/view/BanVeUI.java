@@ -22,13 +22,15 @@ public class BanVeUI extends javax.swing.JFrame {
     public static String kt_maphong;
     public static String kt_makhachhang;
     public static String kt_tenkhachhang;
+    
+    private String maquyen;
+    private String username;
 
     public BanVeUI() {
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         setTitle("App quản lý rạp phim");
-       
         try {
             ArrayList<Phim> arr = PhimController.taiPhimDangChieu();
             hienThi(arr);
@@ -36,9 +38,7 @@ public class BanVeUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
-   
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,7 +110,7 @@ public class BanVeUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Mã khách hàng:");
+        jLabel2.setText("Mã hội viên:");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -143,7 +143,7 @@ public class BanVeUI extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel10);
-        jPanel10.setBounds(330, 112, 842, 430);
+        jPanel10.setBounds(330, 112, 838, 430);
 
         jPanel3.setBackground(new java.awt.Color(250, 250, 250));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder());
@@ -294,10 +294,8 @@ public class BanVeUI extends javax.swing.JFrame {
             gh=new GheUI(kt_masuatchieu);
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Mã khách hàng không hợp lệ ");
+            JOptionPane.showMessageDialog(null,"Mã hội viên không hợp lệ ");
         }
-        
-        
     }//GEN-LAST:event_btnChonActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

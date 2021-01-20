@@ -20,6 +20,7 @@ public class SuKienModel {
         while (rs.next()) {
             arr.add(new SuKien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
         }
+        Database.connect().close();
         return arr;
     }
 

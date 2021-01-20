@@ -1,6 +1,7 @@
 package view;
 
 import controller.TaiKhoanController;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -71,6 +72,11 @@ public class LoginUI extends javax.swing.JFrame {
         kButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kButton1ActionPerformed(evt);
+            }
+        });
+        kButton1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                kButton1KeyPressed(evt);
             }
         });
 
@@ -155,45 +161,15 @@ public class LoginUI extends javax.swing.JFrame {
 
     private void kButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton1ActionPerformed
         if (evt.getSource() == kButton1) {
-            String username = txtUserName.getText();
-            kn_manhanvien = txtUserName.getText();
-            String password = txtPassword.getText();
-            if ("".equals(username) || "".equals(password)) {
-                JOptionPane.showMessageDialog(null, "Hey, nhập thông tin đầy đủ coi nào");
-            } else if (TaiKhoanController.DangNhap(username, password) == true) {
-                try {
-                    String quyen = TaiKhoanController.GetQuyen(username);
-                    if (quyen.equalsIgnoreCase("PQ00001") || quyen.equalsIgnoreCase("PQ00004") || quyen.equalsIgnoreCase("PQ00005")) {
-                        dispose();
-                        HomeUI ui = new HomeUI(quyen, username);
-                        ui.setVisible(true);
-                        ui.setLocationRelativeTo(null);
-                    } else if (quyen.equalsIgnoreCase("PQ00002")) {
-                        dispose();
-                        BanVeUI ui = new BanVeUI();
-                        ui.setVisible(true);
-                        ui.setLocationRelativeTo(null);
-                    } else if (quyen.equalsIgnoreCase("PQ00003")) {
-                        dispose();
-                        BanThucAnUI ui = new BanThucAnUI(quyen, username);
-                        ui.setVisible(true);
-                        ui.setLocationRelativeTo(null);
-                    } else if (quyen.equalsIgnoreCase("PQ00006")) {
-                        dispose();
-                        ListBaoCaoUI ui = new ListBaoCaoUI(quyen, username);
-                        ui.setVisible(true);
-                        ui.setLocationRelativeTo(null);
-                    }
-                } catch (SQLException e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage());
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Sai mật khẩu hoặc tài khoản");
-            }
+            xuLiLogin();
         }
-
-
     }//GEN-LAST:event_kButton1ActionPerformed
+
+    private void kButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kButton1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            xuLiLogin();
+        }
+    }//GEN-LAST:event_kButton1KeyPressed
 
     /**
      * @param args the command line arguments
@@ -221,4 +197,42 @@ public class LoginUI extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    private void xuLiLogin() {
+        String username = txtUserName.getText();
+        kn_manhanvien = txtUserName.getText();
+        String password = txtPassword.getText();
+        if ("".equals(username) || "".equals(password)) {
+            JOptionPane.showMessageDialog(null, "Hey, nhập thông tin đầy đủ coi nào");
+        } else if (TaiKhoanController.DangNhap(username, password) == true) {
+            try {
+                String quyen = TaiKhoanController.GetQuyen(username);
+                if (quyen.equalsIgnoreCase("PQ00001") || quyen.equalsIgnoreCase("PQ00004") || quyen.equalsIgnoreCase("PQ00005")) {
+                    dispose();
+                    HomeUI ui = new HomeUI(quyen, username);
+                    ui.setVisible(true);
+                    ui.setLocationRelativeTo(null);
+                } else if (quyen.equalsIgnoreCase("PQ00002")) {
+                    dispose();
+                    BanVeUI ui = new BanVeUI();
+                    ui.setVisible(true);
+                    ui.setLocationRelativeTo(null);
+                } else if (quyen.equalsIgnoreCase("PQ00003")) {
+                    dispose();
+                    BanThucAnUI ui = new BanThucAnUI(quyen, username);
+                    ui.setVisible(true);
+                    ui.setLocationRelativeTo(null);
+                } else if (quyen.equalsIgnoreCase("PQ00006")) {
+                    dispose();
+                    ListBaoCaoUI ui = new ListBaoCaoUI(quyen, username);
+                    ui.setVisible(true);
+                    ui.setLocationRelativeTo(null);
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Sai mật khẩu hoặc tài khoản");
+        }
+    }
 }

@@ -30,6 +30,7 @@ public class VeModel {
         while (rs.next()) {
             arr.add(new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -39,6 +40,7 @@ public class VeModel {
         ResultSet rs = st.executeQuery(sql);
         rs.next();
         Ve chitiet = new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+        Database.connect().close();
         return chitiet;
     }
 
@@ -70,6 +72,7 @@ public class VeModel {
         while (rs.next()) {
             arr.add(new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -81,6 +84,7 @@ public class VeModel {
         while (rs.next()) {
             arr.add(new Ve(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDate(6), rs.getInt(7)));
         }
+        Database.connect().close();
         return arr;
     }
 

@@ -5,8 +5,6 @@
  */
 package controller;
 
-import entity.Cthdtp;
-import entity.HoaDonThucPham;
 import entity.ThucPham;
 import java.sql.SQLException;
 import java.util.ArrayList;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import entity.HoiVien;
@@ -18,10 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import util.Database;
 
-/**
- *
- * @author leanh
- */
 public class HoiVienModel {
     static Connection con = Database.connect();
     private static SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
@@ -34,6 +25,7 @@ public class HoiVienModel {
         while (rs.next()) {
             arr.add(new HoiVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getString(6), rs.getString(7), rs.getDate(8), rs.getInt(9)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -85,6 +77,7 @@ public class HoiVienModel {
         CallableStatement st = con.prepareCall("{? = call ID_HOIVIEN}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 
@@ -102,6 +95,7 @@ public class HoiVienModel {
         stmt.setDate(8, (java.sql.Date) (Date) hv.getNgaydangki());
         stmt.setInt(9, hv.getDiemtichluy());
         int row = stmt.executeUpdate();
+        Database.connect().close();
         return row;
     }
 
@@ -117,8 +111,10 @@ public class HoiVienModel {
             cstmt.setString(6, email);
             cstmt.setString(7, dienthoai);
             cstmt.executeUpdate();
+            Database.connect().close();
             return true;
         } catch (Exception e) {
+            Database.connect().close();
             return false;
         }
     }

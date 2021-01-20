@@ -721,7 +721,7 @@ public class ThemPhimUI extends javax.swing.JFrame {
         aSuatPhim.add(new SuatPhim(masuatphim, tenNN, tenDD, maphim, tenHT));
         return true;
     }
-
+  
     private void suaPhim() {
         if (check()) {
             try {

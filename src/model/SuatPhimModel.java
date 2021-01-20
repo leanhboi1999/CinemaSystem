@@ -24,6 +24,7 @@ public class SuatPhimModel {
         while (rs.next()) {
             arr.add(new SuatPhim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -40,6 +41,7 @@ public class SuatPhimModel {
         while (rs.next()) {
             arr.add(new SuatPhim(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)));
         }
+        Database.connect().close();
         return arr;
     }
 

@@ -25,6 +25,7 @@ public class HoaDonThucPhamModel {
         while (rs.next()) {
             arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -36,6 +37,7 @@ public class HoaDonThucPhamModel {
         while (rs.next()) {
             arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -47,6 +49,7 @@ public class HoaDonThucPhamModel {
         while (rs.next()) {
             arr.add(new HoaDonThucPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getTimestamp(4)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -54,6 +57,7 @@ public class HoaDonThucPhamModel {
         CallableStatement st = Database.connect().prepareCall("{? = call ID_HOADON}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 
@@ -64,6 +68,7 @@ public class HoaDonThucPhamModel {
         st.setString(2, m2);
         st.setString(3, m3);
         int rows = st.executeUpdate();
+        Database.connect().close();
         return rows;
     }
 
@@ -77,20 +82,15 @@ public class HoaDonThucPhamModel {
                 stmt1.setString(2, chitiethoadon.get(i).getMathucpham());
                 stmt1.setInt(3, chitiethoadon.get(i).getSoluong());
                 stmt1.setString(4, LoginUI.kn_manhanvien);
-                stmt1.executeUpdate();
-                //Thread.sleep(1000);
-                //con.commit();
+                stmt1.executeUpdate();  
             }
-            //Chỉnh sửa thread tạo lost update
-            Thread.sleep(1000);
-            //Chỉnh tạo deadlock
             con.commit();
+            Database.connect().close();
             return true;
         } catch (Exception e) {
             if (con != null) {
                 con.rollback();
                 e.printStackTrace();
-
             }
             return false;
         }

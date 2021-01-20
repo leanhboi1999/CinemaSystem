@@ -34,6 +34,7 @@ public class NhanVienModel {
         while (rs.next()) {
             arr.add(new NhanVien(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8), rs.getString(9), rs.getDate(10), rs.getInt(11)));
         }
+        Database.connect().close();
         return arr;
     }
 
@@ -41,11 +42,11 @@ public class NhanVienModel {
         CallableStatement st = con.prepareCall("{? = call ID_NHANVIEN}");
         st.registerOutParameter(1, Types.VARCHAR);
         st.execute();
+        Database.connect().close();
         return st.getString(1);
     }
 
     public static int insertNhanVien(NhanVien nv) throws SQLException {
-        //Connection con = Database.connect();
         String sql = "INSERT INTO NHANVIEN VALUES (?,?,?,?,?,?,TO_DATE(?,'DD/MM/YYYY'),?,?,TO_DATE(?,'DD/MM/YYYY'),?)";
         PreparedStatement stmt;
         stmt = con.prepareStatement(sql);
@@ -61,6 +62,7 @@ public class NhanVienModel {
         stmt.setString(10, df.format(nv.getNgayvaolam()));
         stmt.setInt(11, nv.getTrangthai());
         int row = stmt.executeUpdate();
+        Database.connect().close();
         return row;
     }
 
@@ -80,8 +82,11 @@ public class NhanVienModel {
             cstmt.setString(10, df.format(ngayvl));
             cstmt.setInt(11, trangthai);
             cstmt.executeUpdate();
+            Database.connect().close();
             return true;
         } catch (Exception e) {
+            con.rollback();
+            Database.connect().close();
             return false;
         }
     }
